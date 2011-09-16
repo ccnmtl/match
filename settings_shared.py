@@ -70,7 +70,10 @@ INSTALLED_APPS = (
     'main',
     'quizblock',
     'careermapblock',
+    'registration',
 )
+
+ACCOUNT_ACTIVATION_DAYS = 7
 
 PAGEBLOCKS = ['pageblocks.TextBlock',
               'pageblocks.HTMLBlock',
