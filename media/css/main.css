@@ -1018,7 +1018,7 @@ h1#logo_project {
 height: 80px;
 width: 485px;
 border: none;
-background: url("http://ccnmtl.columbia.edu/draft/lizday/oral_health/match_logo.png") no-repeat scroll left top transparent;
+background: url("../img/match_logo.png") no-repeat scroll left top transparent;
 margin: 0;
 
 }
@@ -1027,14 +1027,14 @@ h4#logo_ccnmtl {
 height: 47px;
 width: 151px;
 border: none;
-background: url("http://ccnmtl.columbia.edu/draft/lizday/oral_health/uncharted_logo.png") no-repeat scroll left top transparent;
+background: url("../img/uncharted_logo.png") no-repeat scroll left top transparent;
 float: right;
 }
 
 #primarynav {
     overflow: auto;
     height: auto;
-background: url("http://ccnmtl.columbia.edu/draft/lizday/oral_health/social_work_header.png") no-repeat scroll left top transparent;
+background: url("../img/social_work_header.png") no-repeat scroll left top transparent;
 height: 188px;
 
 
