@@ -12,6 +12,7 @@ urlpatterns = patterns('',
                        (r'^export/$','main.views.exporter'),
                        (r'^import/$','main.views.importer'),
 
+                       ('^_allresults/$','main.views.all_results'),
                        ('^accounts/',include('djangowind.urls')),
                        (r'^registration/', include('registration.urls')),
                        (r'^admin/(.*)', admin.site.root),
