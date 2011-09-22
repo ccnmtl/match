@@ -67,7 +67,7 @@
 <div id="usernav">{% if request.user.is_anonymous %}
 <a href="/accounts/login/?next=/">login</a>
 {% else %}
-logged in as {{request.user.first_name}} {{request.user.last_name}} [<a href="/logout/">logout</a>]
+logged in as {% if request.user.first_name or request.user.last_name %}{{request.user.first_name}} {{request.user.last_name}}{% else %}{{ request.user.username }}{% endif %} [<a href="/logout/">logout</a>]
 {% if can_edit %}
 [<a href="/edit{{request.path}}">edit</a>]
 {% if instructor_link %}
