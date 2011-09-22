@@ -38,6 +38,16 @@ def has_responses(section):
 def intro(request):
     return dict()
 
+def allow_redo(section):
+    """ if blocks on the page allow redo """
+    allowed = True
+    for p in section.pageblock_set.all():
+        if hasattr(p.block(),'allow_redo'):
+            if not p.block().allow_redo:
+                allowed = False
+    return allowed
+
+
 @rendered_with('main/page.html')
 def page(request,path):
     hierarchy = request.get_host()
@@ -73,6 +83,7 @@ def page(request,path):
                     module=module,
                     needs_submit=needs_submit(section),
                     is_submitted=submitted(section,request.user),
+                    allow_redo=allow_redo(section),
                     modules=root.get_children(),
                     root=section.hierarchy.get_root(),
                     instructor_link=instructor_link,
