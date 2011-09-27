@@ -727,6 +727,49 @@ a:visited
 
 /* Case quizzes */
 
+.gameshow {
+    background-color: #1DA5AB;
+
+}
+
+.gameshow .casetitle{
+    display: none;
+}
+
+.gameshow .casecontent{
+    margin: 0;
+    padding: 10px 80px;
+        background: url('../img/qmark.png') center left no-repeat;
+        text-align: center;
+}
+
+.mf-question {
+    font-size: 140%;
+    font-style: italic;
+    color: #fff;
+        margin: 0;
+}
+
+.casecontent ol {
+    list-style-type: none;
+        margin: 5em 1em 2em;
+    text-align: center;
+}
+
+.casecontent ol li {
+  border: 1px solid #8dc8cc;
+    display: inline;
+    font-size: 200%;
+    height: 30px;
+    margin: 5em 1em 2em;
+    padding: 15px;
+
+}
+
+.mfanswer {
+    margin: 10px;
+}
+
 .cases
 {
 	margin: 1em 0;
