@@ -71,12 +71,7 @@ def page(request,path):
         if request.POST.get('action','') == 'reset':
             section.reset(request.user)
             return HttpResponseRedirect(section.get_absolute_url())
-        proceed = section.submit(request.POST,request.user)
-        if proceed:
-            return HttpResponseRedirect(section.get_next().get_absolute_url())
-        else:
-            # giving them feedback before they proceed
-            return HttpResponseRedirect(section.get_absolute_url())
+        return HttpResponseRedirect(section.get_next().get_absolute_url())
     else:
         instructor_link = has_responses(section)
         return dict(section=section,
