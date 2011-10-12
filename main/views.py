@@ -47,6 +47,9 @@ def allow_redo(section):
                 allowed = False
     return allowed
 
+@rendered_with('main/ce_credit_confirmation.html')
+def ce_credit_confirmation(request):
+    return dict()
 
 @rendered_with('main/page.html')
 def page(request,path):
