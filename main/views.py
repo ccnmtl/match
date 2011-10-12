@@ -72,7 +72,10 @@ def page(request,path):
             section.reset(request.user)
             return HttpResponseRedirect(section.get_absolute_url())
         section.submit(request.POST,request.user)
-        return HttpResponseRedirect(section.get_next().get_absolute_url())
+        if path.startswith("/socialwork/myths/"):
+            return HttpResponseRedirect(section.get_absolute_url())
+        else:
+            return HttpResponseRedirect(section.get_next().get_absolute_url())
     else:
         instructor_link = has_responses(section)
         return dict(section=section,
