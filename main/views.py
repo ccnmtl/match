@@ -72,7 +72,7 @@ def page(request,path):
             section.reset(request.user)
             return HttpResponseRedirect(section.get_absolute_url())
         section.submit(request.POST,request.user)
-        if path.startswith("/socialwork/myths/"):
+        if path.startswith("socialwork/myths/"):
             return HttpResponseRedirect(section.get_absolute_url())
         else:
             return HttpResponseRedirect(section.get_next().get_absolute_url())
