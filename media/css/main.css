@@ -570,6 +570,8 @@ a:visited
 	text-align: right;
 }
 
+
+
 /* Login page */
 
 .loginbox
@@ -1049,6 +1051,27 @@ float: right;
 
 .maintext {
     margin-bottom: 2.5em;
+}
+
+.left {
+
+    float: left;
+    margin: 15px;
+
+}
+
+.right {
+
+    float: right;
+    margin: 15px;
+
+}
+
+.center {
+
+    text-align: center;
+    margin: 15px;
+
 }
 
 .emphasis {
