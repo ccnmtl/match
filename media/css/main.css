@@ -24,58 +24,56 @@ body
 	padding: 0;
 	border: 0;
 	background-color: #eee;
-	font: normal 0.88em "lucida grande", arial, helvetica, sans-serif;
-	color: #000;
+	font: normal 90% "lucida grande", arial, helvetica, sans-serif;
+	color: #333;
 }
 
 h1, h2, h3, h4, h5, h6
 {
-	margin: 0 0 0 0;
+	margin: 1em 0;
 	padding: 0;
 	border: 0;
-	font-family: "lucida grande", arial, helvetica, sans-serif;
 	font-weight: bold;
+	color: #000;
 }
 
 h1
-{
-	margin: 0 0 0 0;
-	font-size: 180%;
-	font-weight: normal;
-}
-
-h2
 {
 	margin: 0 0 0 0;
 	font-size: 140%;
 	font-weight: normal;
 }
 
+h2
+{
+	margin: 0 0 0 0;
+	font-size: 120%;
+	font-weight: normal;
+}
+
 h3
 {
-	padding: 1.4em 0 0.7em 0;
 	font-size: 110%;
 	font-weight: bold;
 }
 
 h4
 {
-	padding: 1em 0 1em 0;
-	margin: 0;
-	font-size: 110%;
-	font-style: italic;
+	font-size: 100%;
+	font-weight: bold;
 }
 
 h5
 {
 	margin: 1em 0 0.7em 0;
-	font-size: 120%;
+	font-size: 100%;
 }
 
 h6
 {
 	margin: 1em 0 0.7em 0;
-	font-size: 110%;
+	font-size: 90%;
+	font-style: italic;
 }
 
 p
@@ -122,7 +120,6 @@ td
 	border: 1px solid #999;
 	border-collapse: collapse;
 	padding: 5px;
-	vertical-align: top;
 }
 
 ol, ul
@@ -165,7 +162,7 @@ li
 
 a
 {
-	color: #6c0;
+	color: #36B54A;
 	text-decoration: none;
 }
 
@@ -205,12 +202,12 @@ a:visited
 {
 	min-width: 912px;
 	width: 912px;
-	height: 112px;
+	height: 76px;
 	overflow: hidden;
 	margin: 0;
 	padding: 0;
 	border: 0;
-	background: url('../img/bg_header.jpg') left top no-repeat;
+	border-bottom: 1px solid #dedede;
 	position: relative;
 }
 
@@ -290,23 +287,18 @@ a:visited
 {
 	min-width: 912px;
 	width: 912px;
-	height: 31px;
-	overflow: hidden;
 	margin: 0;
-	margin-top: -12px;
 	padding: 0;
-	padding-top: 12px;
 	border: 0;
-	border-top: 1px solid #666;
-        background-color:#228B22 ;
+    background: url("../img/social_work_header.png") no-repeat scroll left top transparent;
+    height: 188px;
 }
 
 #primarynav ul.globalnav
 {
 	display: block;
 	float: left;
-	overflow: hidden;
-	margin: 0 0 0 6px;
+    margin: 156px 0 0 0;
 	padding: 0;
 	border: 0;
 	list-style: none;
@@ -345,15 +337,14 @@ a:visited
 #primarynav #usernav
 {
 	display: block;
-	float: right;
-	overflow: hidden;
-	margin: 0 6px 0 0;
 	padding: 0;
 	border: 0;
 	list-style: none;
-	color: #fff;
+    color: #666;
+    float: right;
+    font-size: 85%;
+    margin: 163px 10px 0;
 }
-
 
 #primarynav ul.usernav li
 {
@@ -405,7 +396,7 @@ a:visited
 	display: block;
 	float: left;
 	width: 201px;
-	margin: 0;
+	margin: 10px 0 0 0;
 	padding: 0;
 	border: 0;
 }
@@ -534,29 +525,17 @@ a:visited
 
 #content h1
 {
-	margin: 0 0 0.5em 0;
-	padding: 0;
-	border: 0;
-	font: normal 28px "lucida grande", arial, helvetica, sans-serif;
-	color: #000;
+
+	
 }
 
 #content h2
 {
-	margin: 1em 0 0.5em 0;
-	padding: 0;
-	border: 0;
-	font: normal 20px "lucida grande", arial, helvetica, sans-serif;
-	color: #000;
 }
 
 #content h3
 {
-	margin: 1em 0 0.5em 0;
-	padding: 0;
-	border: 0;
-	font: normal 20px "lucida grande", arial, helvetica, sans-serif;
-	color: #000;
+
 }
 
 #content p
@@ -727,49 +706,6 @@ a:visited
 }
 
 /* Case quizzes */
-
-.gameshow {
-    background-color: #1DA5AB;
-
-}
-
-.gameshow .casetitle{
-    display: none;
-}
-
-.gameshow .casecontent{
-    margin: 0;
-    padding: 10px 80px;
-        background: url('../img/qmark.png') center left no-repeat;
-        text-align: center;
-}
-
-.mf-question {
-    font-size: 140%;
-    font-style: italic;
-    color: #fff;
-        margin: 0;
-}
-
-.casecontent ol {
-    list-style-type: none;
-        margin: 5em 1em 2em;
-    text-align: center;
-}
-
-.casecontent ol li {
-  border: 1px solid #8dc8cc;
-    display: inline;
-    font-size: 200%;
-    height: 30px;
-    margin: 5em 1em 2em;
-    padding: 15px;
-
-}
-
-.mfanswer {
-    margin: 10px;
-}
 
 .cases
 {
@@ -1035,13 +971,6 @@ p.warning {
 }
 
 
-#primarynav ul.globalnav {
-
-margin: 144px 0 0 1px;
-float: none;
-overflow: hidden;
-}
-
 #primarynav ul.globalnav li a {
 
 background-color: transparent;
@@ -1052,15 +981,10 @@ background-color: transparent;
     display: none;
 }
 
-#header {
-    background: #fff;
-    height: 92px;
- 
-}
 
 h1#logo_project {
 height: 80px;
-width: 485px;
+width: 510px;
 border: none;
 background: url("../img/match_logo.png") no-repeat scroll left top transparent;
 margin: 0;
@@ -1075,23 +999,12 @@ background: url("../img/uncharted_logo.png") no-repeat scroll left top transpare
 float: right;
 }
 
-#primarynav {
-    overflow: auto;
-    height: auto;
-background: url("../img/social_work_header.png") no-repeat scroll left top transparent;
-height: 188px;
-
-
+.maintext {
+    margin-bottom: 2.5em;
 }
 
-#primarynav ul {
-    background-color: transparent;
-}
+.emphasis {
+    font-weight: bold;
+    font-style: italic;
 
-#primarynav #usernav {
-    color: black;
-    left: 57%;
-    margin: 0 6px 0 0;
-    position: absolute;
-    top: 66px;
 }

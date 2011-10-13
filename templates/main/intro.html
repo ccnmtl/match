@@ -3,20 +3,16 @@
 {% block title %}Welcome to MATCH{% endblock %}
 
 {% block content %}
-<h2>Welcome to MATCH</h2>
+<h3>Welcome to Multidisciplinary Approaches to Children's Oral Health (MATCH)</h3>
 
 {% if user.is_anonymous %}
+<br />
+<div class='maintext'><p>If you have a Columbia UNI or have created an account already, <a href="/accounts/login/?next=/">login</a>.</p>
 
-<div class='maintext'>Please register or log in to begin/reenter this program.</div>
-
-<p>If you have an account already, you
-  can <a href="/accounts/login/?next=/">login</a>.</p>
-<p>Otherwise, you should <a href="/registration/register/">create an account first</a>.</p>
-
+<p>Otherwise, <a href="/registration/register/">create an account</a>.</p>
+</div>
 {% else %}
 
-<div class='title'>MATCH</div>
-<div class='subtitle'>Multidisciplinary Approaches to Children's Oral Health</div>
 
 <div class='quote'>
 <p>"Throughout the first two decades of growth and development, children and young people are deeply influenced by the social and environmental opportunities and constraints imposed by families, communities, and society... In the case of oral health, there is enough known about health promotion and disease prevention to improve the oral health and well-being of all children"</p>
@@ -30,9 +26,9 @@
 <p>There are a variety of healing and helping professions that, when partnered with pediatric dentists, hold tremendous potential to improve children's oral health and welfare.</p>
 
 <p>Since many factors contribute to good oral health in children - social, behavioral, genetic, nutritional, dental care, and education, engaging experts in these various fields can both help reduce disease occurrence and improve quality of care.</p>
-</div>
 
-<div class='bullethead'>In recognition of this, these modules aim to:</div>
+
+<p>In recognition of this, these modules aim to:</p>
 <div class='ol-bullets'>
 <ol>
 <li>Highlight non-dental professions that can impact children's oral health</li>
@@ -40,7 +36,9 @@
 <li>Present examples of successful pediatric dentists who enhance their patient care through partnerships with these professions</li>
 </ol>
 </div>
-
-<p>Start on <a href="/socialwork/introduction/">Module 1</a></p>
+</div>
+<h4>Get started:</h4>
+<ul>
+<li><a href="/socialwork/introduction/">Module 1</a></li></ul>
 {% endif %}
 {% endblock %}
