@@ -752,7 +752,7 @@ a:visited
 {
 	margin: 1em 0;
 	padding: 0;
-	border: 1px solid #999;
+
 }
 
 .casetitle
@@ -969,16 +969,22 @@ textarea {width: 100%;}
 
 .yours {
 //border-top: #999 dotted 2px;
-background-color: #f00; color: #fff; 
+background-color: #f00; color: #fff;
+margin: 0 -4px;
+padding: 5px;
 }
 
 .expert {color: orange;}
 
-//.incorrect { background-color: #f00; color: #fff;}
-.correct {background-color: #cfc;}
+//.incorrect { background-color: #f00; color: #fff; margin: 0 -4px;
+padding: 5px;}
+.correct {background-color: #cfc; margin: 0 -4px;
+padding: 5px; color: #000;}
 
-.correctanswer {background-color: #090 solid 1px;}
-.incorrectanswer { background-color: #f00; color: #fff; }
+.correctanswer {background-color: #090 solid 1px; margin: 0 -4px;
+padding: 5px;}
+.incorrectanswer { background-color: #f00; color: #fff; margin: 0 -4px;
+padding: 5px;}
 
 .answer-inner {color: #000;}
 
