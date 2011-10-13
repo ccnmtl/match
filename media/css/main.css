@@ -718,9 +718,10 @@ a:visited
 
 .gameshow .casecontent{
     margin: 0;
-    padding: 10px 80px;
+    padding: 10px 20px 5px 130px;
         background: url('../img/qmark.png') center left no-repeat;
-        text-align: center;
+        background-position: top left;
+
 }
 
 .mf-question {
@@ -732,17 +733,14 @@ a:visited
 
 .casecontent ol {
     list-style-type: none;
-        margin: 5em 1em 2em;
-    text-align: center;
+    margin: 20px 0;
 }
 
 .casecontent ol li {
-  border: 1px solid #8dc8cc;
-    display: inline;
-    font-size: 200%;
-    height: 30px;
-    margin: 5em 1em 2em;
-    padding: 15px;
+  border: 1px solid #bbb;
+    line-height: 20px;
+    margin: 10px 0;
+    padding: 5px;
 
 }
 
