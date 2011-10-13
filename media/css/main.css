@@ -1050,3 +1050,22 @@ float: right;
     font-style: italic;
 
 }
+
+
+/***CE Certificate ***/
+
+#certificate {
+    text-align: center;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+    padding: 5px 15px;
+    font-family: "Times New Roman",Georgia,Serif;
+    
+}
+    
+#certificate h1 {
+
+    font-size: 180%;
+    margin: 20px;
+}
+}
