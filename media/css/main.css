@@ -801,10 +801,8 @@ a:visited
 .pullquote
 {
 	display: block;
-	width: 240px;
-	float: right;
-	margin: 3px 0 3px 3px;
-	padding: 5px;
+	margin: 10px 0;
+	padding: 15px;
 	border: 1px solid #999;
 	background-color: #f2e6d8;
 }
