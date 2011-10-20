@@ -761,6 +761,7 @@ a:visited
 .casecontent ol {
     list-style-type: none;
     margin: 20px 0;
+    padding: 0;
 }
 
 .casecontent ol li {
@@ -779,7 +780,6 @@ a:visited
 {
 	margin: 1em 0;
 	padding: 0;
-
 }
 
 .casetitle
@@ -789,13 +789,15 @@ a:visited
 	padding: 5px 10px;
 	border: 0;
 	font-weight: bold;
+	
 }
 
 .casecontent
 {
-	margin: 10px;
-	padding: 0;
-	border: 0;
+	margin: 0;
+	padding: 1em 1em 0 1em;
+	border: 1px solid #E6F2D8;
+	border-top: none;
 }
 
 .casequestion
