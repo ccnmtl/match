@@ -73,6 +73,7 @@ INSTALLED_APPS = (
     'careermapblock',
     'registration',
     'responseblock',
+    'south',
 )
 
 ACCOUNT_ACTIVATION_DAYS = 7
