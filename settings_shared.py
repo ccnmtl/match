@@ -88,19 +88,6 @@ PAGEBLOCKS = ['pageblocks.TextBlock',
               'responseblock.Response',
               ]
 
-import logging
-from sentry.client.handlers import SentryHandler
-logger = logging.getLogger()
-if SentryHandler not in map(lambda x: x.__class__, logger.handlers):
-    logger.addHandler(SentryHandler())
-    logger = logging.getLogger('sentry.errors')
-    logger.propagate = False
-    logger.addHandler(logging.StreamHandler())
-
-SENTRY_REMOTE_URL = 'http://sentry.ccnmtl.columbia.edu/sentry/store/'
-# remember to set the SENTRY_KEY in a local_settings.py
-# as documented in the wiki
-SENTRY_SITE = 'match'
 
 THUMBNAIL_SUBDIR = "thumbs"
 EMAIL_SUBJECT_PREFIX = "[match] "
