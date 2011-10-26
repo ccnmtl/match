@@ -307,7 +307,7 @@ a:visited
 {
 	display: block;
 	float: left;
-    margin: 156px 0 0 0;
+    margin: 155px 0 0 0;
 	padding: 0;
 	border: 0;
 	list-style: none;
@@ -321,6 +321,7 @@ a:visited
 	border: 0;
 	font: normal 14px/31px "lucida grande", arial, helvetica, sans-serif;
 	list-style: 0;
+
 }
 
 #primarynav ul.globalnav li a
@@ -330,6 +331,7 @@ a:visited
 	font-weight: bold;
 	color: #fff;
 	background-color: #696;
+		height: 33px;
 }
 
 #primarynav ul.globalnav li a:hover
@@ -394,6 +396,7 @@ a:visited
 	position: relative;
 	width: 912px;
 	padding: 0;
+    background: url('../img/nav_column_bg.png') left top repeat-y;
 
 }
 
@@ -404,15 +407,15 @@ a:visited
 {
 	display: block;
 	float: left;
-	width: 201px;
-	margin: 10px 0 0 0;
-	padding: 0;
+	width: 176px;
+	margin: 0;
+	padding: 0 0 20px 0;
 	border: 0;
 }
 
 #secondary_navigation #fadetop
 {
-	display: block;
+	display: none;
 	width: 201px;
 	height: 30px;
 	margin: 0;
@@ -422,7 +425,7 @@ a:visited
 
 #secondary_navigation #fadebottom
 {
-	display: block;
+	display: none;
 	width: 201px;
 	height: 30px;
 	margin: 0;
@@ -433,8 +436,7 @@ a:visited
 #secondary_navigation .block
 {
 	display: block;
-	width: 180px;
-	margin: 0 0 20px 20px;
+	margin:20px;
 	padding: 0;
 	border: 0;
 	font-size: 0.95em;
@@ -443,20 +445,17 @@ a:visited
 #secondary_navigation .block h3
 {
 	display: block;
-	width: 165px;
 	margin: 0 0 10px 0;
 	padding: 0;
 	border: 0;
 	border-bottom: 1px dotted #6c0;
-	color: #000;
 	font-weight: bold;
 }
 
 #secondary_navigation .block ul
 {
 	display: block;
-	width: 171px;
-	margin: 0;
+	margin: 5px 0 0 0;
 	padding: 0;
 	border: 0;
 	list-style: none;	
@@ -465,33 +464,38 @@ a:visited
 
 #secondary_navigation .block ul li
 {
-	margin: 0 0 2px 0;
+	margin: 3px 0 0 0;
 	padding: 0;
 	border: 0;
-	border-bottom: 1px solid #36B54A;
-	padding: 5px;
-	color: #36B54A;
 	font-weight: normal;
+	color: #fff;
+	font-size: 110%;
 
 }
 
 #secondary_navigation .block ul li a
 {
-    color: #999;
+    color: #dedede;
+    font-size: 100%;
+
+}
+
+#secondary_navigation .block ul li a:hover
+{
+    color: #ecd785;
 
 }
 
 #secondary_navigation .block ul li a:visited
 {
-    color: #000;
+
 
 }
 
-#secondary_navigation .block ul ul
+#secondary_navigation .block ul li ul
 {
 	display: block;
-	width: 151px;
-	margin: 5px 0 0 0;
+	margin: 5px 0 5px 10px;
 	padding: 0;
 	border: 0;
 	list-style: none;	
@@ -499,30 +503,24 @@ a:visited
 
 #secondary_navigation .block ul li ul li
 {
-	margin: 3px 3px 0 20px;
-	padding: 0;
-	border: 0;
-	font-size: 95%;
+
+	font-size: 88%;
+	margin: 3px 0 0 0;
 
 }
 
-#secondary_navigation .block ul ul ul
+#secondary_navigation .block ul li ul li ul
 {
 	display: block;
-	width: 130px;
-	margin: 0 0 0 0;
+	margin: 10px 0 0 10px;
 	padding: 0;
 	border: 0;
 	list-style: none;	
 }
 
-#secondary_navigation .block ul ul ul li
+#secondary_navigation .block ul li ul li ul li
 {
-	margin: 0 0 2px 0;
-	padding: 0;
-	border: 0;
-	padding-left: 13px;
-	background: url('../img/bullet_diamond_hollow.gif') left 4px no-repeat;
+	font-size: 90%;
 }
 
 /* ***** Content ***** */
@@ -571,7 +569,7 @@ a:visited
 #content .content-nav
 {
 	height: 1.5em;
-	margin: 2em 0 0 0;
+	margin: 2em 0 1em 0;
 	padding: 0.5em 0;
 	border: 0;
 	border-top: 1px dotted #6c0;
@@ -736,6 +734,7 @@ a:visited
 
 .gameshow {
     background-color: #1DA5AB;
+    padding: 0 20px 1px 20px;
 
 }
 
@@ -748,6 +747,8 @@ a:visited
     padding: 10px 20px 5px 130px;
         background: url('../img/qmark.png') center left no-repeat;
         background-position: top left;
+        min-height: 185px;
+        border: none;
 
 }
 
@@ -773,7 +774,7 @@ a:visited
 }
 
 .mfanswer {
-    margin: 10px;
+
 }
 
 .cases
@@ -985,6 +986,7 @@ body#poctools a#poctools
 	margin: 0;
 	padding: 0;
 	border: 0;
+	background-color: #ccc;
 }
 
 .block-edit {
