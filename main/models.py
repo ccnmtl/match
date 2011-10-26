@@ -13,6 +13,14 @@ class UserProfile(models.Model):
     
     def display_name(self):
         return self.user.username
+
+    def save_visit(self,section):
+        self.last_location = section.get_absolute_url()
+        self.save()
+        uv,created = UserVisited.objects.get_or_create(user=self,section=section)
+
+    def has_visited(self,section):
+        return UserVisited.objects.filter(user=self,section=section).count() > 0
         
 
 class UserVisited(models.Model):
