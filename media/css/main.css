@@ -455,7 +455,7 @@ a:visited
 #secondary_navigation .block ul
 {
 	display: block;
-	margin: 0;
+	margin: 5px 0 0 0;
 	padding: 0;
 	border: 0;
 	list-style: none;	
@@ -464,10 +464,9 @@ a:visited
 
 #secondary_navigation .block ul li
 {
-	margin: 0 0 2px 0;
+	margin: 3px 0 0 0;
 	padding: 0;
 	border: 0;
-	padding: 2px 5px;
 	font-weight: normal;
 	color: #fff;
 	font-size: 110%;
@@ -496,7 +495,7 @@ a:visited
 #secondary_navigation .block ul li ul
 {
 	display: block;
-	margin: 10px 0 0 10px;
+	margin: 5px 0 5px 10px;
 	padding: 0;
 	border: 0;
 	list-style: none;	
@@ -505,7 +504,8 @@ a:visited
 #secondary_navigation .block ul li ul li
 {
 
-	font-size: 90%;
+	font-size: 88%;
+	margin: 3px 0 0 0;
 
 }
 
