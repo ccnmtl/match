@@ -24,6 +24,7 @@ def get_or_create_profile(user,section):
         user_profile,created = UserProfile.objects.get_or_create(user=user)
     except django.core.exceptions.MultipleObjectsReturned:
         user_profile = UserProfile.objects.filter(user=user)[0]
+        created = False
     if created:
         first_leaf = section.hierarchy.get_first_leaf(section)
         ancestors = first_leaf.get_ancestors()
