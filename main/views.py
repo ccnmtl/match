@@ -17,9 +17,13 @@ from quizblock.models import Submission, Response
 from main.models import UserProfile, UserVisited
 import os
 import csv
+import django.core.exceptions
 
 def get_or_create_profile(user,section):
-    user_profile,created = UserProfile.objects.get_or_create(user=user)
+    try:
+        user_profile,created = UserProfile.objects.get_or_create(user=user)
+    except django.core.exceptions.MultipleObjectsReturned:
+        user_profile = UserProfile.objects.filter(user=user)[0]
     if created:
         first_leaf = section.hierarchy.get_first_leaf(section)
         ancestors = first_leaf.get_ancestors()
