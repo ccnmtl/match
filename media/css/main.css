@@ -603,6 +603,13 @@ a:visited
 	text-align: right;
 }
 
+.pageblock, .block {
+
+    margin: 0 0 1em 0;
+    display: block;
+
+}
+
 
 
 /* Login page */
@@ -1116,14 +1123,14 @@ float: right;
 .left {
 
     float: left;
-    margin: 15px;
+    margin: 0 15px 0x 0;
 
 }
 
 .right {
 
     float: right;
-    margin: 15px;
+    margin: 0 0 0 15px;
 
 }
 
