@@ -308,10 +308,11 @@ a:visited
 {
 	display: block;
 	float: left;
-    margin: 155px 0 0 0;
+    margin: 130px 0 0 0;
 	padding: 0;
 	border: 0;
 	list-style: none;
+	width: 100%
 }
 
 #primarynav ul.globalnav li
@@ -356,6 +357,7 @@ a:visited
     float: right;
     font-size: 85%;
     margin: 10px 10px 0;
+
 }
 
 #primarynav ul.usernav li
@@ -371,6 +373,7 @@ a:visited
 #primarynav ul.usernav li a
 {
 	display: block;
+	float: right;
 }
 
 
@@ -1025,7 +1028,7 @@ textarea {width: 100%;}
 .yours {
 background-color: #dedede; 
 color: #000;
-padding: 1px;
+padding: 2px;
 }
 
 .yours.correct, .yours.correctanswer {
