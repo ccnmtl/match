@@ -30,11 +30,12 @@ body
 
 h1, h2, h3, h4, h5, h6
 {
-	margin: 1em 0;
+	margin: 1.5em 0;
 	padding: 0;
 	border: 0;
 	font-weight: bold;
 	color: #000;
+	text-transform: capitalize;
 }
 
 h1
@@ -590,7 +591,7 @@ a:visited
 	line-height: 1.5em;
 }
 
-#content .content-nav a#next
+#content .content-nav a#next, a#next, #next
 {
 	display: block;
 	float: right;
@@ -989,7 +990,7 @@ body#poctools a#poctools
 	min-width: 912px;
 	width: 912px;
 	height: 40px;
-	margin: 0;
+	margin: 20px 0 0 0;
 	padding: 0;
 	border: 0;
 	background-color: #dedede;
@@ -1022,23 +1023,27 @@ textarea {width: 100%;}
 
 
 .yours {
-//border-top: #999 dotted 2px;
-background-color: #f00; color: #fff;
-margin: 0 -4px;
-padding: 5px;
+background-color: #dedede; 
+color: #000;
+padding: 1px;
+}
+
+.yours.correct, .yours.correctanswer {
+background-color: #E6F2D8; 
+}
+
+.yours.incorrect, .yours.incorrectanswer {
+background-color: #f00;
+color: #fff;
 }
 
 .expert {color: orange;}
 
-//.incorrect { background-color: #f00; color: #fff; margin: 0 -4px;
-padding: 5px;}
-.correct {background-color: #cfc; margin: 0 -4px;
-padding: 5px; color: #000;}
+//.incorrect { }
+.correct { }
 
-.correctanswer {background-color: #090 solid 1px; margin: 0 -4px;
-padding: 5px;}
-.incorrectanswer { background-color: #f00; color: #fff; margin: 0 -4px;
-padding: 5px;}
+.correctanswer { }
+.incorrectanswer { }
 
 .answer-inner {color: #000;}
 
