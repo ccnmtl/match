@@ -35,7 +35,7 @@
 
 		</ul>
 		{% endblock %}
-		<!-- CCNMTL title/logo --><h4 id="logo_ccnmtl"><a href="http://ccnmtl.columbia.edu" target="_blank" title="Columbia Center for New Media Teaching and Learning"><span>Produced by the Columbia Center for New Media Teaching and Learning</span></a></h4>
+		<!-- CCNMTL title/logo --><h4 id="logo_ccnmtl"><span>Produced by the Columbia Center for New Media Teaching and Learning</span></a></h4>
 	</div><!-- id="header" -->
 {% endblock %}
 
@@ -53,16 +53,6 @@
    rightside :  all tabs aligning to the right, login to the left
 {% endcomment %}
 
-{% block primarynavtabs %}
-
-<ul class="globalnav">
-  {% for section in modules %}
-  <li{% ifequal section.id module.id %} class="active"{% endifequal %}><a href="{{section.get_absolute_url}}">{{section.label}}</a></li>
-  {% endfor %}
-</ul>
-
-{% endblock %}
-
 {% block usernav %}
 <div id="usernav">{% if request.user.is_anonymous %}
 <a href="/accounts/login/?next=/">login</a>
@@ -78,6 +68,19 @@ logged in as {% if request.user.first_name or request.user.last_name %}{{request
 
 {% endif %}</div>
 {% endblock %}
+
+
+{% block primarynavtabs %}
+
+<ul class="globalnav">
+  {% for section in modules %}
+  <li{% ifequal section.id module.id %} class="active"{% endifequal %}><a href="{{section.get_absolute_url}}">{{section.label}}</a></li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
+
+
 
 		</div><!-- id="leftside/rightside" -->
 	</div><!-- id="primarynav" -->
