@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from pagetree.helpers import get_hierarchy, get_section_from_path, get_module, needs_submit, submitted
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
+from django.utils.encoding import smart_str
 from models import *
 from restclient import GET
 import httplib2
@@ -244,14 +245,30 @@ def all_results(request):
             row.append(v)
         all_responses.append(dict(user=u,row=row))
 
+    def clean_header(s):
+        s = s.replace('<div class=\'question-sub\'>','')
+        s = s.replace('<div class=\'question\'>','')
+        s = s.replace('<p>','')
+        s = s.replace('</p>','')
+        s = s.replace('</div>','')
+        s = s.replace('\n','')
+        s = s.replace('\r','')
+        s = s.replace('<','')
+        s = s.replace('>','')
+        s = s.replace('\'','')
+        s = s.replace('\"','')
+        s = s.replace(',','')
+        return s
+ 
+
     if request.GET.get('format','html') == 'csv':
         response = HttpResponse(mimetype='text/csv')
         response['Content-Disposition'] = 'attachment; filename=match_responses.csv'
         writer = csv.writer(response)
-        headers = ['user'] + ["%s" % c.label().encode('utf-8') for c in columns]
+        headers = ['user'] + ["%s" % clean_header(c.label().encode('utf-8')) for c in columns]
         writer.writerow(headers)
         for r in all_responses:
-            rd = [r['user'].username] + r['row']
+            rd = [smart_str(c) for c in [r['user'].username] + r['row']]
             writer.writerow(rd)
         return response
     else:
