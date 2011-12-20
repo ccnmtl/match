@@ -129,7 +129,7 @@ def page(request,path):
         section.submit(request.POST,request.user)
         # on certain pages, we want to provide feedback instead of 
         # sending them to the next page
-        feedback_paths = ("socialwork/myths/mythfact-question-1/",)
+        feedback_paths = ("socialwork/what-would-you-do/the-family/",)
         for fb in feedback_paths:
             if path.startswith(fb):
                 return HttpResponseRedirect(section.get_absolute_url())
