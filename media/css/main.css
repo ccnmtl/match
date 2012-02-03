@@ -1274,16 +1274,16 @@ body.login #content
 
 .loginbox .regbutton:hover
 {
-	border: 1px solid #f90;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ffcc99));
-	background: -moz-linear-gradient(top, #fff, #ffcc99);
+	border: 1px solid #339999;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#99cccc));
+	background: -moz-linear-gradient(top, #fff, #99cccc);
 }
 
 .loginbox .regbutton:active
 {
-	border: 1px solid #f60;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ff9933));
-	background: -moz-linear-gradient(top, #fff, #ff9933);
+	border: 1px solid #006666;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#669999));
+	background: -moz-linear-gradient(top, #fff, #669999);
 }
 
 .loginbox .smalltxt
