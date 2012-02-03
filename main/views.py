@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound, HttpRequest
 from django.shortcuts import render_to_response, get_object_or_404
 from pagetree.helpers import get_hierarchy, get_section_from_path, get_module, needs_submit, submitted
-from django.template import RequestContext
+from django.template import RequestContext, loader
 from django.contrib.auth.decorators import login_required
 from django.utils.encoding import smart_str
 from models import *
@@ -91,6 +91,23 @@ def _unlocked(profile,section):
                 return False
           
     return profile.has_visited(previous)
+
+
+def background(request,  content_to_show):
+    """ the pagetree page view breaks flatpages, so this is a simple workaround."""
+    file_names = {
+        'about'   : 'about.html',
+        #'credits' : 'credits.html',
+        #'contact' : 'contact.html',
+        'help'    : 'help.html',
+    } 
+
+    if content_to_show not in file_names.keys():
+        return HttpResponseRedirect('/accounts/login/?next=%s' % request.path)
+    file_name = file_names [content_to_show]
+    t = loader.get_template('standard_elements/%s' % file_name)
+    c = RequestContext(request, {})
+    return HttpResponse(t.render(c))
 
 
 @login_required
