@@ -8,8 +8,6 @@ from django.views.generic.simple import direct_to_template
 site_media_root = os.path.join(os.path.dirname(__file__),"media")
 
 urlpatterns = patterns('',
-                       (r'^$','main.views.intro'),
-
                        (r'^about/',direct_to_template, {'template': 'main/about.html'}),
                        (r'^help/',direct_to_template, {'template': 'main/help.html'}),
 
