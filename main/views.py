@@ -50,6 +50,8 @@ def has_responses(section):
     quizzes = [p.block() for p in section.pageblock_set.all() if hasattr(p.block(),'needs_submit') and p.block().needs_submit()]
     return quizzes != []
 
+
+@login_required
 @rendered_with('main/intro.html')
 def intro(request):
     return dict()

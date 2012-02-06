@@ -10,7 +10,9 @@ site_media_root = os.path.join(os.path.dirname(__file__),"media")
 urlpatterns = patterns('',
                        #                       (r'^about/',direct_to_template, {'template': 'main/about.html'}),
                        #                       (r'^help/',direct_to_template, {'template': 'main/help.html'}),
-
+                       (r'^$','main.views.intro'),
+                       (r'^intro/$','main.views.intro'),
+                       
                        (r'^about/$',  'main.views.background',   {'content_to_show': 'about' }),
                        (r'^help/$',   'main.views.background',   {'content_to_show': 'help'  }),
                        (r'^export/$','main.views.exporter'),
@@ -30,7 +32,5 @@ urlpatterns = patterns('',
                        (r'^ce-credit-confirmation/','main.views.ce_credit_confirmation'),
                        (r'^edit/(?P<path>.*)$','match.main.views.edit_page',{},'edit-page'),
                        (r'^instructor/(?P<path>.*)$','match.main.views.instructor_page'),
-                       (r'^(?P<path>.*)$','match.main.views.page'),
-                       
-) 
-
+                       (r'^(?P<path>.+)$','match.main.views.page'), #no more zero-length pagetree section paths.                       
+)
