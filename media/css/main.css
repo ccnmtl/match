@@ -564,11 +564,14 @@ a:visited
 
 #content h2
 {
+	font-size: 18px;
+	font-weight: bold;
 }
 
 #content h3
 {
-
+	font-size: 14px;
+	font-weight: bold;
 }
 
 #content p
