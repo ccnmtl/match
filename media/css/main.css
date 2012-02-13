@@ -54,13 +54,13 @@ h2
 
 h3
 {
-	font-size: 110%;
+	font-size: 120%;
 	font-weight: bold;
 }
 
 h4
 {
-	font-size: 100%;
+	font-size: 14px;
 	font-weight: bold;
 }
 
@@ -73,7 +73,7 @@ h5
 h6
 {
 	margin: 1em 0 0.7em 0;
-	font-size: 90%;
+	font-size: 12px;
 	font-style: italic;
 }
 
@@ -543,7 +543,7 @@ a:visited
 	margin: 20px 15px 0 20px;
 	padding: 0;
 	border: 0;
-
+	font-size: 12px;
 }
 
 .content_one_column
@@ -564,11 +564,15 @@ a:visited
 
 #content h2
 {
+	margin: 0 0 20px 0;
+	font-size: 18px;
+	font-weight: bold;
 }
 
 #content h3
 {
-
+	font-size: 14px;
+	font-weight: bold;
 }
 
 #content p
