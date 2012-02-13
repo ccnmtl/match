@@ -6,11 +6,6 @@
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
 
-
-
-
-
-
 <div class="loginbox">
 	<h2>Choose a login option...</h2>
 	<div class="content">
@@ -41,10 +36,18 @@
 		<label for="id_password">Password:</label>
 		{{ form.password }}
 	</div><!-- fieldwrapper -->
+    
+
+{% if form.errors%}
+    <p class="errornote">Please enter a correct username and password. Note that both fields are case-sensitive.</p>
+{% endif %}
 
 <input class="regbutton" type="submit" value="Login" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
+
+
+
 	<p class="smalltxt"><a href="/registration/register/" title="Create your new project account">Need a new account?</a></p>
 	</div><!-- content -->
 </div><!-- loginbox -->
