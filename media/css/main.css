@@ -753,13 +753,18 @@ a:visited
  */
 
 .errornote {
-    background: url("/media/img/admin/icon_error.gif") no-repeat scroll 5px 0.3em #FFFFCC;
-    border: 1px solid red;
-    color: red;
-    display: block;
-    font-size: 12px !important;
-    margin: 0 0 3px;
-    padding: 4px 5px 4px 25px;
+	background: url("../img/icon_alert.png") no-repeat 5px 5px #FFEBE8;
+	border: 1px solid #c00;
+	display: block;
+	font-size: 11px !important;
+	margin: 0 0 10px 0;
+	padding: 5px 5px 5px 25px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+.errornote span {
+	color: #c00;
 }
 
 /* Case quizzes */
@@ -1205,13 +1210,13 @@ body.login #content
 
 .loginbox h2
 {
-	margin: 0;
+	margin: 0 !important;
 	padding: 5px 10px;
 	-moz-border-radius: 10px 10px 0 0;
 	-webkit-border-radius: 10px 10px 0 0;
 	background: #e0e0e0;
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 14px !important;
 	line-height: 26px;
 	height: 26px;
 }

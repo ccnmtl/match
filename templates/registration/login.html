@@ -23,6 +23,10 @@
 	
 	<hr class="seperator" />
 	
+{% if form.errors%}
+    <p class="errornote"><span><b>ERROR:</b> Invalid username or password.</span> Please try again. Note that both username and password are case-sensitive.</p>
+{% endif %}
+
 	<p>If you have a project account...</p>
 <form method="post" action=".">
 {% csrf_token %}
@@ -37,10 +41,6 @@
 		{{ form.password }}
 	</div><!-- fieldwrapper -->
     
-
-{% if form.errors%}
-    <p class="errornote">Please enter a correct username and password. Note that both fields are case-sensitive.</p>
-{% endif %}
 
 <input class="regbutton" type="submit" value="LOG IN" />
 <input type="hidden" name="next" value="{{ next }}" />
