@@ -1,0 +1,11 @@
+<div>Available Time: {{ block.available_time }}</div>
+
+<div class="topics">
+{%  for topic in block.topics.all %}
+    {{  topic.text }} <input class="topic" type="button" name="{{topic.id}}" value="Discuss" />
+    <div>
+        {{ topic.response.reply }}
+        <input class="response" type="button" name="" value="Close" />
+    </div>
+{%  endfor %}
+</div>

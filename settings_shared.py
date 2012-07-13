@@ -77,6 +77,8 @@ INSTALLED_APPS = (
     'responseblock',
     'south',
     'django_statsd',
+    'nutrition',
+    'tastypie'
 )
 
 STATSD_CLIENT = 'statsd.client'
@@ -96,6 +98,7 @@ PAGEBLOCKS = ['pageblocks.TextBlock',
               'quizblock.Quiz',
               'careermapblock.CareerMap',
               'responseblock.Response',
+              'nutrition.CounselingSession',
               ]
 
 
