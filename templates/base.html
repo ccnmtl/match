@@ -11,7 +11,6 @@
 	<![endif]-->
 	<link rel="shortcut icon" href="/site_media/img/favicon.ico" type="image/x-icon" />
 	{% block css %}{% endblock %}
-	{% block js %}{% endblock %}
 	{% block feeds %}{% endblock %}
 </head>
 <body class="one_column {% block widthtype %}fixed{% endblock %}">
@@ -131,5 +130,6 @@ logged in as {% if request.user.first_name or request.user.last_name %}{{request
 
 
 </div><!-- id="container" -->
+{% block js %}{% endblock %}
 </body>
 </html>

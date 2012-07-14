@@ -1,1 +1,46 @@
-<script src="/_nutrition/media/nutrition.js/" type="text/javascript" ></script>
+{%  load user_session_state %}
+
+<script src="/site_media/js/underscore/underscore-min.js" type="text/javascript" ></script>
+<script src="/site_media/js/backbone/backbone-min.js" type="text/javascript" ></script>
+<script src="/site_media/js/backbone-tastypie.js" type="text/javascript" ></script>
+<script src="/nutrition/media/js/nutrition.js/" type="text/javascript" ></script>
+<script src="/site_media/bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    SESSION_ID = "{{block.id}}";
+    SESSION_STATE_ID = "{% get_user_session_state request.user block.id %}";
+</script>
+
+<script type="text/template" id="session-template">
+    <div class="available_time">
+        <center>
+        <h3>Available Time</h3>
+        <div id="display_time"><h1 id="display_time_text"></h1></div>
+        <h3>minutes</h3>
+        </center>
+    </div>
+    <div id="topic-accordion" class="accordion">
+        <% _.each(topics.models, function(topic, index) { %>
+            <div id="<%=topic.attributes.id%>" class="accordion-group <% if (index/2 === 0) { %> even <% } %>">
+                <div class="accordion-heading">
+                    <div class="discuss"><%= topic.attributes.text %></div>
+                    <button class="btn discuss" data-toggle="collapse"
+                            data-target="#reply-<%= topic.attributes.id %>" data-parent="#topics-accordion">
+                        Discuss for <%= topic.attributes.estimated_time %> minutes (estimated)
+                    </button>
+                    <div style="clear: both"></div>
+                </div>
+                <div id="reply-<%= topic.attributes.id %>" class="accordion-body collapse" data-id="<%=topic.id%>">
+                    <div class="accordion-inner">
+                        <%= topic.attributes.reply %><br />
+                        <h3>Actual Time: <%= topic.attributes.actual_time %> minutes</h3>
+                        <button style="display: none" class="btn complete" data-toggle="collapse" data-target="#reply-<%= topic.attributes.id %>" data-parent="#topics-accordion">
+                            Close<br />
+                        </button>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+</script>

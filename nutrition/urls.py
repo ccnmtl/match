@@ -1,14 +1,13 @@
 from django.conf.urls.defaults import *
 import os.path
 from tastypie.api import Api
-from nutrition.api import UserResource, DiscussionResponseResource, DiscussionTopicResource
+from nutrition.api import UserResource, DiscussionTopicResource
 from nutrition.api import CounselingSessionResource, CounselingSessionStateResource
 
 media_root = os.path.join(os.path.dirname(__file__),"media")
 
 v1_api = Api(api_name='v1')
 v1_api.register(UserResource())
-v1_api.register(DiscussionResponseResource())
 v1_api.register(DiscussionTopicResource())
 v1_api.register(CounselingSessionResource())
 v1_api.register(CounselingSessionStateResource())

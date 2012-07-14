@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from tastypie import fields
 from tastypie.resources import ModelResource
-from nutrition.models import DiscussionResponse, DiscussionTopic, CounselingSession, CounselingSessionState
+from nutrition.models import DiscussionTopic, CounselingSession, CounselingSessionState
 from tastypie.authorization import Authorization
 
 class UsernameAuthorization(Authorization):
@@ -27,16 +27,8 @@ class UserResource(ModelResource):
         allowed_methods = ['get']
         authorization = UsernameAuthorization()
 
-class DiscussionResponseResource(ModelResource):
-    allowed_methods = ['get']
-
-    class Meta:
-        queryset = DiscussionResponse.objects.all()
-        resource_name = 'discussion_response'
-
 class DiscussionTopicResource(ModelResource):
     allowed_methods = ['get']
-    response = fields.ForeignKey(DiscussionResponseResource, 'response')
 
     class Meta:
         queryset = DiscussionTopic.objects.all()
@@ -48,17 +40,15 @@ class CounselingSessionResource(ModelResource):
 
     class Meta:
         queryset = CounselingSession.objects.all()
-
+        resource_name = 'counseling_session'
 
 class CounselingSessionStateResource(ModelResource):
     user = fields.ForeignKey(UserResource, 'user')
     session = fields.ForeignKey(CounselingSessionResource, 'session')
     answered = fields.ManyToManyField('nutrition.api.DiscussionTopicResource', 'answered', full=True)
 
-    authorization = UserAuthorization()
-
-    allowed_methods = ['get', 'post']
-
     class Meta:
         queryset = CounselingSessionState.objects.all()
         resource_name = 'counseling_session_state'
+        authorization = UserAuthorization()
+        allowed_methods = ['get', 'put']

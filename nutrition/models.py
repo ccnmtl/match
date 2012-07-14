@@ -5,20 +5,14 @@ from pagetree.models import PageBlock
 from django import forms
 from django.contrib.auth.models import User
 
-class DiscussionResponse(models.Model):
-    def __unicode__(self):
-        return self.reply[:25] + '...' if self.reply and len(self.reply) > 25 else self.reply
-
-    reply = models.TextField()
-    actual_time = models.IntegerField()
-
 class DiscussionTopic(models.Model):
     def __unicode__(self):
         return self.text[:25] + '...' if self.text and len(self.text) > 25 else self.text
 
     text = models.TextField()
     estimated_time = models.IntegerField()
-    response = models.ForeignKey(DiscussionResponse)
+    reply = models.TextField()
+    actual_time = models.IntegerField()
 
 class CounselingSession(models.Model):
     pageblocks = generic.GenericRelation(PageBlock)
@@ -71,7 +65,7 @@ class CounselingSession(models.Model):
 class CounselingSessionState(models.Model):
     user = models.ForeignKey(User, related_name="nutrition_discussion_user")
     session = models.ForeignKey(CounselingSession)
-    answered = models.ManyToManyField(DiscussionTopic)
+    answered = models.ManyToManyField(DiscussionTopic, null=True, blank=True)
     elapsed_time = models.IntegerField(default=0)
 
 class CounselingSessionForm(forms.ModelForm):

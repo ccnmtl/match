@@ -8,26 +8,20 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding model 'DiscussionResponse'
-        db.create_table('nutrition_discussionresponse', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('reply', self.gf('django.db.models.fields.TextField')()),
-            ('actual_time', self.gf('django.db.models.fields.IntegerField')()),
-        ))
-        db.send_create_signal('nutrition', ['DiscussionResponse'])
-
         # Adding model 'DiscussionTopic'
         db.create_table('nutrition_discussiontopic', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('text', self.gf('django.db.models.fields.TextField')()),
             ('estimated_time', self.gf('django.db.models.fields.IntegerField')()),
-            ('response', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['nutrition.DiscussionResponse'])),
+            ('reply', self.gf('django.db.models.fields.TextField')()),
+            ('actual_time', self.gf('django.db.models.fields.IntegerField')()),
         ))
         db.send_create_signal('nutrition', ['DiscussionTopic'])
 
         # Adding model 'CounselingSession'
         db.create_table('nutrition_counselingsession', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('available_time', self.gf('django.db.models.fields.IntegerField')(default=0)),
         ))
         db.send_create_signal('nutrition', ['CounselingSession'])
 
@@ -39,20 +33,26 @@ class Migration(SchemaMigration):
         ))
         db.create_unique('nutrition_counselingsession_topics', ['counselingsession_id', 'discussiontopic_id'])
 
-        # Adding model 'ActivityState'
-        db.create_table('nutrition_activitystate', (
+        # Adding model 'CounselingSessionState'
+        db.create_table('nutrition_counselingsessionstate', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(related_name='nutrition_discussion_user', to=orm['auth.User'])),
-            ('json', self.gf('django.db.models.fields.TextField')(blank=True)),
+            ('session', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['nutrition.CounselingSession'])),
+            ('elapsed_time', self.gf('django.db.models.fields.IntegerField')(default=0)),
         ))
-        db.send_create_signal('nutrition', ['ActivityState'])
+        db.send_create_signal('nutrition', ['CounselingSessionState'])
+
+        # Adding M2M table for field answered on 'CounselingSessionState'
+        db.create_table('nutrition_counselingsessionstate_answered', (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('counselingsessionstate', models.ForeignKey(orm['nutrition.counselingsessionstate'], null=False)),
+            ('discussiontopic', models.ForeignKey(orm['nutrition.discussiontopic'], null=False))
+        ))
+        db.create_unique('nutrition_counselingsessionstate_answered', ['counselingsessionstate_id', 'discussiontopic_id'])
 
 
     def backwards(self, orm):
         
-        # Deleting model 'DiscussionResponse'
-        db.delete_table('nutrition_discussionresponse')
-
         # Deleting model 'DiscussionTopic'
         db.delete_table('nutrition_discussiontopic')
 
@@ -62,8 +62,11 @@ class Migration(SchemaMigration):
         # Removing M2M table for field topics on 'CounselingSession'
         db.delete_table('nutrition_counselingsession_topics')
 
-        # Deleting model 'ActivityState'
-        db.delete_table('nutrition_activitystate')
+        # Deleting model 'CounselingSessionState'
+        db.delete_table('nutrition_counselingsessionstate')
+
+        # Removing M2M table for field answered on 'CounselingSessionState'
+        db.delete_table('nutrition_counselingsessionstate_answered')
 
 
     models = {
@@ -103,28 +106,26 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        'nutrition.activitystate': {
-            'Meta': {'object_name': 'ActivityState'},
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'json': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'nutrition_discussion_user'", 'to': "orm['auth.User']"})
-        },
         'nutrition.counselingsession': {
             'Meta': {'object_name': 'CounselingSession'},
+            'available_time': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'topics': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['nutrition.DiscussionTopic']", 'symmetrical': 'False'})
         },
-        'nutrition.discussionresponse': {
-            'Meta': {'object_name': 'DiscussionResponse'},
-            'actual_time': ('django.db.models.fields.IntegerField', [], {}),
+        'nutrition.counselingsessionstate': {
+            'Meta': {'object_name': 'CounselingSessionState'},
+            'answered': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['nutrition.DiscussionTopic']", 'null': 'True', 'blank': 'True'}),
+            'elapsed_time': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'reply': ('django.db.models.fields.TextField', [], {})
+            'session': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['nutrition.CounselingSession']"}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'nutrition_discussion_user'", 'to': "orm['auth.User']"})
         },
         'nutrition.discussiontopic': {
             'Meta': {'object_name': 'DiscussionTopic'},
+            'actual_time': ('django.db.models.fields.IntegerField', [], {}),
             'estimated_time': ('django.db.models.fields.IntegerField', [], {}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'response': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['nutrition.DiscussionResponse']"}),
+            'reply': ('django.db.models.fields.TextField', [], {}),
             'text': ('django.db.models.fields.TextField', [], {})
         },
         'pagetree.hierarchy': {
