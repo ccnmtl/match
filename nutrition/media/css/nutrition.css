@@ -2,13 +2,22 @@ div.counseling_session {
     height: 500px;
 }
 
+div.information {
+    float: left;
+    width: 15em;
+}
+
 div.available_time {
     text-align: center;
     border: 1px solid black;
-    width: 10em;
+    width: 13em;
     margin-bottom: 10px;
-    margin-right: 10px;
-    float: left;
+}
+
+div#patient-chart {
+    border: 1px solid black;
+    width: 13em;
+    padding: 5px;
 }
 
 div.accordion {
@@ -21,8 +30,8 @@ div.accordion-group {
     vertical-align: middle;
 }
 
-div.accordion-group.highlight {
-
+div.accordion-group.selected {
+    border: 2px black solid;
 }
 
 div.accordion-group {
@@ -84,4 +93,25 @@ div#display_time {
 
 div#display_time h1 {
     margin-top: .2em;
+}
+
+div#complete-overlay
+{
+    z-index: 10000;
+    filter: alpha(opacity=50); /*older IE*/
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50); /* IE */
+    -moz-opacity: .8; /*older Mozilla*/
+    -khtml-opacity: 0.8;   /*older Safari*/
+    opacity: 0.8;   /*supported by current Mozilla, Safari, and Opera*/
+    background-color: #cc3300;
+    color:#fff;
+    text-align:center;
+    vertical-align:middle;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+#complete-overlay a
+{
+    color:#fff;
 }

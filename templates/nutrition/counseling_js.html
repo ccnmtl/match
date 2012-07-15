@@ -12,18 +12,30 @@
 </script>
 
 <script type="text/template" id="session-template">
-    <div class="available_time">
-        <center>
-        <h3>Available Time</h3>
-        <div id="display_time"><h1 id="display_time_text"></h1></div>
-        <h3>minutes</h3>
-        </center>
+    <div id="complete-overlay">
+        <h1>You've run out of time!</h1>
+        All information was recorded in your patient's chart.<br /><br />
+    </div>
+    <div class="information">
+        <div class="available_time">
+            <center>
+            <h3>Available Time</h3>
+            <div id="display_time"><h1 id="display_time_text"></h1></div>
+            <h3>minutes</h3>
+            </center>
+        </div>
+        <div id="patient-chart">
+            <h3>Patient Chart</h3>
+            <div id="patient-chart-text">
+
+            </div>
+        </div>
     </div>
     <div id="topic-accordion" class="accordion">
         <% _.each(topics.models, function(topic, index) { %>
             <div id="<%=topic.attributes.id%>" class="accordion-group <% if (index/2 === 0) { %> even <% } %>">
                 <div class="accordion-heading">
-                    <div class="discuss"><%= topic.attributes.text %></div>
+                    <div class="discuss"><%= topic.attributes.text %><div class="reason"></div></div>
                     <button class="btn discuss" data-toggle="collapse"
                             data-target="#reply-<%= topic.attributes.id %>" data-parent="#topics-accordion">
                         Discuss for <%= topic.attributes.estimated_time %> minutes (estimated)
@@ -42,5 +54,6 @@
             </div>
         <% }); %>
     </div>
+
 
 </script>

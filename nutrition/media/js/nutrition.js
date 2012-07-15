@@ -1,4 +1,5 @@
 (function (jQuery) {
+
     var DiscussionTopic = Backbone.Model.extend({
         urlRoot: '/nutrition/api/v1/discussion_topic/'
     });
@@ -24,7 +25,8 @@
     var CounselingSessionState = Backbone.Model.extend({
         defaults: {
             answered: new DiscussionTopicList(),
-            elapsed_time: 0
+            elapsed_time: null,
+            current_topic: null
         },
         urlRoot: '/nutrition/api/v1/counseling_session_state/',
         parse: function(response) {
@@ -37,73 +39,106 @@
 
     var CounselingSessionView = Backbone.View.extend({
         initialize: function(options) {
-            _.bindAll(this, 'initialRender', 'render', 'onDiscussion');
+            _.bindAll(this, 'renderTopics', 'renderState', 'renderTime', 'renderCountdown', 'onDiscussion', 'onCloseDiscussion');
             this.template = _.template(jQuery("#session-template").html());
             this.state = options.state;
 
-            this.model.bind('change', this.initialRender);
+            this.model.bind('change', this.renderTopics);
             this.model.fetch();
         },
-        initialRender: function() {
+        renderTopics: function() {
             this.el.innerHTML = this.template(this.model.toJSON());
 
             // bind events now that the template is rendered
-            jQuery(".collapse").collapse({ 'toggle': false }).on('show', this.onDiscussion);
+            jQuery(".collapse").collapse({ 'toggle': false }).on('show', this.onDiscussion).on('hide', this.onCloseDiscussion);
 
             // pickup the user's state
-            this.state.bind('change', this.render);
+            this.state.bind('change:elapsed_time', this.renderTime);
+            this.state.bind('change:user', this.renderState);
+            this.state.bind('change:countdown', this.renderCountdown);
             this.state.fetch();
         },
-        render: function () {
+        renderState: function () {
             var self = this;
-            if (this.countdown !== undefined && this.countdown > 0) {
-                var current = parseInt(jQuery("#display_time_text").html(), 10);
-                current -= 1; self.countdown -= 1;
-                jQuery("#display_time_text").html(current);
+            var available_time = this.model.get('available_time') - this.state.get('elapsed_time');
 
-                jQuery("#display_time").effect("highlight", { color: '#FF0000' }, 1100, function() {
-                    if (self.countdown > 0) {
-                        setTimeout(self.render, 0);
-                    } else {
-                        jQuery(self.button_complete).show();
-                        self.button_complete = undefined;
-                        self.countdown = undefined;
+            jQuery('#patient-chart-text').html('');
 
-                        jQuery('div.accordion-group').removeClass('highlight');
-                        self.enableTopics();
-                    }
-                });
-            } else {
-                var display_time = this.model.get('available_time') - this.state.get('elapsed_time');
-                jQuery('#display_time_text').html(display_time);
-                self.enableTopics();
-            }
-        },
-        enableTopics: function() {
-            var self = this;
             this.model.get('topics').forEach(function (topic) {
                 if (self.state.get('answered').get(topic.id)) {
                     jQuery('#' + topic.get('id')).find('.btn.discuss').attr('disabled', 'disabled');
+                    jQuery('#' + topic.get('id')).find('div.reason').html("discussed");
+
+                    jQuery('#patient-chart-text').append('<div class="patient-chart-item">' + topic.get('text') + '<br />' + topic.get('reply') + '</div>');
+
+                } else if (topic.get('estimated_time') > available_time) {
+                    jQuery('#' + topic.get('id')).find('.btn.discuss').attr('disabled', 'disabled');
+                    jQuery('#' + topic.get('id')).find('div.reason').html("not enough time left");
                 } else {
                     jQuery('#' + topic.get('id')).find('.btn.discuss').removeAttr('disabled');
                 }
             });
+
+            if (available_time > 0) {
+                jQuery("#next").hide();
+                jQuery("#complete-overlay").hide();
+            } else {
+                jQuery("#next").show();
+                jQuery("#complete-overlay").show();
+            }
+
+        },
+        renderCountdown: function () {
+            var self = this;
+            var countdown = this.state.get('countdown');
+            if (countdown !== undefined ) {
+                // unbind for the moment, the timer will take care of this
+                this.state.unbind('change:countdown', this.renderCountdown);
+
+                // Decrement the counter, Increment elapsed time >> triggers display time update
+                countdown -= 1;
+                self.state.set('countdown', countdown);
+                self.state.set('elapsed_time', self.state.get('elapsed_time') + 1);
+
+                // All discussion buttons are disabled, the class gets a selected icon
+                jQuery('.btn.discuss').attr('disabled', 'disabled');
+
+                // Make the background div blink
+                jQuery("#display_time").effect("highlight", { color: '#FF0000' }, 1100, function() {
+                    if (countdown > 0) {
+                        setTimeout(self.renderCountdown, 0);
+                    } else {
+                        jQuery(self.state.get('current_topic_el')).find('.btn.complete').show();
+                        self.state.set('countdown', undefined);
+                        self.state.set('current_topic_el', undefined);
+                        self.state.bind('change:countdown', self.renderCountdown);
+                        self.state.save();
+                    }
+                });
+            }
+        },
+        renderTime: function() {
+            jQuery('#display_time_text').html(this.model.get('available_time') - this.state.get('elapsed_time'));
         },
         onDiscussion: function(evt) {
             var srcElement = evt.srcElement || evt.target || evt.originalTarget;
-            jQuery('.btn.discuss').attr('disabled', 'disabled');
-            jQuery(srcElement).parents('div.accordion-group').addClass('highlight');
+            jQuery(srcElement).parents('div.accordion-group').addClass('selected');
 
             var data_id = jQuery(srcElement).data("id");
             var topic = this.model.get('topics').get(data_id);
-
-            this.countdown = topic.get('actual_time');
-            this.button_complete = jQuery(srcElement).find('button.btn.complete');
-
-            var elapsed = this.state.get('elapsed_time') + topic.get('actual_time');
-            this.state.set('elapsed_time', elapsed);
             this.state.get('answered').add(topic);
             this.state.save();
+            this.state.set({
+                'countdown': topic.get('actual_time'),
+                'current_topic_el': srcElement
+            });
+
+        },
+        onCloseDiscussion: function(evt) {
+            var srcElement = evt.srcElement || evt.target || evt.originalTarget;
+            jQuery(srcElement).parents('div.accordion-group').removeClass('selected');
+
+            this.renderState();
         }
     });
 
