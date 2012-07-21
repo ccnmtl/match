@@ -481,23 +481,36 @@ a:visited
 
 }
 
-#secondary_navigation .block ul li a
+#secondary_navigation .block ul li div.regular a
 {
     color: #dedede;
     font-size: 100%;
 
 }
 
-#secondary_navigation .block ul li a:hover
+#secondary_navigation .block ul li div.regular a:hover
 {
     color: #ecd785;
-
 }
 
-#secondary_navigation .block ul li a:visited
-{
+#secondary_navigation .block ul li div.regular a:visited {
+    color: white;
+    font-weight: bold;
+}
 
+#secondary_navigation .block ul li div.disabled {
+    color: #cacaca;
+}
 
+#secondary_navigation .block ul li div.selected {
+    color: black;
+    font-weight: bold;
+    background-color: #8C8;
+    padding: 5px;
+}
+
+#secondary_navigation .block ul li div.selected:after {
+    content: " »";
 }
 
 #secondary_navigation .block ul li ul

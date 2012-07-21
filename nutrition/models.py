@@ -51,16 +51,34 @@ class CounselingSession(models.Model):
             form.save()
 
     def unlocked(self, user):
-        rc = False
-        try:
-            state = ActivityState.objects.get(user=user)
-            obj = simplejson.loads(state.json)
-            if obj.has_key('complete'):
-                rc = obj['complete']
-        except ActivityState.DoesNotExist:
-            pass # ignore, we'll return false here in a sec
+        '''
+            This module is unlocked if:
+            1. The available time <= 0
+            2. All topics are discussed
+            3. Undiscussed topics estimated_time > available_time
+        '''
+        a = CounselingSessionState.objects.filter(session=self, user=user)
+        if len(a) < 1:
+            return False
 
-        return rc
+        state = a[0]
+        available_time = self.available_time - state.elapsed_time
+
+        if available_time <= 0:
+            return True
+
+
+        # All questions answered || unanswered questions are > available_time
+        not_yet_discussed = 0
+        for topic in self.topics.all():
+            if topic.estimated_time <= available_time:
+                try:
+                    obj = state.answered.get(id=topic.id)
+                except DiscussionTopic.DoesNotExist:
+                    return False
+
+        return True
+
 
 class CounselingSessionState(models.Model):
     user = models.ForeignKey(User, related_name="nutrition_discussion_user")

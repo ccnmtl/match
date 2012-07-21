@@ -1,18 +1,28 @@
+{% load unlocked %}
+
 <ul>
 {% for s in module.get_descendants %}
 {% ifequal s.id module.id %}
 {% else %}
 <li class="menu-{{s.depth}}">
   {% ifnotequal s.id section.id %}
-  <a href="{{menu_base}}{{s.get_absolute_url}}">
+      {% ifunlocked s %}
+          <div class="regular"><a href="{{menu_base}}{{s.get_absolute_url}}">
+      {%  else %}
+          <div class="disabled">
+      {% endifunlocked %}
   {% else %}
-     <b>
+      <div class="selected">
   {% endifnotequal %}
   {{s.label}}
   {% ifnotequal s.id section.id %}
-    </a>
+      {% ifunlocked s %}
+          </a></div>
+      {%  else  %}
+          </div>
+      {% endifunlocked %}
   {% else %}
-    </b>
+    </div>
   {% endifnotequal %}
   {% if s.get_children %}
      <ul class="hs-init-hide" id="section-ul-{{s.id}}">

@@ -94,7 +94,6 @@ def _unlocked(profile,section):
           
     return profile.has_visited(previous)
 
-
 def background(request,  content_to_show):
     """ the pagetree page view breaks flatpages, so this is a simple workaround."""
     file_names = {
@@ -111,12 +110,11 @@ def background(request,  content_to_show):
     c = RequestContext(request, {})
     return HttpResponse(t.render(c))
 
-
 @login_required
 @rendered_with('main/page.html')
 def page(request,path):
-    hierarchy = request.get_host()
-    section = get_section_from_path(path,hierarchy=hierarchy)
+    hierarchy_name,slash,section_path = path.partition('/')
+    section = get_section_from_path(section_path,hierarchy=hierarchy_name)
 
     root = section.hierarchy.get_root()
     module = get_module(section)
@@ -134,11 +132,13 @@ def page(request,path):
     if not request.user.is_anonymous():
         can_edit = request.user.is_staff
 
-    if section.id == root.id:
-        # trying to visit the root page
-        if section.get_next():
-            # just send them to the first child
-            return HttpResponseRedirect(section.get_next().get_absolute_url())
+    if section.id == root.id or section.id == root.get_first_child().id:
+        # trying to visit the root page -- send them to the first leaf
+        first_leaf = section.hierarchy.get_first_leaf(section)
+        ancestors = first_leaf.get_ancestors()
+
+        user_profile.save_visits(ancestors)
+        return HttpResponseRedirect(first_leaf.get_absolute_url())
 
     if request.method == "POST":
         # user has submitted a form. deal with it

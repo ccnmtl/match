@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load render %}
 
+
 {% block js %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
@@ -75,19 +76,24 @@
 {% block content-nav %}
 
 <div class="content-nav">
+    {%  with section.get_previous as previous %}
+        {%  if previous %}
+            {%  ifnotequal previous.depth 2 %}
+                <a href="{{previous.get_absolute_url}}" id="previous">« {{previous.label}} </a>
+            {% endifnotequal %}
+        {% endif %}
+    {% endwith %}
 
-{% if section.get_previous %}
-<a href="{{section.get_previous.get_absolute_url}}" id="previous">« {{section.get_previous.label}}</a>
-{% endif %}
-
-{% if section.get_next %}
-{% with section.get_next as next_section %}
-{% if next_unlocked %}
-<a href="{{section.get_next.get_absolute_url}}" id="next">{{section.get_next.label}} »</a>
-{% else %}
-<span id="next">{{section.get_next.label}} »</span>
-{% endif %}
-{% endwith %}
-{% endif %}
+    {% with section.get_next as next %}
+        {% if next %}
+            {% if not next.is_root %}
+                {% if next_unlocked %}
+                    <a href="{{ next.get_absolute_url}}" id="next">{{next.label}} »</a>
+                {% else %}
+                    <span id="next">{{next.label}} »</span>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% endwith %}
 </div><!-- div id="content-nav" -->
 {% endblock %}

@@ -61,6 +61,7 @@
         renderState: function () {
             var self = this;
             var available_time = this.model.get('available_time') - this.state.get('elapsed_time');
+            var enabled = 0;
 
             jQuery('#patient-chart-text').html('');
 
@@ -76,15 +77,20 @@
                     jQuery('#' + topic.get('id')).find('div.reason').html("not enough time left");
                 } else {
                     jQuery('#' + topic.get('id')).find('.btn.discuss').removeAttr('disabled');
+                    enabled++;
                 }
             });
 
-            if (available_time > 0) {
-                jQuery("#next").hide();
-                jQuery("#complete-overlay").hide();
-            } else {
+            // Show the "next" icon if
+            // 1. The available time <= 0
+            // 2. All topics are discussed
+            // 3. Remaining topics estimated_time > available_time
+            if (available_time <= 0 || enabled === 0) {
                 jQuery("#next").show();
                 jQuery("#complete-overlay").show();
+            } else {
+                jQuery("#next").hide();
+                jQuery("#complete-overlay").hide();
             }
 
         },
