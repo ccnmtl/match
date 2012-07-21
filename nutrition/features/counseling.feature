@@ -167,13 +167,58 @@ Feature: Login
         Then there is next navigation
         There is a "Counseling Session Two" link
 
+        When I navigate to the previous page
+        When I navigate to the next page
+
         There are 7 topics
         Then all topics are disabled
         Then I see "You've run out of time!"
-        Then there is next navigation
+        There is next navigation
         There is a "Counseling Session Two" link
-        Then the clock reads -3 seconds
+        The clock reads -3 seconds
 
         Finished using Selenium
 
-#    Scenario: 5. Answer all the questions, still have time left on the clock
+    Scenario: 5. Answer all the questions, still have time left on the clock
+        Using selenium
+        Given I am logged in as match_participant_one
+        When I click the "Module 2: Nutrition" link
+        When I navigate to the next page
+        Then I am at the Counseling Session page
+        There are 7 topics
+
+        When I discuss "Topic Five"
+        Then I wait 7 seconds
+        Then the clock reads 5 seconds
+        Then I close the discussion
+
+        When I discuss "Topic Overtime"
+        Then I wait 5 seconds
+        Then the clock reads 0 seconds
+        Then I close the discussion
+
+        When I navigate to the next page
+        Then I am at the Counseling Session Two page
+        There are 2 topics
+        The clock reads 5 seconds
+
+        When I discuss "Topic One"
+        Then I wait 2 seconds
+        Then the clock reads 4 seconds
+        Then I close the discussion
+
+        When I discuss "Topic Two"
+        Then I wait 4 seconds
+        Then the clock reads 2 seconds
+        Then I close the discussion
+
+        Then all topics are disabled
+        Then I see "You've completed your session!"
+
+        When I navigate to the previous page
+        When I navigate to the next page
+
+        Then all topics are disabled
+        Then I see "You've completed your session!"
+
+        Finished using Selenium

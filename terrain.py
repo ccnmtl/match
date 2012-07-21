@@ -54,9 +54,11 @@ def clear_selenium(step):
     
     os.system("echo 'delete from main_userprofile;' | sqlite3 lettuce.db")
     os.system("echo 'delete from main_uservisited;' | sqlite3 lettuce.db")
-    os.system("echo 'delete from quizblock_response cascade;' | sqlite3 lettuce.db")
-    os.system("echo 'delete from quizblock_submission cascade;' | sqlite3 lettuce.db")
-    
+    os.system("echo 'delete from quizblock_response;' | sqlite3 lettuce.db")
+    os.system("echo 'delete from quizblock_submission;' | sqlite3 lettuce.db")
+    os.system("echo 'delete from nutrition_counselingsessionstate_answered;' | sqlite3 lettuce.db")
+    os.system("echo 'delete from nutrition_counselingsessionstate;' | sqlite3 lettuce.db")
+
 @step(r'I access the url "(.*)"')
 def access_url(step, url):
     if world.using_selenium:

@@ -46,7 +46,6 @@ def the_patient_chart_contains_text(step, text):
 @step(u'I discuss "([^"]*)"')
 def i_discuss_topic(step, topic):
     elts = world.firefox.find_elements_by_css_selector("div.accordion-heading")
-    assert len(elts) == 7
     for e in elts:
         div = e.find_element_by_css_selector("div.discuss")
         if div.text.find(topic) > -1:
