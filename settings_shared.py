@@ -78,8 +78,16 @@ INSTALLED_APPS = (
     'south',
     'django_statsd',
     'nutrition',
-    'tastypie'
+    'tastypie',
+    'lettuce.django',
+    'django_nose'
 )
+
+LETTUCE_APPS = (
+    'match.main',
+#    'match.nutrition',
+)
+
 
 STATSD_CLIENT = 'statsd.client'
 STATSD_PREFIX = 'match'

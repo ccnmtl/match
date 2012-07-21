@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block widthtype %}fixed login{% endblock %}
-{% block title %}Welcome to MATCH. Please log in.{% endblock %}
+{% block title %}Login{% endblock %}
 {% block content %}
 <h3>Welcome to Multidisciplinary Approaches to Children's Oral Health (MATCH)</h3>
 {% if form.has_errors %}
@@ -29,7 +29,8 @@
 {% endif %}
 
 	<p>If you have a project account...</p>
-<form method="post" action=".">
+<form method="post" action="." name="login_local">
+
 {% csrf_token %}
 
 	<div class="fieldwrapper">
