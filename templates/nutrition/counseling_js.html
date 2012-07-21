@@ -46,7 +46,7 @@
                     <div class="accordion-inner">
                         <%= topic.attributes.reply %><br />
                         <h3>Actual Time: <%= topic.attributes.actual_time %> minutes</h3>
-                        <button style="display: none" class="btn complete" data-toggle="collapse" data-target="#reply-<%= topic.attributes.id %>" data-parent="#topics-accordion">
+                        <button disabled="disabled" class="btn complete" data-toggle="collapse" data-target="#reply-<%= topic.attributes.id %>" data-parent="#topics-accordion">
                             Close<br />
                         </button>
                     </div>

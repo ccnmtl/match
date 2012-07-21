@@ -21,17 +21,17 @@
 {% block title %}{{section.label}}{% endblock %}
 
 {% block sidenav %}
-        <!-- ###### Secondary Navigation ###### -->
-        <div id="secondary_navigation">
-                <div id="fadetop"></div>
-                <div class="block">
-                  {% if module.get_children %}
-                        <!--<h3>Sections</h3>-->
-                        {% include "main/menu.html" %}
-                  {% endif %}
-                </div><!-- div id="block" -->
-                <div id="fadebottom"></div>
-        </div><!-- div id="secondary_navigation" -->
+    <!-- ###### Secondary Navigation ###### -->
+    <div id="secondary_navigation">
+        <div id="fadetop"></div>
+        <div class="block">
+          {% if module.get_children %}
+                <!--<h3>Sections</h3>-->
+                {% include "main/menu.html" %}
+          {% endif %}
+        </div><!-- div id="block" -->
+        <div id="fadebottom"></div>
+    </div><!-- div id="secondary_navigation" -->
 {% endblock %}
 
 {% block content %}
@@ -91,9 +91,12 @@
                     <a href="{{ next.get_absolute_url}}" id="next">{{next.label}} »</a>
                 {% else %}
                     <span id="next">{{next.label}} »</span>
+                    <input type="hidden" id="next_url" value="{{next.get_absolute_url}}" />
                 {% endif %}
             {% endif %}
         {% endif %}
     {% endwith %}
 </div><!-- div id="content-nav" -->
+
+
 {% endblock %}

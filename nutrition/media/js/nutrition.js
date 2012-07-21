@@ -86,7 +86,31 @@
             // 2. All topics are discussed
             // 3. Remaining topics estimated_time > available_time
             if (available_time <= 0 || enabled === 0) {
+                var next = jQuery("#next");
+                if (jQuery(next).children('a').length < 1) {
+                    // construct an anchor link
+                    var label = jQuery(next).html();
+                    var url = jQuery("#next_url").attr("value");
+                    jQuery(next).replaceWith('<a id="next" href="' + url + '">' + label + '</a>');
+
+                    // enable the subnav link too
+                    var elts = jQuery('#secondary_navigation ul li div.disabled');
+                    for (var i = 0; i < elts.length; i++) {
+                        var text = jQuery(elts[i]).html().replace(/(\r\n|\n|\r)/gm,"").trim();
+                        if (label.search(text) === 0) {
+                            jQuery(elts[i]).replaceWith('<div class="regular"><a href="' + url + '">' + text + '</a></div>');
+                        }
+                    }
+
+                }
+
                 jQuery("#next").show();
+
+                if (available_time > 0 && enabled === 0) {
+                    jQuery("#complete-overlay h1").html("You've completed your session!");
+                } else {
+                    jQuery("#complete-overlay h1").html("You've run out of time!");
+                }
                 jQuery("#complete-overlay").show();
             } else {
                 jQuery("#next").hide();
@@ -110,11 +134,11 @@
                 jQuery('.btn.discuss').attr('disabled', 'disabled');
 
                 // Make the background div blink
-                jQuery("#display_time").effect("highlight", { color: '#FF0000' }, 1100, function() {
+                jQuery("#display_time").effect("highlight", { color: '#FF0000' }, 1000, function() {
                     if (countdown > 0) {
                         setTimeout(self.renderCountdown, 0);
                     } else {
-                        jQuery(self.state.get('current_topic_el')).find('.btn.complete').show();
+                        jQuery(self.state.get('current_topic_el')).find('.btn.complete').removeAttr('disabled');
                         self.state.set('countdown', undefined);
                         self.state.set('current_topic_el', undefined);
                         self.state.bind('change:countdown', self.renderCountdown);
