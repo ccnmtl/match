@@ -64,12 +64,6 @@ def access_url(step, url):
     else:
         response = world.client.get(django_url(url))
         world.dom = html.fromstring(response.content)
-        
-@step(u'my browser resolution is ([^"]*) x ([^"]*)')
-def my_browser_resolution_is_width_x_height(step, width, height):
-    cmd = "window.moveTo(0, 1); window.resizeTo(%s, %s);" % (width, height)
-    world.firefox.execute_script(cmd);
-
 
 @step(u'I am at the ([^"]*) page')
 def i_am_at_the_name_page(step, name):
@@ -83,14 +77,8 @@ def i_am_at_the_name_page(step, name):
             title = world.firefox.title
             assert title.find(name) > -1, "Page title is %s. Expected something like %s" % (title, name)
 
-@step(u'When I log in with a local account')
-def when_i_log_in_with_a_local_account(step):
-    form = world.firefox.find_element_by_name("login_local")
-    form.submit()
-
-
-@step(u'I am ([^"]*) in ([^"]*)')
-def i_logged_in(step, username):
+@step(u'I am logged in as ([^"]*)')
+def i_am_logged_in_as_username(step, username):
     if world.using_selenium:
         world.firefox.get(django_url("/accounts/logout/"))
         world.firefox.get(django_url("accounts/login/?next=/"))
@@ -102,10 +90,14 @@ def i_logged_in(step, username):
         form.submit()
         title = world.firefox.title
         assert username in world.firefox.page_source, world.firefox.page_source
-
-        step.given('I am at the Welcome page')
     else:
         world.client.login(username=username,password='test')
+
+
+@step(u'I log in with a local account')
+def i_log_in_with_a_local_account(step):
+    form = world.firefox.find_element_by_name("login_local")
+    form.submit()
 
 @step(u'I am not logged in')
 def i_am_not_logged_in(step):
@@ -123,6 +115,29 @@ def i_log_out(step):
         world.response = response
         world.dom = html.fromstring(response.content)
 
+@step(u'There is no ([^"]*) navigation')
+def there_is_no_direction_navigation(step, direction):
+    try:
+        elt = world.firefox.find_element_by_id(direction)
+        assert False, "%s navigation is available" % direction
+    except:
+        pass # expected
+
+
+@step(u'There is ([^"]*) navigation')
+def there_is_direction_navigation(step, direction):
+    try:
+        elt = world.firefox.find_element_by_id(direction)
+    except:
+        assert False, "Could not find %s navigation" % direction
+
+@step(u'I navigate to the ([^"]*) page')
+def i_navigate_to_the_direction_page(step, direction):
+    try:
+        elt = world.firefox.find_element_by_id(direction)
+        elt.click()
+    except:
+        assert False, "Could not find %s navigation" % direction
 
 @step(u'I type "([^"]*)" for ([^"]*)')
 def i_type_value_for_field(step, value, field):

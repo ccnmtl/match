@@ -63,14 +63,14 @@
             var available_time = this.model.get('available_time') - this.state.get('elapsed_time');
             var enabled = 0;
 
-            jQuery('#patient-chart-text').html('');
+            jQuery('#patient-chart-text').html(this.model.get('patient_chart'));
 
             this.model.get('topics').forEach(function (topic) {
                 if (self.state.get('answered').get(topic.id)) {
                     jQuery('#' + topic.get('id')).find('.btn.discuss').attr('disabled', 'disabled');
                     jQuery('#' + topic.get('id')).find('div.reason').html("discussed");
 
-                    jQuery('#patient-chart-text').append('<div class="patient-chart-item">' + topic.get('text') + '<br />' + topic.get('reply') + '</div>');
+                    jQuery('#patient-chart-text').append('<div class="patient-chart-item">' + topic.get('summary_text') + '<br />' + topic.get('summary_reply') + '</div>');
 
                 } else if (topic.get('estimated_time') > available_time) {
                     jQuery('#' + topic.get('id')).find('.btn.discuss').attr('disabled', 'disabled');

@@ -13,6 +13,8 @@ class DiscussionTopic(models.Model):
     estimated_time = models.IntegerField()
     reply = models.TextField()
     actual_time = models.IntegerField()
+    summary_text = models.TextField()
+    summary_reply = models.TextField()
 
 class CounselingSession(models.Model):
     pageblocks = generic.GenericRelation(PageBlock)
@@ -23,6 +25,7 @@ class CounselingSession(models.Model):
 
     topics = models.ManyToManyField(DiscussionTopic)
     available_time = models.IntegerField(default=0)
+    patient_chart = models.TextField()
 
     def pageblock(self):
         return self.pageblocks.all()[0]

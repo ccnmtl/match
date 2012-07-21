@@ -84,8 +84,8 @@ INSTALLED_APPS = (
 )
 
 LETTUCE_APPS = (
-    'match.main',
-#    'match.nutrition',
+    'main',
+    'nutrition'
 )
 
 
