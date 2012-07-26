@@ -175,8 +175,9 @@ def page(request,path):
 @login_required
 @rendered_with("main/instructor_page.html")
 def instructor_page(request,path):
-    h = get_hierarchy(request.get_host())
-    section = get_section_from_path(path,hierarchy=h)
+    hierarchy_name,slash,section_path = path.partition('/')
+    section = get_section_from_path(section_path,hierarchy=hierarchy_name)
+
     root = section.hierarchy.get_root()
     module = get_module(section)
 
@@ -196,7 +197,9 @@ def instructor_page(request,path):
 @login_required
 @rendered_with("main/all_results.html")
 def all_results(request):
-    h = get_hierarchy(request.get_host())
+    hierarchy_name,slash,section_path = path.partition('/')
+    h = get_hierarchy(hierarchy_name)
+
     all_users = User.objects.all()
     quizzes = []
     for s in h.get_root().get_descendants():
@@ -298,8 +301,9 @@ def all_results(request):
 @login_required
 @rendered_with('main/edit_page.html')
 def edit_page(request,path):
-    hierarchy = request.get_host()
-    section = get_section_from_path(path,hierarchy=hierarchy)
+    hierarchy_name,slash,section_path = path.partition('/')
+    section = get_section_from_path(section_path,hierarchy=hierarchy_name)
+
     root = section.hierarchy.get_root()
     module = get_module(section)
 
@@ -307,40 +311,5 @@ def edit_page(request,path):
                 module=get_module(section),
                 modules=root.get_children(),
                 root=section.hierarchy.get_root())
-
-
-@login_required
-def exporter(request):
-    hierarchy = request.get_host()
-    section = get_section_from_path('/', hierarchy=hierarchy)
-    zip_filename = export_zip(section.hierarchy)
-
-    with open(zip_filename) as zipfile:
-        resp = HttpResponse(zipfile.read())
-    resp['Content-Disposition'] = "attachment; filename=%s.zip" % section.hierarchy.name
-
-    os.unlink(zip_filename)
-    return resp
-
-from zipfile import ZipFile
-
-@rendered_with("main/import.html")
-@login_required
-def importer(request):
-    if request.method == "GET":
-        return {}
-    file = request.FILES['file']
-    zipfile = ZipFile(file)
-
-    # If we exported the morx.com site, and we are now
-    # visiting http://fleem.com/import/, we don't want
-    # to touch the morx.com hierarchy -- instead we want
-    # to import the bundle to the fleem.com hierarchy.
-    hierarchy_name = request.get_host()
-    hierarchy = import_zip(zipfile, hierarchy_name)
-
-    url = hierarchy.get_absolute_url()
-    url = '/' + url.lstrip('/') # sigh
-    return HttpResponseRedirect(url)
 
 

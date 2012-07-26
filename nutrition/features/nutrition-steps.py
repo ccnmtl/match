@@ -24,15 +24,14 @@ def the_clock_reads_count_seconds(step, count):
 
     assert elt.text == count, "The clock reads %s seconds. Expected %s seconds" % (elt.text, count)
 
-@step(u'the patient chart reads "([^"]*)"')
-def the_patient_chart_reads_text(step, text):
+@step(u'the patient chart is empty')
+def the_patient_chart_is_empty(step):
     elt = world.firefox.find_element_by_id("patient-chart-text")
     try:
-        assert elt.text == text, "The patient chart reads %s. Expected %s" % (elt.text, text)
+        assert elt.text == "", "The patient chart reads %s. No text expected" % (elt.text)
     except:
         time.sleep(1)
-        print "###### [%s]" % elt.text
-        assert elt.text == text, "The patient chart reads %s. Expected %s" % (elt.text, text)
+        assert elt.text == "", "The patient chart reads %s. No text expected" % (elt.text)
 
 @step(u'the patient chart contains "([^"]*)"')
 def the_patient_chart_contains_text(step, text):

@@ -24,5 +24,5 @@ STATSD_HOST = '127.0.0.1'
 # * match_participant_two
 #
 # To run the tests
-# ./manage.py --settings=settings_test harvest
+# ./manage.py harvest --settings=settings_test
  

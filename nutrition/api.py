@@ -28,23 +28,22 @@ class UserResource(ModelResource):
         authorization = UsernameAuthorization()
 
 class DiscussionTopicResource(ModelResource):
-    allowed_methods = ['get']
-
     class Meta:
         queryset = DiscussionTopic.objects.all()
         resource_name = 'discussion_topic'
+        allowed_methods = ['get']
 
 class CounselingSessionResource(ModelResource):
-    allowed_methods = ['get']
     topics = fields.ManyToManyField('nutrition.api.DiscussionTopicResource', 'topics', full=True)
 
     class Meta:
         queryset = CounselingSession.objects.all()
         resource_name = 'counseling_session'
+        allowed_methods = ['get']
 
 class CounselingSessionStateResource(ModelResource):
     user = fields.ForeignKey(UserResource, 'user')
-    session = fields.ForeignKey(CounselingSessionResource, 'session')
+    session = fields.ForeignKey(CounselingSessionResource, 'session', full=True)
     answered = fields.ManyToManyField('nutrition.api.DiscussionTopicResource', 'answered', full=True)
 
     class Meta:

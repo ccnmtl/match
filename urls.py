@@ -15,8 +15,6 @@ urlpatterns = patterns('',
                        
                        (r'^about/$',  'main.views.background',   {'content_to_show': 'about' }),
                        (r'^help/$',   'main.views.background',   {'content_to_show': 'help'  }),
-                       (r'^export/$','main.views.exporter'),
-                       (r'^import/$','main.views.importer'),
 
                        ('^_allresults/$','main.views.all_results'),
                        ('^accounts/',include('djangowind.urls')),
@@ -33,7 +31,7 @@ urlpatterns = patterns('',
                        (r'nutrition/', include('nutrition.urls')),
                        (r'^_stats/',direct_to_template, {'template': 'main/stats.html'}),
                        (r'^ce-credit-confirmation/','main.views.ce_credit_confirmation'),
-                       (r'^edit/(?P<path>.*)$','match.main.views.edit_page',{},'edit-page'),
                        (r'^instructor/(?P<path>.*)$','match.main.views.instructor_page'),
-                       (r'^(?P<path>.+)$','match.main.views.page'), #no more zero-length pagetree section paths.                       
+                       (r'^edit/(?P<path>.*)$','match.main.views.edit_page',{},'edit-page'),
+                       (r'^(?P<path>.+)$','match.main.views.page'), #no more zero-length pagetree section paths.
 )

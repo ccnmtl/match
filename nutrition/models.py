@@ -82,13 +82,14 @@ class CounselingSession(models.Model):
 
         return True
 
+class CounselingSessionForm(forms.ModelForm):
+    class Meta:
+        model = CounselingSession
 
 class CounselingSessionState(models.Model):
     user = models.ForeignKey(User, related_name="nutrition_discussion_user")
     session = models.ForeignKey(CounselingSession)
     answered = models.ManyToManyField(DiscussionTopic, null=True, blank=True)
     elapsed_time = models.IntegerField(default=0)
+    #referral = models.TextField(default='', null=True, blank=True)
 
-class CounselingSessionForm(forms.ModelForm):
-    class Meta:
-        model = CounselingSession

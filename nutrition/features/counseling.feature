@@ -15,7 +15,7 @@ Feature: Login
         Then I am at the Counseling Session page
         There are 7 topics
         The clock reads 10 seconds
-        The patient chart reads "Initial data for the patient chart."
+        The patient chart is empty
 
         Finished using Selenium
 
@@ -33,7 +33,7 @@ Feature: Login
         Then the clock reads 9 seconds
 
         When I close the discussion
-        The patient chart contains "Initial data for the patient chart."
+        The patient chart contains "Initial Data For The Patient Chart."
         The patient chart contains "summary text one"
         The patient chart contains "summary reply two"
 
@@ -50,7 +50,7 @@ Feature: Login
 
         Then there are 7 topics
         Then the clock reads 9 seconds
-        The patient chart contains "Initial data for the patient chart."
+        The patient chart contains "Initial Data For The Patient Chart."
         The patient chart contains "summary text one"
         The patient chart contains "summary reply two"
 
@@ -95,7 +95,7 @@ Feature: Login
         Then the clock reads 0 seconds
         Then I close the discussion
 
-        The patient chart contains "Initial data for the patient chart."
+        The patient chart contains "Initial Data For The Patient Chart."
         The patient chart contains "summary text one"
         The patient chart contains "summary reply two"
         The patient chart contains "summary text four"
@@ -154,7 +154,7 @@ Feature: Login
         Then the clock reads -3 seconds
         Then I close the discussion
 
-        The patient chart contains "Initial data for the patient chart."
+        The patient chart contains "Initial Data For The Patient Chart."
         The patient chart contains "summary text three"
         The patient chart contains "summary reply three"
         The patient chart contains "summary text five"
@@ -197,20 +197,41 @@ Feature: Login
         Then the clock reads 0 seconds
         Then I close the discussion
 
+        The patient chart contains "Initial Data For The Patient Chart."
+        The patient chart contains "summary text five"
+        The patient chart contains "summary reply five"
+        The patient chart contains "summary text overtime"
+        The patient chart contains "summary reply overtime"
+
         When I navigate to the next page
         Then I am at the Counseling Session Two page
         There are 2 topics
         The clock reads 5 seconds
+        The patient chart contains "Initial Data For The Patient Chart."
+        The patient chart contains "summary text five"
+        The patient chart contains "summary reply five"
+        The patient chart contains "summary text overtime"
+        The patient chart contains "summary reply overtime"
 
         When I discuss "Topic One"
         Then I wait 2 seconds
         Then the clock reads 4 seconds
         Then I close the discussion
 
+        The patient chart contains "Initial Data For Second Counseling Session."
+        The patient chart contains "summary text one"
+        The patient chart contains "summary reply one"
+
         When I discuss "Topic Two"
         Then I wait 4 seconds
         Then the clock reads 2 seconds
         Then I close the discussion
+
+        The patient chart contains "Initial Data For Second Counseling Session."
+        The patient chart contains "summary text one"
+        The patient chart contains "summary reply one"
+        The patient chart contains "summary text two"
+        The patient chart contains "summary reply two"
 
         Then all topics are disabled
         Then I see "You've completed your session!"
