@@ -8,8 +8,12 @@
 <script src="/site_media/bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-    SESSION_ID = "{{block.id}}";
-    SESSION_STATE_ID = "{% get_user_session_state request.user block.id %}";
+    jQuery(document).ready(function () {
+        var view = new CounselingSessionView({
+            current_session_state_id: "{% get_user_session_state request.user block.id %}",
+            el: 'div.counseling_session'
+        });
+    });
 </script>
 
 <script type="text/template" id="session-template">

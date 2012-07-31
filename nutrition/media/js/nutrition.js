@@ -44,8 +44,10 @@
     var CounselingSessionStateList = Backbone.Collection.extend({
         model: CounselingSessionState,
         urlRoot: '/nutrition/api/v1/counseling_session_state/',
-        initialize: function(current_session_state_id) {
-            this.current_session_state_id = current_session_state_id;
+        initialize: function(attrs) {
+            if (attrs) {
+                this.current_session_state_id = attrs.current_session_state_id;
+            }
         },
         getCurrentSession: function() {
             return this.getCurrentState().get('session');
@@ -56,13 +58,13 @@
 
     });
 
-    var CounselingSessionView = Backbone.View.extend({
+    CounselingSessionView = Backbone.View.extend({
         initialize: function(options) {
             _.bindAll(this, 'initialRender', 'renderState', 'renderTime', 'renderCountdown', 'onDiscussion', 'onCloseDiscussion');
             this.template = _.template(jQuery("#session-template").html());
             this.chartTemplate = _.template(jQuery("#patient-chart-template").html());
 
-            this.states = new CounselingSessionStateList(options.current_session_state_id);
+            this.states = new CounselingSessionStateList(options);
             this.states.bind('reset', this.initialRender);
             this.states.fetch();
         },
@@ -209,10 +211,26 @@
         }
     });
 
-    jQuery(document).ready(function () {
-        var view = new CounselingSessionView({
-            current_session_state_id: SESSION_STATE_ID,
-            el: 'div.counseling_session'
-        });
+
+    CounselingReferralView = Backbone.View.extend({
+        initialize: function(options) {
+            _.bindAll(this, 'renderPatientChart');
+            this.chartTemplate = _.template(jQuery("#patient-chart-template").html());
+
+            this.states = new CounselingSessionStateList();
+            this.states.bind('reset', this.renderPatientChart);
+            this.states.fetch();
+        },
+        renderPatientChart: function() {
+            var self = this;
+
+            // patient chart
+            jQuery("#patient-chart-text").html('');
+            this.states.forEach(function(state) {
+                jQuery("#patient-chart-text").append(self.chartTemplate(state.toJSON()));
+            });
+        },
     });
+
+
 }(jQuery));

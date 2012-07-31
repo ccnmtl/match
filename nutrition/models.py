@@ -20,7 +20,7 @@ class CounselingSession(models.Model):
     pageblocks = generic.GenericRelation(PageBlock)
     template_file = "nutrition/counseling.html"
     js_template_file = "nutrition/counseling_js.html"
-    css_template_file = "nutrition/counseling_css.html"
+    css_template_file = "nutrition/nutrition_css.html"
     display_name = "Activity: Nutrition Counseling"
 
     topics = models.ManyToManyField(DiscussionTopic)
@@ -91,5 +91,56 @@ class CounselingSessionState(models.Model):
     session = models.ForeignKey(CounselingSession)
     answered = models.ManyToManyField(DiscussionTopic, null=True, blank=True)
     elapsed_time = models.IntegerField(default=0)
-    #referral = models.TextField(default='', null=True, blank=True)
 
+class CounselingReferral (models.Model):
+    pageblocks = generic.GenericRelation(PageBlock)
+    template_file = "nutrition/referral.html"
+    js_template_file = "nutrition/referral_js.html"
+    css_template_file = "nutrition/nutrition_css.html"
+    display_name = "Activity: Nutrition Counseling Referral"
+
+    patient_chart = models.TextField()
+
+    def pageblock(self):
+        return self.pageblocks.all()[0]
+
+    def __unicode__(self):
+        return unicode(self.pageblock())
+
+    def needs_submit(self):
+        return False
+
+    @classmethod
+    def add_form(self):
+        return CounselingReferralForm()
+
+    def edit_form(self):
+        return CounselingReferralForm(instance=self)
+
+    @classmethod
+    def create(self, request):
+        form = CounselingReferralForm(request.POST)
+        return form.save()
+
+    def edit(self, vals, files):
+        form = CounselingReferralForm(data=vals, files=files, instance=self)
+        if form.is_valid():
+            form.save()
+
+    def unlocked(self, user):
+        '''
+            This module is unlocked if:
+            1. The user has submitted a referral
+        '''
+        a = CounselingReferralResponse.objects.filter(user=user)
+        if len(a) < 1:
+            return False
+
+        referral = a[0]
+
+        return len(referral.response) > 0
+
+
+class CounselingReferralForm(forms.ModelForm):
+    class Meta:
+        model = CounselingReferral
