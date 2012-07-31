@@ -87,6 +87,9 @@ class CounselingSessionForm(forms.ModelForm):
         model = CounselingSession
 
 class CounselingSessionState(models.Model):
+    def __unicode__(self):
+        return "%s -- %s" % (self.user.username, self.session)
+
     user = models.ForeignKey(User, related_name="nutrition_discussion_user")
     session = models.ForeignKey(CounselingSession)
     answered = models.ManyToManyField(DiscussionTopic, null=True, blank=True)

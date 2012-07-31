@@ -27,6 +27,9 @@ class UserProfile(models.Model):
         
 
 class UserVisited(models.Model):
+    def __unicode__(self):
+        return "%s visited %s" % (self.user, self.section.label)
+
     user = models.ForeignKey(UserProfile)
     section = models.ForeignKey(Section)
     visited_time = models.DateTimeField(auto_now=True)
