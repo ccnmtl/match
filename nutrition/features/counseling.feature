@@ -1,4 +1,4 @@
-Feature: Login
+Feature: Cousneling
 
     Scenario: 1. Verify Initial Setup
         Using selenium
@@ -35,7 +35,7 @@ Feature: Login
         When I close the discussion
         The patient chart contains "Initial Data For The Patient Chart."
         The patient chart contains "summary text one"
-        The patient chart contains "summary reply two"
+        The patient chart contains "summary reply one"
 
         And "Topic One" is disabled
         And "Topic Two" is enabled
@@ -52,7 +52,7 @@ Feature: Login
         Then the clock reads 9 seconds
         The patient chart contains "Initial Data For The Patient Chart."
         The patient chart contains "summary text one"
-        The patient chart contains "summary reply two"
+        The patient chart contains "summary reply one"
 
         And "Topic One" is disabled
         And "Topic Two" is enabled
@@ -97,7 +97,7 @@ Feature: Login
 
         The patient chart contains "Initial Data For The Patient Chart."
         The patient chart contains "summary text one"
-        The patient chart contains "summary reply two"
+        The patient chart contains "summary reply one"
         The patient chart contains "summary text four"
         The patient chart contains "summary reply four"
         The patient chart contains "summary text five"
