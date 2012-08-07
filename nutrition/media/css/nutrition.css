@@ -115,3 +115,9 @@ div#complete-overlay
 {
     color:#fff;
 }
+
+div#referral-patient-chart {
+    float: left;
+    width: 200px;
+}
+

@@ -47,28 +47,28 @@
 
 
 {% for block in section.pageblock_set.all %}
-{% if block.label %}<h3>{{block.label}}</h3>{% endif %}
-{% render block %}
+    {% if block.label %}
+        <h3>{{block.label}}</h3>
+    {% endif %}
+    {% render block %}
 {% endfor %}
 
 
 {% if needs_submit %}
-{% if request.user.is_anonymous %}
-{% else %}
-
-{% if is_submitted %}
-{% if allow_redo %}
-<form action="." method="post">
-<input type="hidden" name="action" value="reset" />
-<input type="submit" value="clear your answers and try again" />
-</form>
-{% endif %}
-{% else %}
-<input type="submit" value="Submit" />
-
-</form>
-{% endif %}
-{% endif %}
+    {% if request.user.is_anonymous %}
+    {% else %}
+        {% if is_submitted %}
+            {% if allow_redo %}
+                <form action="." method="post">
+                    <input type="hidden" name="action" value="reset" />
+                    <input type="submit" value="clear your answers and try again" />
+                </form>
+            {% endif %}
+        {% else %}
+            <input type="submit" value="Submit" />
+            </form>
+        {% endif %}
+    {% endif %}
 {% endif %}
 
 {% endblock %}

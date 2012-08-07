@@ -145,7 +145,9 @@ def page(request,path):
         if request.POST.get('action','') == 'reset':
             section.reset(request.user)
             return HttpResponseRedirect(section.get_absolute_url())
-        section.submit(request.POST,request.user)
+
+        proceed = section.submit(request.POST,request.user)
+
         # on certain pages, we want to provide feedback instead of 
         # sending them to the next page
         feedback_paths = ("socialwork/what-would-you-do/the-family/",
@@ -157,6 +159,9 @@ def page(request,path):
         for fb in feedback_paths:
             if path.startswith(fb):
                 return HttpResponseRedirect(section.get_absolute_url())
+
+        if not proceed:
+            return HttpResponseRedirect(section.get_absolute_url())
         else:
             return HttpResponseRedirect(section.get_next().get_absolute_url())
     else:

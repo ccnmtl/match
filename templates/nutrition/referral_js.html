@@ -1,29 +1,22 @@
-<script src="/site_media/js/underscore/underscore-min.js" type="text/javascript" ></script>
-<script src="/site_media/js/backbone/backbone-min.js" type="text/javascript" ></script>
-<script src="/site_media/js/backbone-tastypie.js" type="text/javascript" ></script>
-
-<script src="/nutrition/media/js/nutrition.js/" type="text/javascript" ></script>
 <script src="/site_media/bootstrap/js/bootstrap.min.js"></script>
-
-
-<script type="text/template" id="patient-chart-template">
-    <div id="session-chart-<%= session.attributes.id %>">
-        <% if (answered.length > 0) { %>
-        <h5><%= session.attributes.patient_chart %></h5>
-        <div class="session-chart-answered">
-            <% _.each(answered.models, function(answer, index) { %>
-            <div class="session-chart-topic"><%= answer.attributes.summary_text %></div>
-            <div class="session-chart-reply"><%= answer.attributes.summary_reply %></div>
-            <% }); %>
-        </div>
-        <% } %>
-    </div>
-</script>
 
 <script type="text/javascript">
     jQuery(document).ready(function () {
-        var view = new CounselingReferralView({
-            el: 'div.patient-referral'
+        jQuery("form").submit(function() {
+            var valid = true;
+
+            var children = jQuery(this).find("input[type=text],textarea");
+            jQuery.each(children, function() {
+                if (valid && jQuery(this).val().trim().length < 1) {
+                    valid = false;
+                }
+            });
+
+            if (!valid) {
+                alert("Please fill out all referral form fields.");
+            }
+
+            return valid;
         });
     });
 </script>

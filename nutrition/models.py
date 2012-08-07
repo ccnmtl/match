@@ -4,6 +4,7 @@ from django.contrib.contenttypes import generic
 from pagetree.models import PageBlock
 from django import forms
 from django.contrib.auth.models import User
+import time
 
 class DiscussionTopic(models.Model):
     def __unicode__(self):
@@ -86,23 +87,14 @@ class CounselingSessionForm(forms.ModelForm):
     class Meta:
         model = CounselingSession
 
-class CounselingSessionState(models.Model):
-    def __unicode__(self):
-        return "%s -- %s" % (self.user.username, self.session)
-
-    user = models.ForeignKey(User, related_name="nutrition_discussion_user")
-    session = models.ForeignKey(CounselingSession)
-    answered = models.ManyToManyField(DiscussionTopic, null=True, blank=True)
-    elapsed_time = models.IntegerField(default=0)
-
-class CounselingReferral (models.Model):
+class CounselingReferral(models.Model):
     pageblocks = generic.GenericRelation(PageBlock)
     template_file = "nutrition/referral.html"
     js_template_file = "nutrition/referral_js.html"
     css_template_file = "nutrition/nutrition_css.html"
     display_name = "Activity: Nutrition Counseling Referral"
-
-    patient_chart = models.TextField()
+    allow_redo = False
+    patient_chart = models.TextField(null=True, blank=True)
 
     def pageblock(self):
         return self.pageblocks.all()[0]
@@ -111,7 +103,23 @@ class CounselingReferral (models.Model):
         return unicode(self.pageblock())
 
     def needs_submit(self):
-        return False
+        return True
+
+    def submit(self,user,data):
+        referral, created = CounselingReferralState.objects.get_or_create(user=user)
+
+        for k in data.keys():
+            value = data[k].strip();
+            if k == 'referral_date':
+                tm_struct = time.strptime(data[k], '%m/%d/%Y')
+                value = time.strftime('%Y-%m-%d', tm_struct)
+
+            referral.__setattr__(k, value)
+
+        referral.save()
+
+    def redirect_to_self_on_submit(self):
+        return True
 
     @classmethod
     def add_form(self):
@@ -133,17 +141,45 @@ class CounselingReferral (models.Model):
     def unlocked(self, user):
         '''
             This module is unlocked if:
-            1. The user has submitted a referral
+            1. The user has submitted a valid referral
         '''
-        a = CounselingReferralResponse.objects.filter(user=user)
+        a = CounselingReferralState.objects.filter(user=user)
         if len(a) < 1:
             return False
 
-        referral = a[0]
-
-        return len(referral.response) > 0
+        return a[0].is_complete()
 
 
 class CounselingReferralForm(forms.ModelForm):
     class Meta:
         model = CounselingReferral
+
+class CounselingSessionState(models.Model):
+    def __unicode__(self):
+        return "%s -- %s" % (self.user.username, self.session)
+
+    user = models.ForeignKey(User, related_name="nutrition_discussion_user")
+    session = models.ForeignKey(CounselingSession)
+    answered = models.ManyToManyField(DiscussionTopic, null=True, blank=True)
+    elapsed_time = models.IntegerField(default=0)
+
+class CounselingReferralState(models.Model):
+    def __unicode__(self):
+        return "%s" % (self.user.username)
+
+    user = models.ForeignKey(User, related_name="nutrition_referral_user")
+    referral_date = models.DateField(auto_now_add=True)
+    referred_to = models.CharField(max_length=512, null=True, blank=True)
+    referred_from = models.CharField(max_length=512, null=True, blank=True)
+    reason = models.TextField(null=True, blank=True)
+    medical_history = models.TextField(null=True, blank=True)
+
+    def is_complete(self):
+        return self.referred_to != None and\
+            self.referred_from != None and\
+            self.reason != None and\
+            self.medical_history != None and\
+            len(self.referred_to) > 0 and\
+            len(self.referred_from) > 0 and\
+            len(self.reason) > 0 and\
+            len(self.medical_history) > 0

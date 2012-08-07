@@ -1,9 +1,60 @@
-<div id="patient-referral">
+{%  load user_session_state %}
 
-    <div id="patient-chart">
+<div id="referral">
+
+    <div id="referral-patient-chart">
         <h3>Patient Chart</h3>
-        <div id="patient-chart-text"></div>
+        <div id="patient-chart-text">
+            {%  get_user_session_states request.user %}
+            {%  for s in user_session_states %}
+                <h5>{{ s.session.patient_chart }}</h5>
+                <div class="session-chart-answered">
+                    {%  for topic in s.answered.all %}
+                        <div class="session-chart-topic">{{ topic.summary_text }}</div>
+                        <div class="session-chart-reply">{{ topic.summary_reply }}</div>
+                    {%  endfor %}
+                </div>
+            {%  endfor  %}
+        </div>
     </div>
 
+    <div id="referral-form">
+            {% get_patient_referral request.user %}
+
+            {%  if referral.is_complete %}
+                You're done!
+            {%  else %}
+                <div>
+                    Today’s Date: <input type="text" name="pageblock-{{block.pageblock.id}}-referral_date"
+                        value="{{ referral.referral_date|date:"m/d/Y" }}" />
+                </div>
+
+                <div>
+                    Referring To: <input type="text" name="pageblock-{{block.pageblock.id}}-referred_to"
+                        value="{%  if referral.referred_to %}{{ referral.referred_to }}{%  endif %}" />
+                </div>
+
+                <div>
+                    Referring Dentist: <input type="text" name="pageblock-{{block.pageblock.id}}-referred_from"
+                        value="{%  if referral.referred_from %}{{ referral.referred_from }}{%  endif %}" />
+                </div>
+
+                <div>
+                    Reason for referral:
+                    {% spaceless %}
+                        <textarea name="pageblock-{{block.pageblock.id}}-reason">{% if referral.reason %}{{ referral.reason }}{%  endif %}</textarea>
+                    {% endspaceless %}
+                </div>
+
+                <div>
+                    Medical History:
+                    {% spaceless %}
+                        <textarea name="pageblock-{{block.pageblock.id}}-medical_history">{% if referral.medical_history %}{{ referral.medical_history }}{%  endif %}</textarea>
+                    {% endspaceless %}
+                </div>
+
+            {%  endif %}
+
+    </div>
 </div>
 

@@ -107,6 +107,7 @@ PAGEBLOCKS = ['pageblocks.TextBlock',
               'careermapblock.CareerMap',
               'responseblock.Response',
               'nutrition.CounselingSession',
+              'nutrition.CounselingReferral',
               ]
 
 
