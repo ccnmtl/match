@@ -7,7 +7,9 @@
 {% else %}
 
 {% for question in block.question_set.all %}
+  {%  with forloop.counter as idx %}
   {% include 'quizblock/question.html' %}
+  {%  endwith %}
 {% endfor %}
 
 {% if block.rhetorical %}
