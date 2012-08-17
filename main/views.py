@@ -197,7 +197,7 @@ def instructor_page(request,path):
                 quizzes=quizzes,
                 module=get_module(section),
                 modules=root.get_children(),
-                root=h.get_root())
+                root=root)
 
 @login_required
 @rendered_with("main/all_results.html")
