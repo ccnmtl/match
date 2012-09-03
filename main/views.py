@@ -1,22 +1,13 @@
-from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound, HttpRequest
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseForbidden
 from django.shortcuts import render_to_response, get_object_or_404
 from pagetree.helpers import get_hierarchy, get_section_from_path, get_module, needs_submit, submitted
+from pagetree.models import Hierarchy
 from django.template import RequestContext, loader
 from django.contrib.auth.decorators import login_required
 from django.utils.encoding import smart_str
 from models import *
-from restclient import GET
-import httplib2
-import simplejson
-from django.conf import settings
-from munin.helpers import muninview
-from pagetree.models import Section
-from pagetree_export.exportimport import export_zip, import_zip
-from pageblocks.exportimport import *
-from quizblock.exportimport import *
 from quizblock.models import Submission, Response
-from main.models import UserProfile, UserVisited
-import os
+from main.models import UserProfile
 import csv
 import django.core.exceptions
 
@@ -51,11 +42,6 @@ def has_responses(section):
     return quizzes != []
 
 
-@login_required
-@rendered_with('main/intro.html')
-def intro(request):
-    return dict()
-
 def allow_redo(section):
     """ if blocks on the page allow redo """
     allowed = True
@@ -65,9 +51,6 @@ def allow_redo(section):
                 allowed = False
     return allowed
 
-@rendered_with('main/ce_credit_confirmation.html')
-def ce_credit_confirmation(request):
-    return dict()
 
 def _unlocked(profile,section):
     """ if the user can proceed past this section """
@@ -89,7 +72,7 @@ def _unlocked(profile,section):
     # we only let them by if they submitted
     for p in previous.pageblock_set.all():
         if hasattr(p.block(),'unlocked'):
-            if p.block().unlocked(profile.user) == False:
+            if not p.block().unlocked(profile.user):
                 return False
           
     return profile.has_visited(previous)
@@ -109,6 +92,16 @@ def background(request,  content_to_show):
     t = loader.get_template('standard_elements/%s' % file_name)
     c = RequestContext(request, {})
     return HttpResponse(t.render(c))
+
+@login_required
+@rendered_with('main/intro.html')
+def intro(request):
+    return dict()
+
+@login_required
+@rendered_with('main/ce_credit_confirmation.html')
+def ce_credit_confirmation(request):
+    return dict()
 
 @login_required
 @rendered_with('main/page.html')
@@ -184,7 +177,6 @@ def instructor_page(request,path):
     section = get_section_from_path(section_path,hierarchy=hierarchy_name)
 
     root = section.hierarchy.get_root()
-    module = get_module(section)
 
     if request.method == "POST":
         if 'clear' in request.POST.keys():
@@ -199,109 +191,157 @@ def instructor_page(request,path):
                 modules=root.get_children(),
                 root=root)
 
+class Column(object):
+    def __init__(self, hierarchy, question=None, answer=None):
+        self.hierarchy = hierarchy
+        self.question = question
+        self.answer = answer
+        self._submission_cache = Submission.objects.filter(quiz=self.question.quiz)
+        self._response_cache = Response.objects.filter(question=self.question)
+
+
+    def value(self, user):
+        r = self._submission_cache.filter(user=user).order_by("-submitted")
+        if r.count() == 0:
+            # user has not submitted this form
+            return ""
+        submission = r[0]
+        r = self._response_cache.filter(submission=submission)
+        if r.count() > 0:
+            if self.answer is None:
+                # text/short answer type question
+                return r[0].value
+            else:
+                # multiple/single choice
+                if self.answer.value in [res.value for res in self.question.user_responses(user)]:
+                    return self.answer.id
+                else:
+                    return ""
+        else:
+            # user submitted this form, but left this question blank somehow
+            return ""
+
+    def header_column(self):
+        if self.answer:
+            return [ "question_%s_%s" % (self.question.id, self.answer.id)]
+        else:
+            return [ "question_%s" % self.question.id ]
+
+
+#def backup_to_csv(request):
+#
+#    output = StringIO.StringIO() ## temp output file
+#    writer = csv.writer(output, dialect='excel')
+#
+#    #code for writing csv file go here...
+#
+#    response = HttpResponse(mimetype='application/zip')
+#    response['Content-Disposition'] = 'attachment; filename=backup.csv.zip'
+#
+#    z = zipfile.ZipFile(response,'w')   ## write zip to response
+#    z.writestr("filename.csv", output.getvalue())  ## write csv file to zip
+#
+#    return response
+
+def clean_header(s):
+    s = s.replace('<div class=\'question-sub\'>','')
+    s = s.replace('<div class=\'question\'>','')
+    s = s.replace('<div class=\'mf-question\'>','')
+    s = s.replace('<div class=\'sw-question\'>','')
+    s = s.replace('<p>','')
+    s = s.replace('</p>','')
+    s = s.replace('</div>','')
+    s = s.replace('\n','')
+    s = s.replace('\r','')
+    s = s.replace('<','')
+    s = s.replace('>','')
+    s = s.replace('\'','')
+    s = s.replace('\"','')
+    s = s.replace(',','')
+    s = s.encode('utf-8')
+    return s
+
+@login_required
+def all_results_key(request):
+    if not request.user.is_superuser:
+        return HttpResponseForbidden
+
+    response = HttpResponse(mimetype='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=match_response_key.csv'
+    writer = csv.writer(response)
+    headers = ['module', 'questionIdentifier', 'questionType', 'questionText', 'answerIdentifier', 'answerText']
+    writer.writerow(headers)
+
+    for h in Hierarchy.objects.all():
+        for s in h.get_root().get_descendants():
+            for p in s.pageblock_set.all():
+                if hasattr(p.block(),'needs_submit') and p.block().needs_submit():
+                    for q in p.block().question_set.all():
+
+                        answers = q.answer_set.all()
+
+                        if len(answers) < 1:
+                            try:
+                                row = [h.name, q.id, q.question_type, clean_header(q.text)]
+                                writer.writerow(row)
+                            except:
+                                pass
+                        else:
+                            for a in q.answer_set.all():
+                                row = [h.name, q.id, q.question_type, clean_header(q.text), a.id, clean_header(a.label)]
+                                try:
+                                    writer.writerow(row)
+                                except:
+                                    pass
+
+    return response
+
+
 @login_required
 @rendered_with("main/all_results.html")
 def all_results(request):
-    hierarchy_name,slash,section_path = path.partition('/')
-    h = get_hierarchy(hierarchy_name)
+    if not request.user.is_superuser:
+        return HttpResponseForbidden
 
-    all_users = User.objects.all()
-    quizzes = []
-    for s in h.get_root().get_descendants():
-        for p in s.pageblock_set.all():
-            if hasattr(p.block(),'needs_submit') and p.block().needs_submit():
-                quizzes.append(p)
-
-    questions = []
-    for qz in quizzes:
-        for q in qz.block().question_set.all():
-            questions.append(q)
-
-    class Column(object):
-        def __init__(self,question=None,answer=None):
-            self.question = question
-            self.answer = answer
-            self._label_cache = None
-
-        def label(self):
-            # don't want to have to recompute the labels on every row
-            if self._label_cache is None:
-                if self.answer is None:
-                    self._label_cache = "%d%s%s/%s" % (self.question.id,self.question.quiz.pageblock().section.get_absolute_url(),
-                                                     self.question.quiz.pageblock().label,
-                                                     self.question.text)
-                else:
-                    self._label_cache = "%d%s%s/%s/%s" % (self.question.id,self.question.quiz.pageblock().section.get_absolute_url(),
-                                                          self.question.quiz.pageblock().label,
-                                                          self.question.text,self.answer.label)
-            return self._label_cache
-
-        def value(self,user):
-            r = Submission.objects.filter(quiz=self.question.quiz,user=user).order_by("-submitted")
-            if r.count() == 0:
-                # user has not submitted this form
-                return ""
-            submission = r[0]
-            r = Response.objects.filter(question=self.question,submission=submission)
-            if r.count() > 0:
-                if self.answer is None:
-                    # text/short answer type question
-                    return r[0].value
-                else:
-                    # multiple/single choice
-                    if self.answer.value in [res.value for res in self.question.user_responses(user)]:
-                        return "1"
-                    else:
-                        return "0"
-            else:
-                # user submitted this form, but left this question blank somehow
-                return ""
+    if not request.GET.get('format','html') == 'csv':
+        return dict()
 
     columns = []
-    for q in questions:
-        if q.answerable():
-            # need to make a column for each answer
-            for a in q.answer_set.all():
-                columns.append(Column(question=q,answer=a))
-        else:
-            columns.append(Column(question=q))
+    for h in Hierarchy.objects.all():
+        for s in h.get_root().get_descendants():
+            for p in s.pageblock_set.all():
+                if hasattr(p.block(),'needs_submit') and p.block().needs_submit():
+                    for q in p.block().question_set.all():
+                        if q.answerable():
+                            # need to make a column for each answer
+                            for a in q.answer_set.all():
+                                columns.append(Column(hierarchy=h.name, question=q, answer=a))
+                        else:
+                            columns.append(Column(hierarchy=h.name, question=q))
 
     all_responses = []
-    for u in all_users:
+    for u in User.objects.all():
         row = []
         for column in columns:
             v = column.value(u)
             row.append(v)
         all_responses.append(dict(user=u,row=row))
 
-    def clean_header(s):
-        s = s.replace('<div class=\'question-sub\'>','')
-        s = s.replace('<div class=\'question\'>','')
-        s = s.replace('<p>','')
-        s = s.replace('</p>','')
-        s = s.replace('</div>','')
-        s = s.replace('\n','')
-        s = s.replace('\r','')
-        s = s.replace('<','')
-        s = s.replace('>','')
-        s = s.replace('\'','')
-        s = s.replace('\"','')
-        s = s.replace(',','')
-        return s
- 
 
-    if request.GET.get('format','html') == 'csv':
-        response = HttpResponse(mimetype='text/csv')
-        response['Content-Disposition'] = 'attachment; filename=match_responses.csv'
-        writer = csv.writer(response)
-        headers = ['user'] + ["%s" % clean_header(c.label().encode('utf-8')) for c in columns]
-        writer.writerow(headers)
-        for r in all_responses:
-            rd = [smart_str(c) for c in [r['user'].username] + r['row']]
-            writer.writerow(rd)
-        return response
-    else:
-        return dict(all_columns=columns,all_responses=all_responses)
+    response = HttpResponse(mimetype='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=match_responses.csv'
+    writer = csv.writer(response)
+
+    headers = ['userIdentifier']
+    for c in columns:
+        headers += c.header_column()
+    writer.writerow(headers)
+
+    for r in all_responses:
+        # concatenate user name + all responses, iterate over and spit out a long csv string
+        rd = [smart_str(c) for c in [r['user'].username] + r['row']]
+        writer.writerow(rd)
+    return response
 
 @login_required
 @rendered_with('main/edit_page.html')
@@ -310,7 +350,6 @@ def edit_page(request,path):
     section = get_section_from_path(section_path,hierarchy=hierarchy_name)
 
     root = section.hierarchy.get_root()
-    module = get_module(section)
 
     return dict(section=section,
                 module=get_module(section),
