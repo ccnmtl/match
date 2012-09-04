@@ -98,7 +98,8 @@ STATSD_PATCHES = ['django_statsd.patches.db', ]
 ACCOUNT_ACTIVATION_DAYS = 7
 AUTH_PROFILE_MODULE = 'main.UserProfile'
 
-PAGEBLOCKS = ['pageblocks.TextBlock',
+PAGEBLOCKS = ['pageblocks.HTMLBlockWYSIWYG',
+              'pageblocks.TextBlock',
               'pageblocks.HTMLBlock',
               'pageblocks.PullQuoteBlock',
               'pageblocks.ImageBlock',

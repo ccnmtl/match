@@ -9,29 +9,4 @@
         <a href="/admin/allresults/?format=csv">Download All Results (this takes a few minutes...)</a>
     </div>
 
-{%  comment %}
-<table>
-<thead>
-<tr>
-<th>user</th>
-{% for c in all_columns %}
-<th>{{c.header_column.0}}</th>
-{% endfor %}
-</tr>
-</thead>
-
-<tbody>
-{% for r in all_responses %}
-<tr>
-<th>{{r.user.username}}</th>
-{% for v in r.row %}
-<td>{{v}}</td>
-{% endfor %}
-</tr>
-{% endfor %}
-</tbody>
-</table>
-
-{%  endcomment %}
-
 {% endblock %}
