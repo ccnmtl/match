@@ -443,7 +443,6 @@ def all_results(request):
 
     # Only look at users who have submission
     users =  User.objects.filter(submission__isnull = False).distinct()
-    print "User Count: %s" % len(users)
     for u in users:
         row = [ u.username ]
         for column in columns:
