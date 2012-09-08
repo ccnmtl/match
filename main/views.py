@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseForbidden
 from django.shortcuts import render_to_response, get_object_or_404
+from django.contrib.contenttypes.models import ContentType
 from pagetree.helpers import get_hierarchy, get_section_from_path, get_module, needs_submit, submitted
 from pagetree.models import Hierarchy
 from django.template import RequestContext, loader
@@ -8,6 +9,7 @@ from django.utils.encoding import smart_str
 from models import *
 from quizblock.models import Submission, Response
 from main.models import UserProfile
+from nutrition.models import *
 import csv
 import django.core.exceptions
 
@@ -191,41 +193,116 @@ def instructor_page(request,path):
                 modules=root.get_children(),
                 root=root)
 
+
+def clean_header(s):
+    s = s.replace('<div class=\'question-sub\'>','')
+    s = s.replace('<div class=\'question\'>','')
+    s = s.replace('<div class=\"mf-question\">','')
+    s = s.replace('<div class=\"sw-question\">','')
+    s = s.replace('<p>','')
+    s = s.replace('</p>','')
+    s = s.replace('</div>','')
+    s = s.replace('\n','')
+    s = s.replace('\r','')
+    s = s.replace('<','')
+    s = s.replace('>','')
+    s = s.replace('\'','')
+    s = s.replace('\"','')
+    s = s.replace(',','')
+    s = s.encode('utf-8')
+    return s
+
 class Column(object):
-    def __init__(self, hierarchy, question=None, answer=None):
+    def __init__(self, hierarchy, question=None, answer=None, session=None, topic=None, field=None):
         self.hierarchy = hierarchy
         self.question = question
         self.answer = answer
-        self._submission_cache = Submission.objects.filter(quiz=self.question.quiz)
-        self._response_cache = Response.objects.filter(question=self.question)
+        self.topic = topic
+        self.field = field
+        self.session = session
+        self.module_name = self.hierarchy.get_top_level()[0].label
+
+        if self.question:
+            self._submission_cache = Submission.objects.filter(quiz=self.question.quiz)
+            self._response_cache = Response.objects.filter(question=self.question)
+            self._answer_cache = self.question.answer_set.all()
+
+    def question_id(self):
+        return "%s_question_%s" % (self.hierarchy.id, self.question.id)
+
+    def question_answer_id(self):
+        return "%s_%s" % (self.question_id(), self.answer.id)
+
+    def counseling_id(self):
+        return "%s_counseling_%s" % (self.hierarchy.id, self.session.id)
+
+    def counseling_topic_id(self):
+        return "%s_counseling_%s_%s" % (self.hierarchy.id, self.session.id, self.topic.id)
+
+    def referral_id(self):
+        return "%s_referral_%s" % (self.hierarchy.id, self.field)
+
+    def user_value(self, user):
+        if self.question:
+            r = self._submission_cache.filter(user=user).order_by("-submitted")
+            if r.count() == 0:
+                # user has not submitted this form
+                return ""
+            submission = r[0]
+            r = self._response_cache.filter(submission=submission)
+            if r.count() > 0:
+                if self.question.is_short_text() or self.question.is_long_text():
+                    return r[0].value
+                elif self.question.is_multiple_choice():
+                    if self.answer.value in [res.value for res in r]:
+                        return self.answer.id
+                else: # single choice
+                    for a in self._answer_cache:
+                        if a.value == r[0].value:
+                            return a.id
+
+        elif self.session and self.topic:
+            state = CounselingSessionState.objects.filter(session=self.session, user=user)
+            if len(state) > 0:
+                try:
+                    state[0].answered.get(id=self.topic.id)
+                    return self.topic.id
+                except DiscussionTopic.DoesNotExist:
+                    pass
+        elif self.field:
+            referral = CounselingReferralState.objects.filter(user=user)
+            if len(referral) > 0:
+                val = getattr(referral[0], self.field)
+                if val is not None:
+                    return val
+
+        return ''
 
 
-    def value(self, user):
-        r = self._submission_cache.filter(user=user).order_by("-submitted")
-        if r.count() == 0:
-            # user has not submitted this form
-            return ""
-        submission = r[0]
-        r = self._response_cache.filter(submission=submission)
-        if r.count() > 0:
-            if self.answer is None:
-                # text/short answer type question
-                return r[0].value
-            else:
-                # multiple/single choice
-                if self.answer.value in [res.value for res in self.question.user_responses(user)]:
-                    return self.answer.id
-                else:
-                    return ""
-        else:
-            # user submitted this form, but left this question blank somehow
-            return ""
+    def key_row(self):
+        if self.question:
+            row = [self.question_id(), self.module_name, self.question.question_type, clean_header(self.question.text)]
+            if self.answer:
+                row.append(self.answer.id);
+                row.append(clean_header(self.answer.label))
+            return row
+        elif self.session and self.topic:
+            row = [self.counseling_id(), self.module_name, "multiple choice", "Nutrition Counseling Session"]
+            row.append(self.topic.id)
+            row.append(clean_header(self.topic.summary_text))
+            return row
+        elif self.session and self.field:
+            return [self.referral_id(), self.module_name, "short text", clean_header(self.field), '', ""]
 
     def header_column(self):
-        if self.answer:
-            return [ "question_%s_%s" % (self.question.id, self.answer.id)]
-        else:
-            return [ "question_%s" % self.question.id ]
+        if self.question and self.answer:
+            return [ self.question_answer_id() ]
+        elif self.question:
+            return [ self.question_id() ]
+        elif self.session and self.topic:
+            return [ self.counseling_topic_id() ]
+        elif self.session and self.field:
+            return [ self.referral_id() ]
 
 
 #def backup_to_csv(request):
@@ -243,56 +320,62 @@ class Column(object):
 #
 #    return response
 
-def clean_header(s):
-    s = s.replace('<div class=\'question-sub\'>','')
-    s = s.replace('<div class=\'question\'>','')
-    s = s.replace('<div class=\'mf-question\'>','')
-    s = s.replace('<div class=\'sw-question\'>','')
-    s = s.replace('<p>','')
-    s = s.replace('</p>','')
-    s = s.replace('</div>','')
-    s = s.replace('\n','')
-    s = s.replace('\r','')
-    s = s.replace('<','')
-    s = s.replace('>','')
-    s = s.replace('\'','')
-    s = s.replace('\"','')
-    s = s.replace(',','')
-    s = s.encode('utf-8')
-    return s
 
 @login_required
 def all_results_key(request):
+
+    """
+        A "key" for all questions and answers in the system.
+        * One row for short/long text questions
+        * Multiple rows for single/multiple-choice questions. Each question/answer pair get a row
+        itemIdentifier - unique system identifier,
+            concatenates hierarchy id, item type string, page block id (if necessary) and item id
+        module - first child label in the hierarchy
+        itemType - [question, discussion topic, referral field]
+        itemText - identifying text for the item
+        answerIdentifier - for single/multiple-choice questions. an answer id
+        answerText
+    """
+
     if not request.user.is_superuser:
         return HttpResponseForbidden
 
     response = HttpResponse(mimetype='text/csv')
     response['Content-Disposition'] = 'attachment; filename=match_response_key.csv'
     writer = csv.writer(response)
-    headers = ['module', 'questionIdentifier', 'questionType', 'questionText', 'answerIdentifier', 'answerText']
+    headers = ['itemIdentifier', 'module', 'itemType', 'itemText', 'answerIdentifier', 'answerText']
     writer.writerow(headers)
 
+    quiz_type = ContentType.objects.filter(name='quiz')
+    counseling_type = ContentType.objects.filter(name='counseling session')
+    referral_type = ContentType.objects.filter(name='counseling referral')
+
+    columns = []
     for h in Hierarchy.objects.all():
         for s in h.get_root().get_descendants():
-            for p in s.pageblock_set.all():
-                if hasattr(p.block(),'needs_submit') and p.block().needs_submit():
-                    for q in p.block().question_set.all():
+            # quizzes
+            for p in s.pageblock_set.filter(content_type=quiz_type):
+                for q in p.block().question_set.all():
+                    if q.answerable():
+                        # need to make a column for each answer
+                        for a in q.answer_set.all():
+                            columns.append(Column(hierarchy=h, question=q, answer=a))
+                    else:
+                        columns.append(Column(hierarchy=h, question=q))
+    
+            for p in s.pageblock_set.filter(content_type=counseling_type):
+                for t in p.block().topics.all():
+                    columns.append(Column(hierarchy=h, session=p.content_object, topic=t))
+    
+            for p in s.pageblock_set.filter(content_type=referral_type):
+                for f in p.block().form_fields:
+                    columns.append(Column(hierarchy=h, session=p.content_object, field=f))
 
-                        answers = q.answer_set.all()
-
-                        if len(answers) < 1:
-                            try:
-                                row = [h.name, q.id, q.question_type, clean_header(q.text)]
-                                writer.writerow(row)
-                            except:
-                                pass
-                        else:
-                            for a in q.answer_set.all():
-                                row = [h.name, q.id, q.question_type, clean_header(q.text), a.id, clean_header(a.label)]
-                                try:
-                                    writer.writerow(row)
-                                except:
-                                    pass
+    for column in columns:
+        try:
+            writer.writerow(column.key_row())
+        except:
+            pass
 
     return response
 
@@ -300,33 +383,54 @@ def all_results_key(request):
 @login_required
 @rendered_with("main/all_results.html")
 def all_results(request):
+    """
+        All system results
+        * One or more column for each question in system.
+            ** 1 column for short/long text. label = itemIdentifier from key
+            ** 1 column for single choice. label = itemIdentifier from key
+            ** n columns for multiple choice: one column for each possible answer
+               *** column labeled as itemIdentifer_answer.id
+
+        * One row for each user in the system.
+            1. username
+            2 - n: answers
+                * short/long text. text value
+                * single choice. answer.id
+                * multiple choice.
+                    ** answer id is listed in each question/answer column the user selected
+                * Unanswered fields represented as an empty cell
+    """
+
     if not request.user.is_superuser:
         return HttpResponseForbidden
 
     if not request.GET.get('format','html') == 'csv':
         return dict()
 
+    quiz_type = ContentType.objects.filter(name='quiz')
+    counseling_type = ContentType.objects.filter(name='counseling session')
+    referral_type = ContentType.objects.filter(name='counseling referral')
+
     columns = []
     for h in Hierarchy.objects.all():
         for s in h.get_root().get_descendants():
-            for p in s.pageblock_set.all():
-                if hasattr(p.block(),'needs_submit') and p.block().needs_submit():
-                    for q in p.block().question_set.all():
-                        if q.answerable():
-                            # need to make a column for each answer
-                            for a in q.answer_set.all():
-                                columns.append(Column(hierarchy=h.name, question=q, answer=a))
-                        else:
-                            columns.append(Column(hierarchy=h.name, question=q))
+            # quizzes
+            for p in s.pageblock_set.filter(content_type=quiz_type):
+                for q in p.block().question_set.all():
+                    if q.answerable() and q.is_multiple_choice():
+                        # need to make a column for each answer
+                        for a in q.answer_set.all():
+                            columns.append(Column(hierarchy=h, question=q, answer=a))
+                    else:
+                        columns.append(Column(hierarchy=h, question=q))
 
-    all_responses = []
-    for u in User.objects.all():
-        row = []
-        for column in columns:
-            v = column.value(u)
-            row.append(v)
-        all_responses.append(dict(user=u,row=row))
+            for p in s.pageblock_set.filter(content_type=counseling_type):
+                for t in p.block().topics.all():
+                    columns.append(Column(hierarchy=h, session=p.content_object, topic=t))
 
+            for p in s.pageblock_set.filter(content_type=referral_type):
+                for f in p.block().form_fields:
+                    columns.append(Column(hierarchy=h, session=p.content_object, field=f))
 
     response = HttpResponse(mimetype='text/csv')
     response['Content-Disposition'] = 'attachment; filename=match_responses.csv'
@@ -337,10 +441,17 @@ def all_results(request):
         headers += c.header_column()
     writer.writerow(headers)
 
-    for r in all_responses:
-        # concatenate user name + all responses, iterate over and spit out a long csv string
-        rd = [smart_str(c) for c in [r['user'].username] + r['row']]
-        writer.writerow(rd)
+    # Only look at users who have submission
+    users =  User.objects.filter(submission__isnull = False).distinct()
+    print "User Count: %s" % len(users)
+    for u in users:
+        row = [ u.username ]
+        for column in columns:
+            v = smart_str(column.user_value(u))
+            row.append(v)
+
+        writer.writerow(row)
+
     return response
 
 @login_required
@@ -354,6 +465,6 @@ def edit_page(request,path):
     return dict(section=section,
                 module=get_module(section),
                 modules=root.get_children(),
-                root=section.hierarchy.get_root())
+                root=root)
 
 

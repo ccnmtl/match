@@ -26,7 +26,7 @@ class CounselingSession(models.Model):
 
     topics = models.ManyToManyField(DiscussionTopic)
     available_time = models.IntegerField(default=0)
-    patient_chart = models.TextField()
+    patient_chart = models.TextField(null=True, blank=True)
 
     def pageblock(self):
         return self.pageblocks.all()[0]
@@ -95,6 +95,7 @@ class CounselingReferral(models.Model):
     display_name = "Activity: Nutrition Counseling Referral"
     allow_redo = False
     patient_chart = models.TextField(null=True, blank=True)
+    form_fields = ['referral_date', 'referred_to', 'referred_from', 'reason', 'medical_history']
 
     def pageblock(self):
         return self.pageblocks.all()[0]
