@@ -69,8 +69,6 @@
             this.states.fetch();
         },
         initialRender: function() {
-            var self = this;
-
             // Only invoked once when the session model is instantiated
             var session = this.states.getCurrentSession();
             this.el.innerHTML = this.template(session.toJSON());
@@ -229,7 +227,7 @@
             this.states.forEach(function(state) {
                 jQuery("#patient-chart-text").append(self.chartTemplate(state.toJSON()));
             });
-        },
+        }
     });
 
 
