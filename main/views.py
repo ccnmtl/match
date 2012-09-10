@@ -304,23 +304,6 @@ class Column(object):
         elif self.session and self.field:
             return [ self.referral_id() ]
 
-
-#def backup_to_csv(request):
-#
-#    output = StringIO.StringIO() ## temp output file
-#    writer = csv.writer(output, dialect='excel')
-#
-#    #code for writing csv file go here...
-#
-#    response = HttpResponse(mimetype='application/zip')
-#    response['Content-Disposition'] = 'attachment; filename=backup.csv.zip'
-#
-#    z = zipfile.ZipFile(response,'w')   ## write zip to response
-#    z.writestr("filename.csv", output.getvalue())  ## write csv file to zip
-#
-#    return response
-
-
 @login_required
 def all_results_key(request):
 
