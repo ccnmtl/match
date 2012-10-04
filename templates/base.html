@@ -1,4 +1,5 @@
 {% load getroot %}
+{% comment %}######## THIS IS MATCH TEMPLATE ########{% endcomment %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -13,7 +14,8 @@
 	{% block css %}{% endblock %}
 	{% block feeds %}{% endblock %}
 </head>
-<body class="one_column {% block widthtype %}fixed{% endblock %}">
+<body class="one_column {% block widthtype %}fixed{% endblock %} {% ifequal module.slug 'socialwork' %}no_bootstrap{% endifequal %}">
+
 {% comment %}
 ###### FOR WIDTH TYPE--base
    fixed : fixed width, doesn't change with browser resize
@@ -23,22 +25,39 @@
 {% endcomment %}
 
 <div id="container">
-
     <div id="shieldbox"></div>
 
+{% block masthead %}
+    <!-- ###### Site banner ###### -->
+    <div id="header">
+        <!-- Project title/logo -->
+        <h1 id="logo_project"><a href="{{site_root}}/" title="MATCH"><span>MATCH</span></a></h1>	
 
-
-    {% block masthead %}
-	<!-- ###### Site banner ###### -->
-	<div id="header">
-		<!-- Project title/logo --><h1 id="logo_project"><a href="{{site_root}}/intro/" title="MATCH"><span>MATCH</span></a></h1>	
 		{% block standardnav %}
-		<ul id="standardnav">
-
-		</ul>
+		<ul id="standardnav"></ul>
 		{% endblock %}
-		<!-- CCNMTL title/logo --><h4 id="logo_ccnmtl"><span>Produced by the Columbia Center for New Media Teaching and Learning</span></a></h4>
-	</div><!-- id="header" -->
+
+        {% block usernav %}
+        <div id="usernav">
+            <h4 id="logo_uncharted"><span>Uncharted Dental Education</span></a></h4>
+            <div class="userstatus">
+            {% if request.user.is_anonymous %}
+                {% block loginbutton %}{% endblock %}
+            {% else %}
+                Hello, {% if request.user.first_name or request.user.last_name %}{{request.user.first_name}}{% else %}{{ request.user.username }}{% endif %}
+                &nbsp;
+                <a href="/logout/" class="btn btn-mini btn-danger">Log out</a>
+            {% comment %}{% if can_edit %}
+                <a href="/edit{{request.path}}" class="btn btn-mini btn-info">Edit</a>
+            {% if instructor_link %}
+                <a href="/instructor{{request.path}}" class="btn btn-mini btn-info">responses</a>
+            {% endif %}
+            {% endif %}{% endcomment %}
+            {% endif %}
+            </div><!-- userstatus -->
+        </div><!-- id="usernav" -->
+        {% endblock %}
+    </div><!-- id="header" -->
 {% endblock %}
 
 	<!-- ###### Don't touch this ###### -->
@@ -55,21 +74,6 @@
                rightside :  all tabs aligning to the right, login to the left
             {% endcomment %}
 
-            {% block usernav %}
-                <div id="usernav">
-                    {% if request.user.is_anonymous %}
-                        <a href="/accounts/login/?next=/">login</a>
-                    {% else %}
-                        logged in as {% if request.user.first_name or request.user.last_name %}{{request.user.first_name}} {{request.user.last_name}}{% else %}{{ request.user.username }}{% endif %} [<a href="/logout/">logout</a>]
-                        {% if can_edit %}
-                            [<a href="/edit{{request.path}}">edit</a>]
-                            {% if instructor_link %}
-                                [<a href="/instructor{{request.path}}">responses</a>]
-                            {% endif %}
-                        {% endif %}
-                    {% endif %}
-                </div>
-            {% endblock %}
 
 
             {% block primarynavtabs %}
@@ -97,8 +101,8 @@
 		<div id="content">
 			<div id="squish"><!-- Don't touch this div -->
 				<div class="block">
+
 					{% block pagetitle %}{% endblock %}
-				
 					{% block content %}{% endblock %}
 					{% block content-nav %}{% endblock %}
 

@@ -1,11 +1,8 @@
 {% extends "base.html" %}
+{% comment %}######## THIS IS MATCH TEMPLATE ########{% endcomment %}
 {% block widthtype %}fixed login{% endblock %}
-{% block title %}Login{% endblock %}
+{% block title %}Log In{% endblock %}
 {% block content %}
-<h3>Welcome to Multidisciplinary Approaches to Children's Oral Health (MATCH)</h3>
-{% if form.has_errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
 
 <div class="loginbox">
 	<h2>Choose a login option...</h2>
@@ -28,7 +25,7 @@
     <p class="errornote"><span><b>ERROR:</b> Invalid username or password.</span> Please try again. Note that both username and password are case-sensitive.</p>
 {% endif %}
 
-	<p>If you have a project account...</p>
+	<p>If you have a MATCH account...</p>
 <form method="post" action="." name="login_local">
 
 {% csrf_token %}
@@ -54,6 +51,8 @@
 	</div><!-- content -->
 </div><!-- loginbox -->
 
+<h2>Welcome to Multidisciplinary Approaches to Children's Oral Health (MATCH)</h2>
+
 <p>Pediatric dentists can partner with a variety of other healing and helping professionals to assure children's oral health, dental care, and overall wellbeing. Children's oral health is determined by social, behavioral, genetic, nutritional, and educational factors&mdash;as well as by dental care. Partnering with experts from these fields can enhance your practice and help children and their families obtain the highest levels of oral health.</p>
 
 <p>These modules include activities, videos and case studies which:</p>
@@ -63,6 +62,6 @@
 	<li>Present examples of successful pediatric dentists who enhance their patient care through partnerships with these professions</li>
 </ol>
 
-<p><i>Please log in with your UNI or your project account ID to access these MATCH modules.</b></i>
+<p><i>Please log in with your UNI or your MATCH account ID to access these modules.</b></i>
 
 {% endblock %}

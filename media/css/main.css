@@ -1,5 +1,12 @@
 /* ***** Principal Elements ***** */
 
+hr {
+  margin: 18px 0;
+  border: 0;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #ffffff;
+}
+
 .printonly
 {
 	display: none;
@@ -23,9 +30,16 @@ body
 	margin: auto;
 	padding: 0;
 	border: 0;
-	background-color: #e1f0ef;
-	font: normal 90% "lucida grande", arial, helvetica, sans-serif;
-	color: #333;
+	background-color: #e1f0ef !important;
+    font: normal 14px/140% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #333 !important;
+	font-size: 14px !important;
+	line-height: 140% !important;
+}
+
+body.no_bootstrap
+{
+	font: normal 12px "lucida grande", arial, helvetica, sans-serif !important;
 }
 
 h1, h2, h3, h4, h5, h6
@@ -47,43 +61,43 @@ h1
 
 h2
 {
-	margin: 0 0 0 0;
-	font-size: 120%;
-	font-weight: normal;
+	margin: 0 0 24px 0 !important;
+	font-size: 18px !important;
+	line-height: 22px !important;
+	font-weight: bold !important;
 }
 
 h3
 {
-	font-size: 120%;
-	font-weight: bold;
+	padding-top: 20px !important;
+	font-size: 16px !important;
+	font-weight: bold !important;
 }
 
 h4
 {
-	font-size: 14px;
-	font-weight: bold;
+	font-size: 14px !important;
+	font-weight: bold !important;
 }
 
 h5
 {
-	margin: 1em 0 0.7em 0;
-	font-size: 100%;
+	font-size: 14px !important;
 }
 
 h6
 {
-	margin: 1em 0 0.7em 0;
-	font-size: 12px;
+	padding: 12px 0 0 0 !important;
+	font-size: 14px !important;
 	font-style: italic;
 }
 
 p
 {
-	display: block;
-	margin: 0 0 1em 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
+	display: block !important;
+	margin: 0 0 14px 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
 }
 
 blockquote
@@ -300,7 +314,7 @@ a:visited
 	margin: 0;
 	padding: 0;
 	border: 0;
-    background: url("../img/social_work_header.png") no-repeat scroll left top transparent;
+    background: url("/site_media/img/social_work_header.png") no-repeat scroll left top transparent;
     height: 188px;
 }
 
@@ -347,7 +361,7 @@ a:visited
 	background-color: #8c8;
 }
 
-#primarynav #usernav
+#header #usernav
 {
 	display: block;
 	padding: 0;
@@ -356,9 +370,20 @@ a:visited
     color: #666;
     float: right;
     font-size: 85%;
-    margin: 10px 10px 0;
-
+    margin: 0;
 }
+
+#usernav .userstatus {
+    height: 24px;
+    text-align: right;
+    padding-right: 10px;
+}
+
+#header #usernav a
+{
+    color: #fff;
+}
+
 
 #primarynav ul.usernav li
 {
@@ -376,20 +401,6 @@ a:visited
 	float: right;
 }
 
-
-#primarynav ul.usernav li#logout
-{
-	padding: 0;
-	background: url('../img/icon_padlock.gif') left bottom no-repeat;
-}
-
-#primarynav ul.usernav li#logout a
-{
-	display: block;
-	padding: 0 15px 0 20px;
-	color: #000;
-	text-decoration: none;
-}
 
 /* --- Pagebody, contains secodary nav and content --- */
 
@@ -556,7 +567,6 @@ a:visited
 	margin: 20px 15px 0 20px;
 	padding: 0;
 	border: 0;
-	font-size: 12px;
 }
 
 .content_one_column
@@ -569,35 +579,10 @@ a:visited
 	border: 0;
 }
 
-#content h1
-{
-
-	
-}
-
-#content h2
-{
-	margin: 0 0 20px 0;
-	font-size: 18px;
-	font-weight: bold;
-}
-
-#content h3
-{
-	font-size: 14px;
-	font-weight: bold;
-}
-
-#content p
-{
-	line-height: 140%;
-}
-
 #content .content-nav
 {
-	height: 1.5em;
-	margin: 2em 0 1em 0;
-	padding: 0.5em 0;
+	margin: 2em 0 0 0;
+	padding: 5px 0;
 	border: 0;
 	border-top: 1px dotted #6c0;
 	border-bottom: 1px dotted #6c0;
@@ -608,7 +593,6 @@ a:visited
 	display: block;
 	float: left;
 	width: auto;
-	line-height: 1.5em;
 }
 
 #content .content-nav a#next, a#next, #next
@@ -616,8 +600,44 @@ a:visited
 	display: block;
 	float: right;
 	width: auto;
-	line-height: 1.5em;
 	text-align: right;
+}
+
+#content .content-nav div#next
+{
+	display: block;
+	float: right;
+	width: auto;
+	text-align: right;
+}
+
+
+#content .content-nav a.pager_button,
+#content .content-nav div.pager_button
+{
+  padding: 5px 14px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  -webkit-border-radius: 15px;
+     -moz-border-radius: 15px;
+          border-radius: 15px;
+}
+
+#content .content-nav div.pager_button {
+    color: #999 !important;
+}
+
+
+#content .content-nav a.pager_button:hover {
+  text-decoration: none;
+  background-color: #d0e1db;
+  color: #006666  !important;
+}
+
+
+#content .content-nav div.pager_button:hover {
+  text-decoration: none;
+  background-color: #efefef;
 }
 
 .pageblock, .block {
@@ -629,156 +649,6 @@ a:visited
 
 
 
-/* Login page
-
-.loginbox
-{
-	float: right;
-	width: 280px;
-	margin: 0 10px;
-	padding: 0;
-	border: 0;
-	background: #fff url('../img/bg_login_middle.gif') repeat-y top;
-}
-
-.loginbox .boxtop
-{
-	width: 280px;
-	height: 16px;
-	margin: 0;
-	padding: 0;
-	border: 0;
-	background: #fff url('../img/bg_login_top.gif') no-repeat top;
-}
-
-.loginbox .boxbottom
-{
-	width: 280px;
-	height: 16px;
-	margin: 0;
-	padding: 0;
-	border: 0;
-	background: #fff url('../img/bg_login_bottom.gif') no-repeat bottom;
-}
-
-.loginbox h2
-{
-	margin: 0 0 10px 10px;
-	padding: 0;
-	border: 0;
-	font: bold 16px "lucida grande", arial, helvetica, sans-serif;
-}
-
-.loginbox h3
-{
-	margin: 0 0 10px 10px;
-	padding: 0;
-	border: 0;
-	font: bold 1em "lucida grande", arial, helvetica, sans-serif;
-}
-
-.loginbox .alert
-{
-	margin: 0 0 10px 10px;
-	padding: 0;
-	border: 0;
-	font: bold italic 1em "lucida grande", arial, helvetica, sans-serif;
-	color: #000;
-}
-
-.loginbox .alert a
-{
-	text-decoration: underline;
-}
-
-.loginbox hr
-{
-	height: 1px;
-	margin: 15px 0;
-	padding: 0;
-	border: 0;
-	background-color: #999;
-	color: #999;
-}
-
-.loginbox form
-{
-	margin: 0;
-	padding: 0;
-	border: 0;
-}
-
-.loginbox input.regButton
-{
-	margin: 0 0 0 10px;
-	padding: 1px;
-	background-color: #e0e0e0;
-	border-top: 2px solid #fff;
-	border-left: 2px solid #fff;
-	border-right: 2px solid #666;
-	border-bottom: 2px solid #666;
-	font: normal 1em "lucida grande", arial, helvetica, sans-serif;
-	cursor: pointer;
-}
-
-.loginbox input.regButton:active
-{
-	background-color: #ccc;
-	border-top: 2px solid #666;
-	border-left: 2px solid #666;
-	border-right: 2px solid #fff;
-	border-bottom: 2px solid #fff;
-}
-
-.loginbox input#id_password,
-.loginbox input#id_username
-{
-	width: 170px;
-	margin: 0;
-	padding: 2px;
-	border: 1px solid #999;
-	background-color: white;
-	font: normal 12px "lucida grande", arial, helvetica, sans-serif;
-	color: #000;
-	vertical-align: middle;
-}
-
-.loginbox table
-{
-	margin: 0 10px;
-	padding: 0;
-	border: 0;
-}
-
-.loginbox table td
-{
-	margin: 0;
-	padding: 3px 2px 3px 0;
-	border: 0;
-}
-
-.loginbox table td a
-{
-	font-size: 11px;
-	color: #069;
-	text-decoration: underline;
-}
- */
-
-.errornote {
-	background: url("../img/icon_alert.png") no-repeat 5px 5px #FFEBE8;
-	border: 1px solid #c00;
-	display: block;
-	font-size: 11px !important;
-	margin: 0 0 10px 0;
-	padding: 5px 5px 5px 25px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-}
-
-.errornote span {
-	color: #c00;
-}
 
 /* Case quizzes */
 
@@ -795,7 +665,7 @@ a:visited
 .gameshow .casecontent{
     margin: 0;
     padding: 10px 20px 5px 130px;
-        background: url('../img/qmark.png') center left no-repeat;
+        background: url('/site_media/img/qmark.png') center left no-repeat;
         background-position: top left;
         min-height: 185px;
         border: none;
@@ -882,7 +752,7 @@ a:visited
 	margin: 10px 0;
 	padding: 38px 45px 10px;
 	background-color: #fff;
-	background: url("../img/quotes.png") no-repeat scroll left top transparent;
+	background: url("/site_media/img/quotes.png") no-repeat scroll left top transparent;
 }
 
 .pullquote .source, .source
@@ -997,7 +867,7 @@ body#poctools a#poctools
 	display: block;
 	height: 120px;
 	width: 400px;
-	background: url('../img/flashicon.jpg') top left no-repeat;
+	background: url('/site_media/img/flashicon.jpg') top left no-repeat;
 }
 
 #getFlash h3
@@ -1136,17 +1006,20 @@ h1#logo_project {
 height: 80px;
 width: 510px;
 border: none;
-background: url("../img/match_logo.png") no-repeat scroll left top transparent;
+background: url("/site_media/img/match_logo.png") no-repeat scroll left top transparent;
 margin: 0;
-
 }
 
-h4#logo_ccnmtl {
-height: 47px;
-width: 151px;
-border: none;
-background: url("../img/uncharted_logo.png") no-repeat scroll left top transparent;
-float: right;
+img.logo_project {
+    width: 912px;
+}
+
+h4#logo_uncharted {
+    height: 50px;
+    width: 153px;
+    border: 0;
+    background: url("/site_media/img/uncharted_logo.png") no-repeat scroll right top transparent;
+    margin: 0;
 }
 
 .maintext {
@@ -1204,8 +1077,9 @@ body.login #content
 {
 	display: block;
 	float: none;
-	width: 850px;
-	margin: 20px 0 0 20px;
+	width: 860px;
+	margin: 20px 25px;
+	padding: 0;
 }
 
 .loginbox
@@ -1219,6 +1093,7 @@ body.login #content
 	background-color: #fff;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
+	font-size: 12px;
 }
 
 .loginbox h2
@@ -1323,6 +1198,22 @@ body.login #content
 	font-size: 11px;
 }
 
+.errornote {
+	background: url("/site_media/img/icon_alert.png") no-repeat 5px 5px #FFEBE8;
+	border: 1px solid #c00;
+	display: block;
+	font-size: 11px !important;
+	margin: 0 0 10px 0;
+	padding: 5px 5px 5px 25px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	line-height: 140%;
+}
+
+.errornote span {
+	color: #c00;
+}
+
 /** Shield Box **/
 .warningmessage
 {
@@ -1360,7 +1251,7 @@ body.login #content
     width: 50px;
     height: 65px;
     float: left;
-    background: url('../img/icons_app.png') 0px -433px no-repeat;
+    background: url('/site_media/img/icons_app.png') 0px -433px no-repeat;
 }
 
 #shieldbox .alert .content
@@ -1490,37 +1381,37 @@ body.login #content
 
 #shieldbox #chrome .icon
 {
-    background: url('../img/icons_app.png') 5px 0 no-repeat;
+    background: url('/site_media/img/icons_app.png') 5px 0 no-repeat;
 }
 
 #shieldbox #firefox .icon
 {
-    background: url('../img/icons_app.png') 5px -60px no-repeat;
+    background: url('/site_media/img/icons_app.png') 5px -60px no-repeat;
 }
 
 #shieldbox #safari .icon
 {
-    background: url('../img/icons_app.png') 5px -122px no-repeat;
+    background: url('/site_media/img/icons_app.png') 5px -122px no-repeat;
 }
 
 #shieldbox #msie .icon
 {
-    background: url('../img/icons_app.png') 5px -183px no-repeat;
+    background: url('/site_media/img/icons_app.png') 5px -183px no-repeat;
 }
 
 #shieldbox #flash .icon
 {
-    background: url('../img/icons_app.png') 5px -243px no-repeat;
+    background: url('/site_media/img/icons_app.png') 5px -243px no-repeat;
 }
 
 #shieldbox #quicktime .icon
 {
-    background: url('../img/icons_app.png') 5px -303px no-repeat;
+    background: url('/site_media/img/icons_app.png') 5px -303px no-repeat;
 }
 
 #shieldbox #acrobat .icon
 {
-    background: url('../img/icons_app.png') 5px -363px no-repeat;
+    background: url('/site_media/img/icons_app.png') 5px -363px no-repeat;
 }
 
 #shieldbox .nosupport_close
@@ -1543,6 +1434,6 @@ body.login #content
     display: block;
     height: 16px;
     width: 16px;
-    background: url('../img/icons_app.png') -18px -506px no-repeat;
+    background: url('/site_media/img/icons_app.png') -18px -506px no-repeat;
 }
 
