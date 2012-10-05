@@ -1,3 +1,5 @@
+/* ################ THIS CSS IS FOR MATCH ################ */
+
 /* ***** Principal Elements ***** */
 
 hr {
@@ -228,10 +230,9 @@ a:visited
 	width: 912px;
 	height: 76px;
 	overflow: hidden;
-	margin: 0;
-	padding: 0;
+	margin:0;
+	padding: 5px 0 0 0;
 	border: 0;
-	border-bottom: 1px solid #dedede;
 	position: relative;
 }
 
@@ -270,6 +271,17 @@ a:visited
 #header h1 span, #header h4 span
 {
 	display: none;
+}
+
+#banner
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+    display: block;
+    height: 188px;
+    background: #fff url("/site_media/img/banner_match.png") 0 0 no-repeat;
 }
 
 /* --- Standard navigation --- */
@@ -314,19 +326,28 @@ a:visited
 	margin: 0;
 	padding: 0;
 	border: 0;
-    background: url("/site_media/img/social_work_header.png") no-repeat scroll left top transparent;
-    height: 188px;
+    height: 35px;
+
+    background: rgb(106,189,193); /* Old browsers */
+    background: -moz-linear-gradient(left,  rgba(106,189,193,1) 0%, rgba(218,219,221,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(106,189,193,1)), color-stop(100%,rgba(218,219,221,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  rgba(106,189,193,1) 0%,rgba(218,219,221,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  rgba(106,189,193,1) 0%,rgba(218,219,221,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  rgba(106,189,193,1) 0%,rgba(218,219,221,1) 100%); /* IE10+ */
+    background: linear-gradient(to right,  rgba(106,189,193,1) 0%,rgba(218,219,221,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6abdc1', endColorstr='#dadbdd',GradientType=1 ); /* IE6-9 */
+
 }
 
 #primarynav ul.globalnav
 {
 	display: block;
 	float: left;
-    margin: 130px 0 0 0;
+    margin: 0;
 	padding: 0;
 	border: 0;
 	list-style: none;
-	width: 100%
+	/* width: 100% */
 }
 
 #primarynav ul.globalnav li

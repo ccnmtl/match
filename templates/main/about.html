@@ -1,8 +1,23 @@
 {% extends 'base.html' %}
+{% comment %}######## THIS IS MATCH TEMPLATE ########{% endcomment %}
+
+{% block js %}
+{{ block.super }}
+<script src="/site_media/bootstrap/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block css %}
+{{ block.super }}
+<link href="/site_media/bootstrap/css/bootstrap.css" rel="stylesheet">
+{% endblock %}
+
+{% block loginbutton %}<a href="/" class="btn btn-mini btn-danger">Log in</a>{% endblock %}
+
+{% block projectbanner %}{% endblock %}
 
 {% block content %}
 
-<h3>About Multidisciplinary Approaches to Children's Oral Health (MATCH)</h3>
+<h2>About Multidisciplinary Approaches to Children's Oral Health (MATCH)mm</h2>
 
 <p>There are a variety of healing and helping professions that, when partnered with pediatric dentists, hold tremendous potential to improve children's oral health and welfare.
 </p>
@@ -16,7 +31,7 @@
 <li>Present examples of successful pediatric dentists who enhance their patient care through partnerships with these professions</li>
 </ol>
 
-<h4>Credits</h4>
+<h3>Credits</h3>
 <h6>Faculty Partners</h6>
 <ul>
 <li>Burton L. Edelstein, DDS, MPH</li>
@@ -32,6 +47,7 @@
 <li>Sarah Lu, MSW</li>
 </ul>
 
+<p>&nbsp;</p>
 <h5>CCNMTL Production Team</h5>
 <h6>Executive Producers</h6>
 <ul>
