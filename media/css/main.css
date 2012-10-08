@@ -46,7 +46,7 @@ body.no_bootstrap
 
 h1, h2, h3, h4, h5, h6
 {
-	margin: 1.5em 0;
+	margin: 0;
 	padding: 0;
 	border: 0;
 	font-weight: bold;
@@ -56,29 +56,33 @@ h1, h2, h3, h4, h5, h6
 
 h1
 {
-	margin: 0 0 0 0;
+	margin: 0;
 	font-size: 140%;
 	font-weight: normal;
 }
 
 h2
 {
-	margin: 0 0 24px 0 !important;
-	font-size: 18px !important;
-	line-height: 22px !important;
-	font-weight: bold !important;
+	margin: 0 !important;
+	padding: 0 0 22px 0 !important;
+	font-size: 22px !important;
+	line-height: 26px !important;
+	font-weight: normal !important;
 }
 
 h3
 {
-	padding-top: 20px !important;
-	font-size: 16px !important;
+	margin: 0 !important;
+	padding: 18px 0 10px 0 !important;
+	font-size: 18px !important;
 	font-weight: bold !important;
 }
 
 h4
 {
-	font-size: 14px !important;
+	margin: 0 !important;
+	padding: 16px 0 10px 0 !important;
+	font-size: 16px !important;
 	font-weight: bold !important;
 }
 
@@ -151,7 +155,7 @@ td
 ul,
 ol {
   padding: 0;
-  margin: 0 0 9px 25px;
+  margin: 0 0 14px 25px;
 }
 
 ul ul,
@@ -1155,15 +1159,16 @@ body.login #content
 .loginbox h2
 {
 	margin: 0 !important;
-	padding: 5px 10px;
+	padding: 5px 10px !important;
 	-moz-border-radius: 10px 10px 0 0;
 	-webkit-border-radius: 10px 10px 0 0;
 	background: #e0e0e0;
-	font-weight: bold;
+	font-weight: bold !important;
 	font-size: 14px !important;
-	line-height: 26px;
-	height: 26px;
+	line-height: 26px !important;
+	height: 26px !important;
 }
+
 
 .loginbox .content
 {
