@@ -1687,3 +1687,27 @@ body.editmode .mceEditor
 #content a.btn {
     color: #000;
 }
+
+.dietitian_letter
+{
+    margin-left: 30px;
+    margin-right: 30px;
+    background-color: #f6ece4;
+    padding: 20px 40px;
+    font-family:  "Bradley Hand ITC TT","Bradley Hand ITC", "lucida handwriting", "Comic Sans MS";
+-webkit-box-shadow: 2px 2px 12px rgba(50, 50, 50, 0.75);
+-moz-box-shadow:    2px 2px 12px rgba(50, 50, 50, 0.75);
+box-shadow:         2px 2px 12px rgba(50, 50, 50, 0.75);
+}
+
+.dietitian_letter .letterhead
+{
+    font-family: palatino;
+    text-align: center;
+    color: #003399;
+}
+
+.dietitian_letter .letterhead .name
+{
+    font-weight: bold;
+}
