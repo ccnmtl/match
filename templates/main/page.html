@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load render %}
+{% comment %}######## THIS IS MATCH TEMPLATE ########{% endcomment %}
 
 
 {% block js %}
@@ -7,6 +8,10 @@
     {% for block in section.pageblock_set.all %}
         {% renderjs block %}
     {% endfor %}
+
+    {% ifnotequal module.slug 'socialwork' %}
+        <script src="/site_media/bootstrap/js/bootstrap.min.js"></script>
+    {% endifnotequal %}
 
     <script type="text/javascript">
         jQuery(document).ready(function () {
@@ -45,6 +50,10 @@
 {% endblock %}
 
 {% block css %}
+   {% ifnotequal module.slug 'socialwork' %}
+        <link href="/site_media/bootstrap/css/bootstrap.css" rel="stylesheet">
+        {% comment %}<link href="/site_media/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">{% endcomment %}
+    {% endifnotequal %}
 {% for block in section.pageblock_set.all %}
 {% rendercss block %}
 {% endfor %}
@@ -66,6 +75,8 @@
         <div id="fadebottom"></div>
     </div><!-- div id="secondary_navigation" -->
 {% endblock %}
+
+{% block projectbanner %}{% endblock %}
 
 {% block content %}
 

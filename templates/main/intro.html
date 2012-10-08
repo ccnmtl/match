@@ -1,7 +1,18 @@
 {% extends 'base.html' %}
 {% comment %}######## THIS IS MATCH TEMPLATE ########{% endcomment %}
-
+{% block widthtype %}fixed content_wide{% endblock %}
 {% block title %}Welcome to MATCH{% endblock %}
+{% block js %}
+{{ block.super }}
+<script src="/site_media/bootstrap/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block css %}
+{{ block.super }}
+<link href="/site_media/bootstrap/css/bootstrap.css" rel="stylesheet">
+{% endblock %}
+
+{% block primarynav %}{% endblock %}
 
 {% block content %}
 <h2>Welcome to Multidisciplinary Approaches to Children's Oral Health (MATCH)</h2>
@@ -39,16 +50,16 @@ Children’s oral health is determined by social, behavioral, genetic, nutrition
 </ol>
 </div>
 
-<h4>Get started:</h4>
+<h3>Let's get started:</h3>
 <ul>
-  <li><a href="/module_one/">Module 1: Social workers</a></li>
-  <li><a href="/module_two/">Module 2: Nutrition</a></li>
+  <li>Module 1: <a href="/module_one/">Social workers</a></li>
+  <li>Module 2: <a href="/module_two/">Nutrition</a></li>
   <li>Module 3: Health education (coming soon)</li>
   <li>Module 4: Occupational therapy (coming soon)</li>
   <li>Module 5: Public health (coming soon)</li>
 </ul>
 
-<img width="670" alt="paper dolls" src="/site_media/img/paperdolls.jpg" style="border:1px solid #ccc; margin: 10px 0px">
+<img width="670" alt="paper dolls" src="/site_media/img/paperdolls.jpg">
 
 
 </div>
