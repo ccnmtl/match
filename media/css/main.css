@@ -64,8 +64,8 @@ h1
 h2
 {
 	margin: 0 !important;
-	padding: 0 0 22px 0 !important;
-	font-size: 22px !important;
+	padding: 0 0 24px 0 !important;
+	font-size: 24px !important;
 	line-height: 26px !important;
 	font-weight: normal !important;
 }
@@ -513,9 +513,9 @@ a:visited
 	list-style: none;	
 	background-color: #b6d8db;/*7CAFB2*/
 	padding: 15px;
-    border-radius: 4px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
 }
 
 #secondary_navigation .block ul li
@@ -525,10 +525,9 @@ a:visited
 	border: 0;
 	font-weight: normal;
 	color: #fff;
-	font-size: 95%;
+	font-size: 13px;
 	padding: 2px 0 !important;
 	border-bottom: 1px dotted #339999;
-
 }
 
 #secondary_navigation .block ul li div
