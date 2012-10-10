@@ -1,10 +1,10 @@
-div.counseling_session {
+/*div.counseling_session {
     height: 500px;
-}
+}*/
 
 div.information {
     float: left;
-    width: 15em;
+    width: 250px;
 }
 
 div.available_time {
@@ -22,7 +22,8 @@ div#patient-chart {
 
 div.accordion {
     float: left;
-    width: 40em;
+    margin-left: 20px;
+    width: 400px;
 }
 
 div.accordion-group {
