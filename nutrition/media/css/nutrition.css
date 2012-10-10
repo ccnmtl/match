@@ -2,6 +2,15 @@
     height: 500px;
 }*/
 
+div.counseling_session {
+    background-color: #e6f2ff;
+    border: 1px solid #b5daff;
+    padding: 8px;
+    -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
 div.information {
     float: left;
     width: 200px;
@@ -9,11 +18,11 @@ div.information {
 
 div.available_time {
     text-align: center;
-    border: 1px solid black;
+    border: 1px solid #999;
     width: 200px;
     margin-bottom: 10px;
     padding: 0;
-    background: transparent url('/site_media/img/icon_stopwatch.jpg') 71px 22px no-repeat;
+    background: #fff url('/site_media/img/icon_stopwatch.jpg') 71px 22px no-repeat;
 }
 
 div.time_remaining {
@@ -42,14 +51,16 @@ span#display_time_text {
 
 div#patient-chart {
     border: 1px solid black;
-    width: 13em;
-    padding: 5px;
+    padding: 0;
+    border: 1px solid #999;
+    background-color: #fff;
+    width: 200px;
 }
 
 div.accordion {
     float: left;
     margin-left: 20px;
-    width: 450px;
+    width: 430px;
 }
 
 div.accordion-group {
