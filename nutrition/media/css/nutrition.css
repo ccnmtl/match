@@ -4,14 +4,40 @@
 
 div.information {
     float: left;
-    width: 250px;
+    width: 200px;
 }
 
 div.available_time {
     text-align: center;
     border: 1px solid black;
-    width: 13em;
+    width: 200px;
     margin-bottom: 10px;
+    padding: 0;
+    background: transparent url('/site_media/img/icon_stopwatch.jpg') 71px 22px no-repeat;
+}
+
+div.time_remaining {
+    font-weight: bold;
+    height: 24px;
+    line-height: 24px;
+    margin-bottom: 21px
+}
+
+div.time_minutes {
+    font-weight: bold;
+    padding-top: 6px;
+    height: 26px;
+    line-height: 24px;
+}
+
+span#display_time_text {
+    display: block;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 40px;
 }
 
 div#patient-chart {
@@ -23,7 +49,7 @@ div#patient-chart {
 div.accordion {
     float: left;
     margin-left: 20px;
-    width: 400px;
+    width: 450px;
 }
 
 div.accordion-group {
@@ -70,26 +96,28 @@ div.accordion-body .btn {
 }
 
 div#display_time {
-    border: 1px solid black;
-    width: 4em;
-    height: 4em;
+    border: 1px solid transparent;
+    width: 40px;
+    height: 40px;
     display: block;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
 
 
-    -webkit-border-top-left-radius: 2em;
-    -webkit-border-top-right-radius: 2em;
-    -moz-border-radius-topleft: 2em;
-    -moz-border-radius-topright: 2em;
-    border-top-left-radius: 2em;
-    border-top-right-radius: 2em;
-    -webkit-border-bottom-left-radius: 2em;
-    -webkit-border-bottom-right-radius: 2em;
-    -moz-border-radius-bottomleft: 2em;
-    -moz-border-radius-bottomright: 2em;
-    border-bottom-left-radius: 2em;
-    border-bottom-right-radius: 2em;
-
+    -webkit-border-top-left-radius: 20px;
+    -webkit-border-top-right-radius: 20px;
+    -moz-border-radius-topleft: 20px;
+    -moz-border-radius-topright: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    -webkit-border-bottom-left-radius: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    -moz-border-radius-bottomright: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 div#display_time h1 {

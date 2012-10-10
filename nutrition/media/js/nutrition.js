@@ -166,7 +166,7 @@
                 jQuery('.btn.discuss').attr('disabled', 'disabled');
 
                 // Make the background div blink
-                jQuery("#display_time").effect("highlight", { color: '#FF0000' }, 1000, function() {
+                jQuery("#display_time").effect("highlight", { color: '#ff9900' }, 1000, function() {
                     if (countdown > 0) {
                         setTimeout(self.renderCountdown, 0);
                     } else {
