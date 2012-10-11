@@ -102,10 +102,10 @@
             session.get('topics').forEach(function (topic) {
                 if (state.get('answered').get(topic.id)) {
                     jQuery('#' + topic.get('id')).find('.btn.discuss').attr('disabled', 'disabled');
-                    jQuery('#' + topic.get('id')).find('div.reason').html("discussed");
+                    jQuery('#' + topic.get('id')).find('div.reason').html("<div class='alert-success well topic_discussed'>Discussed. </div>");
                 } else if (topic.get('estimated_time') > available_time) {
                     jQuery('#' + topic.get('id')).find('.btn.discuss').attr('disabled', 'disabled');
-                    jQuery('#' + topic.get('id')).find('div.reason').html("not enough time left");
+                    jQuery('#' + topic.get('id')).find('div.reason').html("<div class='alert-danger well topic_no_time'>Not enough time left!</div>");
                 } else {
                     jQuery('#' + topic.get('id')).find('.btn.discuss').removeAttr('disabled');
                     enabled++;

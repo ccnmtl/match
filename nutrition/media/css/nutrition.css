@@ -83,6 +83,23 @@ div#patient-chart {
     margin-bottom: 10px;
 }
 
+.topic_discussed
+{
+	height: 20px;
+	padding: 2px 2px 2px 25px;
+	background-image: url('/site_media/img/icon_check_small.png');
+	background-repeat: no-repeat;
+	background-position: 2px 2px;
+}
+
+.topic_no_time {
+    height: 20px;
+	background-image: url('/site_media/img/icon_warning_small.png');
+	background-repeat: no-repeat;
+	background-position: 2px 2px;
+    padding: 2px 2px 2px 25px;
+}
+
 div.accordion {
     float: left;
     margin-left: 10px;
@@ -187,3 +204,9 @@ div#referral-patient-chart {
     width: 200px;
 }
 
+.btn-info[disabled] {
+  background-color: #e6e6e6;
+  *background-color: #d9d9d9;
+  color: #333333;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
