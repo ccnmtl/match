@@ -13,16 +13,16 @@ div.counseling_session {
 
 div.information {
     float: left;
-    width: 200px;
+    width: 210px;
 }
 
 div.available_time {
     text-align: center;
     border: 1px solid #999;
-    width: 200px;
-    margin-bottom: 10px;
+    width: 210px;
+    margin-bottom: 5px;
     padding: 0;
-    background: #fff url('/site_media/img/icon_stopwatch.jpg') 71px 22px no-repeat;
+    background: #fff url('/site_media/img/icon_stopwatch.jpg') 76px 22px no-repeat;
 }
 
 div.time_remaining {
@@ -50,16 +50,26 @@ span#display_time_text {
 }
 
 div#patient-chart {
-    border: 1px solid black;
     padding: 0;
-    border: 1px solid #999;
+    border: 0;
+    background: transparent url('/site_media/img/clipboard.png') 0 0 no-repeat;
+    width: 210px;
+    height: 321px;
+    font-size: 12px;
+}
+
+#patient-chart-text {
+    padding: 0 2px 0 5px;
     background-color: #fff;
-    width: 200px;
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 200px;
+    overflow: auto;
 }
 
 div.accordion {
     float: left;
-    margin-left: 20px;
+    margin-left: 10px;
     width: 430px;
 }
 
