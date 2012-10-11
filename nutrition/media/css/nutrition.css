@@ -199,6 +199,42 @@ div#complete-overlay
     color:#fff;
 }
 
+.btn-info[disabled] {
+  background-color: #e6e6e6;
+  *background-color: #d9d9d9;
+  color: #333333;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+
+#referral-form {
+    float: left;
+    margin-left: 10px;
+    padding: 0;
+}
+
+.referral-form-prescription {
+    background: url('/site_media/img/bg_prescription.png');
+    margin: 0;
+    width: 400px;
+    padding: 15px;
+-webkit-box-shadow: 2px 2px 12px rgba(50, 50, 50, 0.75);
+-moz-box-shadow:    2px 2px 12px rgba(50, 50, 50, 0.75);
+box-shadow:         2px 2px 12px rgba(50, 50, 50, 0.75);
+}
+
+.referral-form-prescription .practice-logo {
+    background: url('/site_media/img/pediatric_dentistry.png') center 0 no-repeat;
+    height: 30px;
+    font-weight: bold;
+    padding-top: 90px;
+    text-align: center;
+	font-family: palatino, serif;
+	color: #003399;
+	text-transform: uppercase;
+	font-size: 12px;
+	line-height: 12px;
+}
+
 div#referral-patient-chart {
     float: left;
     width: 200px;
@@ -209,9 +245,31 @@ div#referral-patient-chart {
     height: 321px;
 }
 
-.btn-info[disabled] {
-  background-color: #e6e6e6;
-  *background-color: #d9d9d9;
-  color: #333333;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+.rx_patient {
+    font-size: 12px;
+    line-height: 13px;
+}
+
+#referral-form label {
+    width: 125px;
+    display: block;
+    float: left;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 5px;
+    height: 25px;
+    line-height: 25px;
+}
+
+.referral_success {
+    width: 300px;
+    min-height: 20px;
+    padding: 10px;
+    margin-left: 0;
+    margin-top: 80px;
+    vertical-align: middle;
+    padding-left: 60px;
+	background-image: url('/site_media/img/icon_check.png');
+	background-repeat: no-repeat;
+	background-position: 10px center;
 }
