@@ -29,8 +29,7 @@
             <div class="time_minutes">minutes</div>
         </div>
         <div id="patient-chart">
-            <h3>Patient Chart</h3>
-            <div id="patient-chart-text"></div>
+             <div id="patient-chart-text"></div>
         </div>
     </div>
     <div id="topic-accordion" class="accordion">
@@ -59,7 +58,7 @@
 </script>
 
 <script type="text/template" id="patient-chart-template">
-    <div id="session-chart-<%= session.attributes.id %>">
+    <div id="session-chart-<%= session.attributes.id %>" class="well session-segment">
         <% if (answered.length > 0) { %>
             <h5><%= session.attributes.patient_chart %></h5>
             <div class="session-chart-answered">

@@ -50,12 +50,11 @@ span#display_time_text {
 }
 
 div#patient-chart {
-    padding: 0;
+    padding: 80px 0 0 0;
     border: 0;
     background: transparent url('/site_media/img/clipboard.png') 0 0 no-repeat;
     width: 210px;
     height: 321px;
-    font-size: 12px;
 }
 
 #patient-chart-text {
@@ -63,8 +62,25 @@ div#patient-chart {
     background-color: #fff;
     margin-left: 5px;
     margin-right: 5px;
-    height: 200px;
+    height: 220px;
     overflow: auto;
+    font-size: 11px;
+    line-height: 12px;
+}
+
+.session-segment {
+    margin: 0 0 5px 0;
+    padding: 5px;
+    background-color: transparent;
+    border: 1px solid #3399cc;
+}
+
+.session-chart-topic {
+    font-weight: bold;
+}
+
+.session-chart-reply {
+    margin-bottom: 10px;
 }
 
 div.accordion {
