@@ -159,7 +159,7 @@
                 countdown -= 1;
                 state.set('countdown', countdown);
                 state.set('elapsed_time', state.get('elapsed_time') + 1);
-                jQuery(state.get('current_topic_el')).find('.btn.complete').html("Discuss (" + (countdown + 1) + ")");
+                jQuery(state.get('current_topic_el')).find('.btn.complete').effect("highlight", { color: '#ff9900' });
 
                 // All discussion buttons are disabled, the class gets a selected icon
                 jQuery('.btn.discuss').attr('disabled', 'disabled');
