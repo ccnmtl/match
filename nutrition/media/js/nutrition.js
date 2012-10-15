@@ -101,11 +101,9 @@
 
             session.get('topics').forEach(function (topic) {
                 if (state.get('answered').get(topic.id)) {
-                    jQuery('#' + topic.get('id')).find('.btn.discuss').attr('disabled', 'disabled');
-                    jQuery('#' + topic.get('id')).find('div.reason').html("<div class='alert-success well topic_discussed'>Discussed. </div>");
+                    jQuery('#' + topic.get('id')).find('.btn.discuss').attr('disabled', 'disabled').html("<div class='alert-success topic_discussed'>Discussed. </div>");
                 } else if (topic.get('estimated_time') > available_time) {
-                    jQuery('#' + topic.get('id')).find('.btn.discuss').attr('disabled', 'disabled');
-                    jQuery('#' + topic.get('id')).find('div.reason').html("<div class='alert-danger well topic_no_time'>Not enough time left!</div>");
+                    jQuery('#' + topic.get('id')).find('.btn.discuss').attr('disabled', 'disabled').html("<div class='alert-danger topic_no_time'>No time left!</div>");
                 } else {
                     jQuery('#' + topic.get('id')).find('.btn.discuss').removeAttr('disabled');
                     enabled++;
@@ -161,6 +159,7 @@
                 countdown -= 1;
                 state.set('countdown', countdown);
                 state.set('elapsed_time', state.get('elapsed_time') + 1);
+                jQuery(state.get('current_topic_el')).find('.btn.complete').html("Discuss (" + (countdown + 1) + ")");
 
                 // All discussion buttons are disabled, the class gets a selected icon
                 jQuery('.btn.discuss').attr('disabled', 'disabled');
@@ -170,7 +169,7 @@
                     if (countdown > 0) {
                         setTimeout(self.renderCountdown, 0);
                     } else {
-                        jQuery(state.get('current_topic_el')).find('.btn.complete').removeAttr('disabled');
+                        jQuery(state.get('current_topic_el')).find('.btn.complete').removeAttr('disabled').html("Close");
                         state.set('countdown', undefined);
                         state.set('current_topic_el', undefined);
                         state.bind('change:countdown', self.renderCountdown);
@@ -182,7 +181,7 @@
         renderTime: function() {
             var session = this.states.getCurrentSession();
             var state = this.states.getCurrentState();
-            jQuery('#display_time_text').html(session.get('available_time') - state.get('elapsed_time'));
+            jQuery('.display_time_text').html(session.get('available_time') - state.get('elapsed_time'));
         },
         onDiscussion: function(evt) {
             var srcElement = evt.srcElement || evt.target || evt.originalTarget;

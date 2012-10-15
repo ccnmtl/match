@@ -25,7 +25,7 @@
     <div class="information">
         <div class="available_time clearfix well">
             <div class="time_remaining">Time remaining:</div>
-            <div id="display_time"><span id="display_time_text"></span></div>
+            <div id="display_time" class="display_time"><span class="display_time_text"></span></div>
             <div class="time_minutes">minutes</div>
         </div>
         <div id="patient-chart">
@@ -36,17 +36,20 @@
         <% _.each(topics.models, function(topic, index) { %>
             <div id="<%=topic.attributes.id%>" class="accordion-group <% if (index/2 === 0) { %> even <% } %>">
                 <div class="accordion-heading">
-                    <div class="discuss"><%= topic.attributes.text %><div class="reason"></div></div>
+                    <div class="discuss"><%= topic.attributes.text %></div>
                     <button class="btn discuss btn-info" data-toggle="collapse"
                             data-target="#reply-<%= topic.attributes.id %>" data-parent="#topics-accordion">
-                        Discuss for <%= topic.attributes.estimated_time %> minutes (estimated)
+                        <%= topic.attributes.estimated_time %> minutes (estimated)
                     </button>
                     <div style="clear: both"></div>
                 </div>
                 <div id="reply-<%= topic.attributes.id %>" class="accordion-body collapse" data-id="<%=topic.attributes.id%>">
                     <div class="accordion-inner">
-                        <%= topic.attributes.reply %><br />
+                        <div><%= topic.attributes.reply %><br /></div>
+
                         <h3>Actual Time: <%= topic.attributes.actual_time %> minutes</h3>
+
+                        <div style="clear: both"></div>
                         <button disabled="disabled" class="btn complete" data-toggle="collapse" data-target="#reply-<%= topic.attributes.id %>" data-parent="#topics-accordion">
                             Close<br />
                         </button>
@@ -58,15 +61,15 @@
 </script>
 
 <script type="text/template" id="patient-chart-template">
+    <% if (answered.length > 0) { %>
     <div id="session-chart-<%= session.attributes.id %>" class="well session-segment">
-        <% if (answered.length > 0) { %>
-            <h5><%= session.attributes.patient_chart %></h5>
-            <div class="session-chart-answered">
-                <% _.each(answered.models, function(answer, index) { %>
-                    <div class="session-chart-topic"><%= answer.attributes.summary_text %></div>
-                    <div class="session-chart-reply"><%= answer.attributes.summary_reply %></div>
-                <% }); %>
-            </div>
-        <% } %>
+        <h5><%= session.attributes.patient_chart %></h5>
+        <div class="session-chart-answered">
+            <% _.each(answered.models, function(answer, index) { %>
+                <div class="session-chart-topic"><%= answer.attributes.summary_text %></div>
+                <div class="session-chart-reply"><%= answer.attributes.summary_reply %></div>
+            <% }); %>
+        </div>
     </div>
+    <% } %>
 </script>
