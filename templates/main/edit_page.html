@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-{% block title %}{{section.label}} (edit){% endblock %}
+{% comment %}######## THIS IS MATCH TEMPLATE ########{% endcomment %}
+{% block title %}{{module.label}}&mdash;{{section.label}} [EDIT]{% endblock %}
+{% block widthtype %}fixed editmode no_bootstrap{% endblock %}
 {% block js %}
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.3/themes/base/jquery-ui.css" type="text/css" media="all" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
@@ -52,6 +54,8 @@ var saveOrderOfPageBlocks = function() {
 	.dragging {border: #f60 solid 1px;}
 	</style>
 {% endblock %}
+
+{% block projectbanner %}{% endblock %}
 
 {% block primarynavtabs %}
 
