@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% comment %}######## THIS IS MATCH TEMPLATE ########{% endcomment %}
-{% block title %}Help{% endblock %}
 
+
+{% block widthtype %}fixed login{% endblock %}
 {% block js %}
 {{ block.super }}
 <script src="/site_media/bootstrap/js/bootstrap.min.js"></script>
@@ -12,6 +13,7 @@
 <link href="/site_media/bootstrap/css/bootstrap.css" rel="stylesheet">
 {% endblock %}
 
+{% block title %}Help{% endblock %}
 {% block loginbutton %}<a href="/" class="btn btn-mini btn-danger">Log in</a>{% endblock %}
 
 {% block projectbanner %}{% endblock %}
