@@ -1750,7 +1750,8 @@ body.editmode .mceEditor
     margin-right: 30px;
     background-color: #f6ece4;
     padding: 20px 40px;
-    font-family:  "Bradley Hand ITC TT","Bradley Hand ITC", "lucida handwriting", "Comic Sans MS";
+    font-family:  palatino;
+    font-style: italic;
     font-size: 15px;
 -webkit-box-shadow: 2px 2px 12px rgba(50, 50, 50, 0.75);
 -moz-box-shadow:    2px 2px 12px rgba(50, 50, 50, 0.75);
