@@ -85,19 +85,25 @@ div#patient-chart {
 
 .topic_discussed
 {
-	height: 20px;
-	padding: 2px 2px 2px 25px;
+    line-height: 28px;
+    height: 28px;
+	padding: 0;
+	padding-left: 35px;
+	text-align: left;
 	background-image: url('/site_media/img/icon_check_small.png');
 	background-repeat: no-repeat;
-	background-position: 2px 2px;
+	background-position: 10px 3px;
 }
 
 .topic_no_time {
-    height: 20px;
+    line-height: 28px;
+    height: 28px;
+	padding: 0;
+	padding-left: 35px;
+	text-align: left;
 	background-image: url('/site_media/img/icon_warning_small.png');
 	background-repeat: no-repeat;
-	background-position: 2px 2px;
-    padding: 2px 2px 2px 25px;
+	background-position: 10px 3px;
 }
 
 div.accordion {
@@ -137,6 +143,9 @@ div.accordion-heading div.discuss {
 div.accordion-heading .btn.discuss {
     float: right;
     width: 37%;
+    padding: 0;
+    line-height: 28px;
+    height: 28px;
 }
 
 div.accordion-body {
@@ -196,17 +205,26 @@ div#complete-overlay
     -moz-opacity: .8; /*older Mozilla*/
     -khtml-opacity: 0.8;   /*older Safari*/
     opacity: 0.8;   /*supported by current Mozilla, Safari, and Opera*/
-    background-color: #cc3300;
+    background: #cc0000 url('/site_media/img/icon_warning2.png') 100px center no-repeat;
     color:#fff;
-    text-align:center;
-    vertical-align:middle;
-    padding: 5px;
+    text-align: center;
+    padding: 0;
     margin-bottom: 10px;
+    min-height: 50px;
+    vertical-align: middle;
 }
 
 #complete-overlay a
 {
     color:#fff;
+}
+
+#complete-overlay h1 {
+    margin: 0;
+    padding: 5px 0 0 0;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 20px;
 }
 
 .btn-info[disabled] {
@@ -224,7 +242,7 @@ div#complete-overlay
 
 .referral-form-prescription {
     background: url('/site_media/img/bg_prescription.png');
-    margin: 0;
+    margin: 0 0 20px 0;
     width: 400px;
     padding: 15px;
 -webkit-box-shadow: 2px 2px 12px rgba(50, 50, 50, 0.75);
