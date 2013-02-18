@@ -5,3 +5,4 @@ ve
 local_settings.py
 lettuce.db
 .idea
+.coverage
