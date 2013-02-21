@@ -9,6 +9,8 @@ ADMINS = ( )
 
 MANAGERS = ADMINS
 
+ALLOWED_HOSTS = ['.ccnmtl.columbia.edu', 'localhost']
+
 DATABASE_ENGINE = 'postgresql_psycopg2' # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
 DATABASE_NAME = 'match' # Or path to database file if using sqlite3.
 DATABASE_USER = ''             # Not used with sqlite3.
