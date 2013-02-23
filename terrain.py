@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from lettuce.django import django_url
 from lettuce import before, after, world, step
+from django.conf import settings
 from django.test import client
 import sys, os, time
 from selenium.webdriver.common.keys import Keys
@@ -27,18 +28,32 @@ def setup_database(variables):
 
 @before.all
 def setup_browser():
-    ff_profile = FirefoxProfile() 
-    ff_profile.set_preference("webdriver_enable_native_events", False) 
-    world.firefox = webdriver.Firefox(ff_profile)
+    browser = getattr(settings, 'BROWSER', None)
+    if browser is None:
+        raise Exception('Please configure a browser in settings_test.py')
+    elif browser == 'Firefox':
+        ff_profile = FirefoxProfile()
+        ff_profile.set_preference("webdriver_enable_native_events", False)
+        world.browser = webdriver.Firefox(ff_profile)
+    elif  browser == 'Chrome':
+        world.browser = webdriver.Chrome()
+
     world.client = client.Client()
     world.using_selenium = False
-    
+
     # Make the browser size at least 1024x768
-    world.firefox.execute_script("window.moveTo(0, 1); window.resizeTo(1024, 768);");
+    world.browser.execute_script("window.moveTo(0, 1); "
+                                 "window.resizeTo(1024, 768);")
+
+    # Wait implicitly for 2 seconds
+    world.browser.implicitly_wait(5)
+
+    # stash
+    world.memory = {}
     
 @after.all
 def teardown_browser(total):
-    world.firefox.quit()
+    world.browser.quit()
 
 @step(u'Using selenium')
 def using_selenium(step):
@@ -62,7 +77,7 @@ def clear_selenium(step):
 @step(r'I access the url "(.*)"')
 def access_url(step, url):
     if world.using_selenium:
-        world.firefox.get(django_url(url))
+        world.browser.get(django_url(url))
     else:
         response = world.client.get(django_url(url))
         world.dom = html.fromstring(response.content)
@@ -72,46 +87,46 @@ def i_am_at_the_name_page(step, name):
     if world.using_selenium:
         # Check the page title
         try:
-            title = world.firefox.title
+            title = world.browser.title
             assert title.find(name) > -1, "Page title is %s. Expected something like %s" % (title, name)
         except:
             time.sleep(1)
-            title = world.firefox.title
+            title = world.browser.title
             assert title.find(name) > -1, "Page title is %s. Expected something like %s" % (title, name)
 
 @step(u'I am logged in as ([^"]*)')
 def i_am_logged_in_as_username(step, username):
     if world.using_selenium:
-        world.firefox.get(django_url("/accounts/logout/"))
-        world.firefox.get(django_url("accounts/login/?next=/"))
-        username_field = world.firefox.find_element_by_id("id_username")
-        password_field = world.firefox.find_element_by_id("id_password")
-        form = world.firefox.find_element_by_name("login_local")
+        world.browser.get(django_url("/accounts/logout/"))
+        world.browser.get(django_url("accounts/login/?next=/"))
+        username_field = world.browser.find_element_by_id("id_username")
+        password_field = world.browser.find_element_by_id("id_password")
+        form = world.browser.find_element_by_name("login_local")
         username_field.send_keys(username)
         password_field.send_keys("test")
         form.submit()
-        title = world.firefox.title
-        assert username in world.firefox.page_source, world.firefox.page_source
+        title = world.browser.title
+        assert username in world.browser.page_source, world.browser.page_source
     else:
         world.client.login(username=username,password='test')
 
 
 @step(u'I log in with a local account')
 def i_log_in_with_a_local_account(step):
-    form = world.firefox.find_element_by_name("login_local")
+    form = world.browser.find_element_by_name("login_local")
     form.submit()
 
 @step(u'I am not logged in')
 def i_am_not_logged_in(step):
     if world.using_selenium:
-        world.firefox.get(django_url("/accounts/logout/"))
+        world.browser.get(django_url("/accounts/logout/"))
     else:
         world.client.logout()
         
 @step(u'I log out')
 def i_log_out(step):
     if world.using_selenium:
-        world.firefox.get(django_url("/accounts/logout/"))
+        world.browser.get(django_url("/accounts/logout/"))
     else:
         response = world.client.get(django_url("/accounts/logout/"),follow=True)
         world.response = response
@@ -120,7 +135,7 @@ def i_log_out(step):
 @step(u'There is no ([^"]*) navigation')
 def there_is_no_direction_navigation(step, direction):
     try:
-        elt = world.firefox.find_element_by_id(direction)
+        elt = world.browser.find_element_by_id(direction)
         assert False, "%s navigation is available" % direction
     except:
         pass # expected
@@ -129,14 +144,14 @@ def there_is_no_direction_navigation(step, direction):
 @step(u'There is ([^"]*) navigation')
 def there_is_direction_navigation(step, direction):
     try:
-        elt = world.firefox.find_element_by_id(direction)
+        elt = world.browser.find_element_by_id(direction)
     except:
         assert False, "Could not find %s navigation" % direction
 
 @step(u'I navigate to the ([^"]*) page')
 def i_navigate_to_the_direction_page(step, direction):
     try:
-        elt = world.firefox.find_element_by_id(direction)
+        elt = world.browser.find_element_by_id(direction)
         elt.click()
     except:
         assert False, "Could not find %s navigation" % direction
@@ -145,7 +160,7 @@ def i_navigate_to_the_direction_page(step, direction):
 def i_type_value_for_field(step, value, field):
     if world.using_selenium:
         selector = "input[name=%s]" % field
-        input = world.firefox.find_element_by_css_selector(selector)
+        input = world.browser.find_element_by_css_selector(selector)
         assert input != None, "Cannot locate input field named %s" % field
         input.send_keys(value)
     
@@ -168,7 +183,7 @@ def there_is_not_a_text_link(step, text):
                     assert False, "found the '%s' link" % text
     else:
         try:
-            link = world.firefox.find_element_by_partial_link_text(text)
+            link = world.browser.find_element_by_partial_link_text(text)
             assert False, "found the '%s' link" % text
         except:
             pass # expected             
@@ -186,15 +201,15 @@ def there_is_a_text_link(step, text):
         assert False, "could not find the '%s' link" % text
     else:
         try:
-            link = world.firefox.find_element_by_partial_link_text(text)
+            link = world.browser.find_element_by_partial_link_text(text)
             assert link.is_displayed()
         except:
             try:
                 time.sleep(1)
-                link = world.firefox.find_element_by_partial_link_text(text)
+                link = world.browser.find_element_by_partial_link_text(text)
                 assert link.is_displayed()
             except:
-                world.firefox.get_screenshot_as_file("/tmp/selenium.png")
+                world.browser.get_screenshot_as_file("/tmp/selenium.png")
                 assert False, link.location      
         
         
@@ -211,17 +226,17 @@ def i_click_the_link(step, text):
         assert False, "could not find the '%s' link" % text
     else:
         try:
-            link = world.firefox.find_element_by_partial_link_text(text)
+            link = world.browser.find_element_by_partial_link_text(text)
             assert link.is_displayed()
             link.click()
         except:
             try:
                 time.sleep(1)
-                link = world.firefox.find_element_by_partial_link_text(text)
+                link = world.browser.find_element_by_partial_link_text(text)
                 assert link.is_displayed()
                 link.click()
             except:
-                world.firefox.get_screenshot_as_file("/tmp/selenium.png")
+                world.browser.get_screenshot_as_file("/tmp/selenium.png")
                 assert False, link.location      
 
 @step(u'there is an? ([^"]*) button')
@@ -248,18 +263,18 @@ def then_i_wait_count_second(step, count):
 @step(u'I see "([^"]*)"')
 def i_see_text(step, text):
     try:
-        assert text in world.firefox.page_source, world.firefox.page_source
+        assert text in world.browser.page_source, world.browser.page_source
     except:
         time.sleep(1)
-        assert text in world.firefox.page_source, "I did not see %s in this page" % text
+        assert text in world.browser.page_source, "I did not see %s in this page" % text
     
 @step(u'I do not see "([^"]*)"')
 def i_do_not_see_text(step, text):
-    assert text not in world.firefox.page_source, world.firefox.page_source
+    assert text not in world.browser.page_source, world.browser.page_source
 
 @step(u'I\'m told ([^"]*)')
 def i_m_told_text(step, text):
-    alert = world.firefox.switch_to_alert()
+    alert = world.browser.switch_to_alert()
     assert alert.text.startswith(text), "Alert text invalid: %s" % alert.text
     alert.accept()
 
@@ -279,7 +294,7 @@ def find_button_by_value(value, parent = None):
         if e.get_attribute("value") == value:
             return e
         
-    elts = world.firefox.find_elements_by_tag_name("button")
+    elts = world.browser.find_elements_by_tag_name("button")
     for e in elts:
         if e.get_attribute("type") == "button" and e.text == value:
             return e    
