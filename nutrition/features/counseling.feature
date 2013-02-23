@@ -5,7 +5,7 @@ Feature: Cousneling
         Given I am logged in as match_participant_one
         Then I am at the Welcome page
 
-        When I click the "Module 2: Nutrition" link
+        When I click the "Nutrition" link
         Then I am at the Introduction page
 
         There is no previous navigation
@@ -22,7 +22,7 @@ Feature: Cousneling
     Scenario: 2. Verify Basic Functionality
         Using selenium
         Given I am logged in as match_participant_one
-        When I click the "Module 2: Nutrition" link
+        When I click the "Nutrition" link
         When I navigate to the next page
         Then I am at the Counseling Session page
         There are 7 topics
@@ -33,7 +33,7 @@ Feature: Cousneling
         Then the clock reads 9 seconds
 
         When I close the discussion
-        The patient chart contains "Initial Data For The Patient Chart."
+        The patient chart contains "Initial data for the patient chart."
         The patient chart contains "summary text one"
         The patient chart contains "summary reply one"
 
@@ -50,7 +50,7 @@ Feature: Cousneling
 
         Then there are 7 topics
         Then the clock reads 9 seconds
-        The patient chart contains "Initial Data For The Patient Chart."
+        The patient chart contains "Initial data for the patient chart."
         The patient chart contains "summary text one"
         The patient chart contains "summary reply one"
 
@@ -67,7 +67,7 @@ Feature: Cousneling
     Scenario: 3. Countdown to zero, topics disable based on available time
         Using selenium
         Given I am logged in as match_participant_one
-        When I click the "Module 2: Nutrition" link
+        When I click the "Nutrition" link
         When I navigate to the next page
         Then I am at the Counseling Session page
         There are 7 topics
@@ -95,7 +95,7 @@ Feature: Cousneling
         Then the clock reads 0 seconds
         Then I close the discussion
 
-        The patient chart contains "Initial Data For The Patient Chart."
+        The patient chart contains "Initial data for the patient chart."
         The patient chart contains "summary text one"
         The patient chart contains "summary reply one"
         The patient chart contains "summary text four"
@@ -123,7 +123,7 @@ Feature: Cousneling
     Scenario: 4. Countdown to negative, topics disable based on available time
         Using selenium
         Given I am logged in as match_participant_one
-        When I click the "Module 2: Nutrition" link
+        When I click the "Nutrition" link
         When I navigate to the next page
         Then I am at the Counseling Session page
         There are 7 topics
@@ -154,7 +154,7 @@ Feature: Cousneling
         Then the clock reads -3 seconds
         Then I close the discussion
 
-        The patient chart contains "Initial Data For The Patient Chart."
+        The patient chart contains "Initial data for the patient chart."
         The patient chart contains "summary text three"
         The patient chart contains "summary reply three"
         The patient chart contains "summary text five"
@@ -182,7 +182,7 @@ Feature: Cousneling
     Scenario: 5. Answer all the questions, still have time left on the clock
         Using selenium
         Given I am logged in as match_participant_one
-        When I click the "Module 2: Nutrition" link
+        When I click the "Nutrition" link
         When I navigate to the next page
         Then I am at the Counseling Session page
         There are 7 topics
@@ -197,7 +197,7 @@ Feature: Cousneling
         Then the clock reads 0 seconds
         Then I close the discussion
 
-        The patient chart contains "Initial Data For The Patient Chart."
+        The patient chart contains "Initial data for the patient chart."
         The patient chart contains "summary text five"
         The patient chart contains "summary reply five"
         The patient chart contains "summary text overtime"
@@ -207,7 +207,7 @@ Feature: Cousneling
         Then I am at the Counseling Session Two page
         There are 2 topics
         The clock reads 5 seconds
-        The patient chart contains "Initial Data For The Patient Chart."
+        The patient chart contains "Initial data for the patient chart."
         The patient chart contains "summary text five"
         The patient chart contains "summary reply five"
         The patient chart contains "summary text overtime"
@@ -218,7 +218,7 @@ Feature: Cousneling
         Then the clock reads 4 seconds
         Then I close the discussion
 
-        The patient chart contains "Initial Data For Second Counseling Session."
+        The patient chart contains "Initial data for second counseling session."
         The patient chart contains "summary text one"
         The patient chart contains "summary reply one"
 
@@ -227,7 +227,7 @@ Feature: Cousneling
         Then the clock reads 2 seconds
         Then I close the discussion
 
-        The patient chart contains "Initial Data For Second Counseling Session."
+        The patient chart contains "Initial data for second counseling session."
         The patient chart contains "summary text one"
         The patient chart contains "summary reply one"
         The patient chart contains "summary text two"
