@@ -7,7 +7,7 @@ TEMPLATE_DIRS = (
 MEDIA_ROOT = '/var/www/match/uploads/'
 # put any static media here to override app served static media
 STATICMEDIA_MOUNTS = (
-    ('/sitemedia', '/var/www/match/match/sitemedia'),	
+    ('/sitemedia', '/var/www/match/match/sitemedia'),
 )
 
 

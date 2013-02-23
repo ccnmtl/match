@@ -1,14 +1,17 @@
-from django.db import models
-from django.utils import simplejson
-from django.contrib.contenttypes import generic
-from pagetree.models import PageBlock
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.contenttypes import generic
+from django.db import models
+from pagetree.models import PageBlock
 import time
+
 
 class DiscussionTopic(models.Model):
     def __unicode__(self):
-        return self.text[:25] + '...' if self.text and len(self.text) > 25 else self.text
+        if self.text and len(self.text) > 25:
+            return self.text[:25] + '...'
+        else:
+            self.text
 
     text = models.TextField()
     estimated_time = models.IntegerField()
@@ -16,6 +19,7 @@ class DiscussionTopic(models.Model):
     actual_time = models.IntegerField()
     summary_text = models.TextField()
     summary_reply = models.TextField()
+
 
 class CounselingSession(models.Model):
     pageblocks = generic.GenericRelation(PageBlock)
@@ -71,21 +75,21 @@ class CounselingSession(models.Model):
         if available_time <= 0:
             return True
 
-
         # All questions answered || unanswered questions are > available_time
-        not_yet_discussed = 0
         for topic in self.topics.all():
             if topic.estimated_time <= available_time:
                 try:
-                    obj = state.answered.get(id=topic.id)
+                    state.answered.get(id=topic.id)
                 except DiscussionTopic.DoesNotExist:
                     return False
 
         return True
 
+
 class CounselingSessionForm(forms.ModelForm):
     class Meta:
         model = CounselingSession
+
 
 class CounselingReferral(models.Model):
     pageblocks = generic.GenericRelation(PageBlock)
@@ -95,7 +99,8 @@ class CounselingReferral(models.Model):
     display_name = "Activity: Nutrition Counseling Referral"
     allow_redo = False
     patient_chart = models.TextField(null=True, blank=True)
-    form_fields = ['referral_date', 'referred_to', 'referred_from', 'reason', 'medical_history']
+    form_fields = ['referral_date', 'referred_to', 'referred_from',
+                   'reason', 'medical_history']
 
     def pageblock(self):
         return self.pageblocks.all()[0]
@@ -106,11 +111,12 @@ class CounselingReferral(models.Model):
     def needs_submit(self):
         return True
 
-    def submit(self,user,data):
-        referral, created = CounselingReferralState.objects.get_or_create(user=user)
+    def submit(self, user, data):
+        referral, created = CounselingReferralState.objects.get_or_create(
+            user=user)
 
         for k in data.keys():
-            value = data[k].strip();
+            value = data[k].strip()
             if k == 'referral_date':
                 tm_struct = time.strptime(data[k], '%m/%d/%Y')
                 value = time.strftime('%Y-%m-%d', tm_struct)
@@ -155,6 +161,7 @@ class CounselingReferralForm(forms.ModelForm):
     class Meta:
         model = CounselingReferral
 
+
 class CounselingSessionState(models.Model):
     def __unicode__(self):
         return "%s -- %s" % (self.user.username, self.session)
@@ -163,6 +170,7 @@ class CounselingSessionState(models.Model):
     session = models.ForeignKey(CounselingSession)
     answered = models.ManyToManyField(DiscussionTopic, null=True, blank=True)
     elapsed_time = models.IntegerField(default=0)
+
 
 class CounselingReferralState(models.Model):
     def __unicode__(self):
@@ -176,11 +184,11 @@ class CounselingReferralState(models.Model):
     medical_history = models.TextField(null=True, blank=True)
 
     def is_complete(self):
-        return self.referred_to != None and\
-            self.referred_from != None and\
-            self.reason != None and\
-            self.medical_history != None and\
-            len(self.referred_to) > 0 and\
-            len(self.referred_from) > 0 and\
-            len(self.reason) > 0 and\
+        return self.referred_to is not None and \
+            self.referred_from is not None and \
+            self.reason is not None and \
+            self.medical_history is not None and \
+            len(self.referred_to) > 0 and \
+            len(self.referred_from) > 0 and \
+            len(self.reason) > 0 and \
             len(self.medical_history) > 0
