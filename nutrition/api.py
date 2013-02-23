@@ -1,8 +1,10 @@
 from django.contrib.auth.models import User
 from tastypie import fields
 from tastypie.resources import ModelResource
-from nutrition.models import DiscussionTopic, CounselingSession, CounselingSessionState
+from nutrition.models import DiscussionTopic, CounselingSession, \
+    CounselingSessionState
 from tastypie.authorization import Authorization
+
 
 class UsernameAuthorization(Authorization):
     def apply_limits(self, request, object_list):
@@ -10,6 +12,7 @@ class UsernameAuthorization(Authorization):
             return object_list.filter(username=request.user.username)
 
         return object_list.none()
+
 
 class UserAuthorization(Authorization):
     def apply_limits(self, request, object_list):
@@ -23,9 +26,11 @@ class UserResource(ModelResource):
     class Meta:
         queryset = User.objects.all()
         resource_name = 'user'
-        excludes = ['email', 'password', 'is_active', 'is_staff', 'is_superuser', 'date_joined']
+        excludes = ['email', 'password', 'is_active', 'is_staff',
+                    'is_superuser', 'date_joined']
         allowed_methods = ['get']
         authorization = UsernameAuthorization()
+
 
 class DiscussionTopicResource(ModelResource):
     class Meta:
@@ -33,18 +38,23 @@ class DiscussionTopicResource(ModelResource):
         resource_name = 'discussion_topic'
         allowed_methods = ['get']
 
+
 class CounselingSessionResource(ModelResource):
-    topics = fields.ManyToManyField('nutrition.api.DiscussionTopicResource', 'topics', full=True)
+    topics = fields.ManyToManyField(
+        'nutrition.api.DiscussionTopicResource', 'topics', full=True)
 
     class Meta:
         queryset = CounselingSession.objects.all()
         resource_name = 'counseling_session'
         allowed_methods = ['get']
 
+
 class CounselingSessionStateResource(ModelResource):
     user = fields.ForeignKey(UserResource, 'user')
-    session = fields.ForeignKey(CounselingSessionResource, 'session', full=True)
-    answered = fields.ManyToManyField('nutrition.api.DiscussionTopicResource', 'answered', full=True)
+    session = fields.ForeignKey(
+        CounselingSessionResource, 'session', full=True)
+    answered = fields.ManyToManyField(
+        'nutrition.api.DiscussionTopicResource', 'answered', full=True)
 
     class Meta:
         queryset = CounselingSessionState.objects.all()
