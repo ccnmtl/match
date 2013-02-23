@@ -1,28 +1,115 @@
-div.counseling_session {
+/*div.counseling_session {
     height: 500px;
+}*/
+
+div.counseling_session {
+    background-color: #e6f2ff;
+    border: 1px solid #b5daff;
+    padding: 8px;
+    -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 div.information {
     float: left;
-    width: 15em;
+    width: 210px;
 }
 
 div.available_time {
     text-align: center;
-    border: 1px solid black;
-    width: 13em;
-    margin-bottom: 10px;
+    border: 1px solid #999;
+    width: 210px;
+    margin-bottom: 5px;
+    padding: 0;
+    background: #fff url('/site_media/img/icon_stopwatch.jpg') 76px 22px no-repeat;
+}
+
+div.time_remaining {
+    font-weight: bold;
+    height: 24px;
+    line-height: 24px;
+    margin-bottom: 21px
+}
+
+div.time_minutes {
+    font-weight: bold;
+    padding-top: 6px;
+    height: 26px;
+    line-height: 24px;
+}
+
+span.display_time_text {
+    display: block;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 40px;
 }
 
 div#patient-chart {
-    border: 1px solid black;
-    width: 13em;
+    padding: 80px 0 0 0;
+    border: 0;
+    background: transparent url('/site_media/img/clipboard.png') 0 0 no-repeat;
+    width: 210px;
+    height: 321px;
+}
+
+#patient-chart-text {
+    padding: 0 2px 0 5px;
+    background-color: #fff;
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 220px;
+    overflow: auto;
+    font-size: 11px;
+    line-height: 12px;
+}
+
+.session-segment {
+    margin: 0 0 5px 0;
     padding: 5px;
+    background-color: transparent;
+    border: 1px solid #3399cc;
+}
+
+.session-chart-topic {
+    font-weight: bold;
+}
+
+.session-chart-reply {
+    margin-bottom: 10px;
+}
+
+.topic_discussed
+{
+    line-height: 28px;
+    height: 28px;
+	padding: 0;
+	padding-left: 35px;
+	text-align: left;
+	background-image: url('/site_media/img/icon_check_small.png');
+	background-repeat: no-repeat;
+	background-position: 10px 3px;
+}
+
+.topic_no_time {
+    line-height: 28px;
+    height: 28px;
+	padding: 0;
+	padding-left: 35px;
+	text-align: left;
+	background-image: url('/site_media/img/icon_warning_small.png');
+	background-repeat: no-repeat;
+	background-position: 10px 3px;
 }
 
 div.accordion {
     float: left;
-    width: 40em;
+    margin-left: 10px;
+    width: 430px;
 }
 
 div.accordion-group {
@@ -43,8 +130,8 @@ div.accordion-group:hover {
 }
 
 div.accordion-heading {
-    min-height: 4em;
-    padding: 10px;
+    min-height: 3em;
+    padding: 10px 10px 0 10px;
 
 }
 
@@ -55,7 +142,10 @@ div.accordion-heading div.discuss {
 
 div.accordion-heading .btn.discuss {
     float: right;
-    width: 35%;
+    width: 37%;
+    padding: 0;
+    line-height: 28px;
+    height: 28px;
 }
 
 div.accordion-body {
@@ -68,30 +158,42 @@ div.accordion-body .btn {
     margin-bottom: 5px;
 }
 
-div#display_time {
-    border: 1px solid black;
-    width: 4em;
-    height: 4em;
-    display: block;
-    text-align: center;
-
-
-    -webkit-border-top-left-radius: 2em;
-    -webkit-border-top-right-radius: 2em;
-    -moz-border-radius-topleft: 2em;
-    -moz-border-radius-topright: 2em;
-    border-top-left-radius: 2em;
-    border-top-right-radius: 2em;
-    -webkit-border-bottom-left-radius: 2em;
-    -webkit-border-bottom-right-radius: 2em;
-    -moz-border-radius-bottomleft: 2em;
-    -moz-border-radius-bottomright: 2em;
-    border-bottom-left-radius: 2em;
-    border-bottom-right-radius: 2em;
-
+div.accordion-inner h3 {
+    font-size: 18px;
+    line-height: 20px;
+    padding: 5px 8px 5px 0 !important;
 }
 
-div#display_time h1 {
+div.accordion-inner div.available_time {
+    float: right;
+}
+
+div.display_time {
+    border: 1px solid transparent;
+    width: 40px;
+    height: 40px;
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+
+
+    -webkit-border-top-left-radius: 20px;
+    -webkit-border-top-right-radius: 20px;
+    -moz-border-radius-topleft: 20px;
+    -moz-border-radius-topright: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    -webkit-border-bottom-left-radius: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    -moz-border-radius-bottomright: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+div.display_time h1 {
     margin-top: .2em;
 }
 
@@ -103,12 +205,13 @@ div#complete-overlay
     -moz-opacity: .8; /*older Mozilla*/
     -khtml-opacity: 0.8;   /*older Safari*/
     opacity: 0.8;   /*supported by current Mozilla, Safari, and Opera*/
-    background-color: #cc3300;
+    background: #cc0000 url('/site_media/img/icon_warning2.png') 100px center no-repeat;
     color:#fff;
-    text-align:center;
-    vertical-align:middle;
-    padding: 5px;
+    text-align: center;
+    padding: 0;
     margin-bottom: 10px;
+    min-height: 50px;
+    vertical-align: middle;
 }
 
 #complete-overlay a
@@ -116,8 +219,85 @@ div#complete-overlay
     color:#fff;
 }
 
+#complete-overlay h1 {
+    margin: 0;
+    padding: 5px 0 0 0;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+.btn-info[disabled] {
+  background-color: #e6e6e6;
+  *background-color: #d9d9d9;
+  color: #333333;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+
+#referral-form {
+    float: left;
+    margin-left: 10px;
+    padding: 0;
+}
+
+.referral-form-prescription {
+    background: url('/site_media/img/bg_prescription.png');
+    margin: 0 0 20px 0;
+    width: 400px;
+    padding: 15px;
+-webkit-box-shadow: 2px 2px 12px rgba(50, 50, 50, 0.75);
+-moz-box-shadow:    2px 2px 12px rgba(50, 50, 50, 0.75);
+box-shadow:         2px 2px 12px rgba(50, 50, 50, 0.75);
+}
+
+.referral-form-prescription .practice-logo {
+    background: url('/site_media/img/pediatric_dentistry.png') center 0 no-repeat;
+    height: 30px;
+    font-weight: bold;
+    padding-top: 90px;
+    text-align: center;
+	font-family: palatino, serif;
+	color: #003399;
+	text-transform: uppercase;
+	font-size: 12px;
+	line-height: 12px;
+}
+
 div#referral-patient-chart {
     float: left;
     width: 200px;
+    padding: 80px 0 0 0;
+    border: 0;
+    background: transparent url('/site_media/img/clipboard.png') 0 0 no-repeat;
+    width: 210px;
+    height: 321px;
 }
 
+.rx_patient {
+    font-size: 12px;
+    line-height: 13px;
+}
+
+#referral-form label {
+    width: 125px;
+    display: block;
+    float: left;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 5px;
+    height: 25px;
+    line-height: 25px;
+}
+
+.referral_success {
+    width: 300px;
+    min-height: 20px;
+    padding: 10px;
+    margin-left: 0;
+    margin-top: 80px;
+    vertical-align: middle;
+    padding-left: 60px;
+	background-image: url('/site_media/img/icon_check.png');
+	background-repeat: no-repeat;
+	background-position: 10px center;
+}
