@@ -107,7 +107,8 @@ INSTALLED_APPS = (
     'nutrition',
     'tastypie',
     'lettuce.django',
-    'django_nose'
+    'django_nose',
+    'bootstrapform'
 )
 
 LETTUCE_APPS = (
