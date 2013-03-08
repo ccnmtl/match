@@ -35,3 +35,14 @@ class UserVisited(models.Model):
     user = models.ForeignKey(UserProfile)
     section = models.ForeignKey(Section)
     visited_time = models.DateTimeField(auto_now=True)
+
+
+class GlossaryTerm(models.Model):
+    term = models.CharField(max_length=255)
+    definition = models.TextField()
+
+    def slug(self):
+        return
+
+    def __unicode__(self):
+        return "%s - %s" % (self.term, self.definition)

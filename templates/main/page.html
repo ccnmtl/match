@@ -10,11 +10,27 @@
     {% endfor %}
 
     {% ifnotequal module.slug 'socialwork' %}
-        <script src="/site_media/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/site_media/bootstrap/js/bootstrap.min.js"></script>               
     {% endifnotequal %}
-
-    <script type="text/javascript">
-        jQuery(document).ready(function () {
+    
+    {% ifequal module.slug 'speechpathology' %}
+        <script type="text/javascript">    
+            var terms = {
+                {% for item in glossary %}
+                    "{{item.term|slugify}}": {
+                        definition: "{{item.definition}}",
+                        label: "{{item.term}}"
+                    }{% if not forloop.last%},{% endif %} 
+                {% endfor %}
+            };
+        </script>
+            
+        <script type="text/javascript" src="/site_media/js/jquery.highlight.js"></script>
+        <script type="text/javascript" src="/site_media/js/glossary.js"></script>
+    {% endifequal %}
+    
+    <script type="text/javascript">    
+        jQuery(document).ready(function () {            
             jQuery("form").submit(function() {
                 var valid = true;
 
@@ -45,6 +61,10 @@
 
                 return valid;
             });
+            
+            if (terms !== undefined) {
+                var glossary = new Glossary(terms);
+            }
         });
     </script>
 {% endblock %}
@@ -54,9 +74,9 @@
         <link href="/site_media/bootstrap/css/bootstrap.css" rel="stylesheet">
         {% comment %}<link href="/site_media/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">{% endcomment %}
     {% endifnotequal %}
-{% for block in section.pageblock_set.all %}
-{% rendercss block %}
-{% endfor %}
+    {% for block in section.pageblock_set.all %}
+        {% rendercss block %}
+    {% endfor %}
 {% endblock %}
 
 
@@ -79,69 +99,73 @@
 {% block projectbanner %}{% endblock %}
 
 {% block content %}
-
-<h2>{{ section.label }}</h2>
-
-{% if needs_submit %}
-{% if is_submitted %}
-{% else %}
-<form action="." method="post">
-{% endif %}
-{% endif %}
-
-
-{% for block in section.pageblock_set.all %}
-    {% if block.label %}
-        <h3>{{block.label}}</h3>
-    {% endif %}
-    {% render block %}
-{% endfor %}
-
-
-{% if needs_submit %}
-    {% if request.user.is_anonymous %}
+    <div id="glossary-popup" style="display: none">
+        <div>
+            <div class="term"></div>
+            <a class="close"></a>
+        </div>
+        <div class="definition"></div>
+    </div>
+    
+    <h2>{{ section.label }}</h2>
+    
+    {% if needs_submit %}
+    {% if is_submitted %}
     {% else %}
-        {% if is_submitted %}
-            {% if allow_redo %}
-                <form action="." method="post">
-                    <input type="hidden" name="action" value="reset" />
-                    <input type="submit" value="Clear your answers and try again" class="btn btn-info right" />
+    <form action="." method="post">
+    {% endif %}
+    {% endif %}
+    
+    
+    {% for block in section.pageblock_set.all %}
+        {% if block.label %}
+            <h3>{{block.label}}</h3>
+        {% endif %}
+        {% render block %}
+    {% endfor %}
+    
+    
+    {% if needs_submit %}
+        {% if request.user.is_anonymous %}
+        {% else %}
+            {% if is_submitted %}
+                {% if allow_redo %}
+                    <form action="." method="post">
+                        <input type="hidden" name="action" value="reset" />
+                        <input type="submit" value="Clear your answers and try again" class="btn btn-info right" />
+                    </form>
+                {% endif %}
+            {% else %}
+                <input type="submit" value="Submit" class="btn btn-info right" />
                 </form>
             {% endif %}
-        {% else %}
-            <input type="submit" value="Submit" class="btn btn-info right" />
-            </form>
         {% endif %}
     {% endif %}
-{% endif %}
 
 {% endblock %}
 
 {% block content-nav %}
-
-<div class="content-nav">
-    {%  with section.get_previous as previous %}
-        {%  if previous %}
-            {%  ifnotequal previous.depth 2 %}
-                <a href="{{previous.get_absolute_url}}" id="previous" class="pager_button"><b>&larr;</b>  {{previous.label}} </a>
-            {% endifnotequal %}
-        {% endif %}
-    {% endwith %}
-
-    {% with section.get_next as next %}
-        {% if next %}
-            {% if not next.is_root %}
-                {% if next_unlocked %}
-                    <a href="{{ next.get_absolute_url}}" id="next" class="pager_button">{{next.label}} <b>&rarr;</b></a>
-                {% else %}
-                        <div id="next" class="pager_button">{{next.label}} <b>&rarr;</b></div>
-                    <input type="hidden" id="next_url" value="{{next.get_absolute_url}}" />
+    <div class="content-nav">
+        {%  with section.get_previous as previous %}
+            {%  if previous %}
+                {%  ifnotequal previous.depth 2 %}
+                    <a href="{{previous.get_absolute_url}}" id="previous" class="pager_button"><b>&larr;</b>  {{previous.label}} </a>
+                {% endifnotequal %}
+            {% endif %}
+        {% endwith %}
+    
+        {% with section.get_next as next %}
+            {% if next %}
+                {% if not next.is_root %}
+                    {% if next_unlocked %}
+                        <a href="{{ next.get_absolute_url}}" id="next" class="pager_button">{{next.label}} <b>&rarr;</b></a>
+                    {% else %}
+                            <div id="next" class="pager_button">{{next.label}} <b>&rarr;</b></div>
+                        <input type="hidden" id="next_url" value="{{next.get_absolute_url}}" />
+                    {% endif %}
                 {% endif %}
             {% endif %}
-        {% endif %}
-    {% endwith %}
-                 <div class="visualclear"></div>
-</div><!-- div id="content-nav" -->
-
-
+        {% endwith %}
+                     <div class="visualclear"></div>
+    </div><!-- div id="content-nav" -->
 {% endblock %}

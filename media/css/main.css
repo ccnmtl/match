@@ -1778,3 +1778,51 @@ input[type="radio"], input[type="checkbox"] {
 .module_list li {
     padding: 5px 0;
 }
+
+
+span.glossary {
+    color: #066;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+div#glossary-popup {
+    position: absolute;
+    padding: 5px;
+    color: #000;
+    background-color: #B6D8DB;    
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 85%;
+    width: 175px;
+    margin-left: -15px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border: 1px solid #399; 
+}
+
+div#glossary-popup div.term {
+    float: left;
+    font-weight: bold;
+}
+
+div#glossary-popup div.definition {
+    clear: both;
+} 
+
+div#glossary-popup a.close {
+    float: right;
+    text-decoration: none;
+    text-align: center;
+    width: 10px;
+    height: 10px;
+    background-image: url(/site_media/img/closelabel.png);
+    background-repeat: no-repeat;
+    background-position: top left;
+    opacity: 0.70;
+    -moz-opacity: 0.70;
+    filter:alpha(opacity=70);       
+}
+
+    

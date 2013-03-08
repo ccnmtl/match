@@ -1,7 +1,8 @@
-from main.models import UserProfile, UserVisited
+from main.models import GlossaryTerm, UserProfile, UserVisited
 from django.contrib import admin
 
 admin.site.register(UserProfile)
+admin.site.register(GlossaryTerm)
 
 
 class UserVisitedAdmin(admin.ModelAdmin):

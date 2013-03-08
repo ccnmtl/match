@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse, \
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext, loader
 from django.utils.encoding import smart_str
-from main.models import UserProfile
+from main.models import GlossaryTerm, UserProfile
 from nutrition.models import CounselingSessionState, \
     CounselingReferralState, DiscussionTopic
 from pagetree.helpers import get_section_from_path, \
@@ -178,6 +178,7 @@ def page(request, path):
         instructor_link = has_responses(section)
         return dict(section=section,
                     module=module,
+                    glossary=GlossaryTerm.objects.all(),
                     needs_submit=needs_submit(section),
                     is_submitted=submitted(section, request.user),
                     allow_redo=allow_redo(section),
