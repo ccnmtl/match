@@ -17,14 +17,27 @@ function Glossary(terms) {
             
             var pos = jQuery(srcElement).position();
             var left = pos.left + 15;
-            var popupWidth = jQuery("#glossary-popup").outerWidth()
+            var top = pos.top + jQuery(srcElement).outerHeight() + 2;
+            var popupWidth = jQuery("#glossary-popup").outerWidth();
+            var popupHeight = jQuery("#glossary-popup").outerHeight();
             
-            if (jQuery(window).width() - (left + popupWidth) < 25) {
+            
+            if ((jQuery(window).width() - (left + popupWidth)) < 25) {
                 left = (pos.left + jQuery(srcElement).outerWidth() + 15) - popupWidth;
             }
             
+            var docViewTop = jQuery(window).scrollTop();
+            var docViewBottom = docViewTop + jQuery(window).height();
+
+            var elemTop = jQuery(srcElement).offset().top;
+            var elemBottom = elemTop + jQuery(srcElement).height() + popupHeight;
+            
+            if ((docViewTop >= elemTop) || (docViewBottom <= elemBottom)) {
+                top -= jQuery(srcElement).height() + popupHeight;
+            }
+            
             jQuery("#glossary-popup").css({
-                'top': pos.top + jQuery(srcElement).height() + 2,
+                'top': top,
                 'left': left});
             
             jQuery("#glossary-popup").show();
