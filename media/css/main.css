@@ -1016,21 +1016,39 @@ padding: 2px;
 }
 
 .yours.correct, .yours.correctanswer {
-background-color: #E6F2D8; 
+    background-color: #E6F2D8; 
 }
 
 .yours.incorrect, .yours.incorrectanswer {
-background-color: #f00;
-color: #fff;
+    background-color: #f00;
+    color: #fff;
 }
 
 .expert {color: orange;}
 
-//.incorrect { }
-.correct { }
+div.corrected_quiz .yours.correct {
+    background-color: #E6F2D8;
+}
 
-.correctanswer { }
-.incorrectanswer { }
+div.corrected_quiz .yours.correct:after {
+    content: "You are correct!";
+    padding-left: 20px;
+}
+
+div.corrected_quiz .yours.incorrect:after {
+    content: "You are incorrect!";
+    padding-left: 20px;    
+}
+
+div.corrected_quiz .correct {
+    background-color: #E6F2D8;
+}
+
+div.corrected_quiz .correct:after {
+    content: "This was the right answer!";
+    padding-left: 20px;
+}
+
 
 .answer-inner {color: #000;}
 

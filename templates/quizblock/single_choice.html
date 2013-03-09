@@ -17,11 +17,13 @@
                             {% endif %}                            
                         </div>
                     {% else %}
-                        {{answer.label}}
-                        {% if answer.explanation %}
-                          <div class="answer-explanation">
-                             {{answer.explanation}}
-                          </div>
+                        <div {% if answer.correct %}class="correct"{% endif %}>
+                            {{answer.label}}
+                            {% if answer.explanation %}
+                              <div class="answer-explanation">
+                                 {{answer.explanation}}
+                              </div>
+                        </div>
                         {% endif %}                       
                     {% endifequal %}
                 {% else %}
