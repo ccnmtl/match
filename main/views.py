@@ -120,15 +120,37 @@ def ce_credit_confirmation(request):
     return dict()
 
 
+def module_one(request, path):
+    hierarchy = Hierarchy.objects.get(name="module_one")
+    return page(request, hierarchy, path)
+
+
+def module_two(request, path):
+    hierarchy = Hierarchy.objects.get(name="module_two")
+    return page(request, hierarchy, path)
+
+
+def module_three(request, path):
+    hierarchy = Hierarchy.objects.get(name="module_three")
+    return page(request, hierarchy, path)
+
+
+def module_four(request, path):
+    hierarchy = Hierarchy.objects.get(name="module_four")
+    return page(request, hierarchy, path)
+
+
+def module_five(request, path):
+    hierarchy = Hierarchy.objects.get(name="module_five")
+    return page(request, hierarchy, path)
+
+
 @login_required
 @rendered_with('main/page.html')
-def page(request, path):
-    hierarchy_name, slash, section_path = path.partition('/')
-    section = get_section_from_path(section_path, hierarchy=hierarchy_name)
-
+def page(request, hierarchy, path):
+    section = get_section_from_path(path, hierarchy=hierarchy.name)
     root = section.hierarchy.get_root()
     module = get_module(section)
-
     user_profile = get_or_create_profile(user=request.user, section=section)
 
     can_access = _unlocked(user_profile, section)

@@ -27,6 +27,10 @@
             
         <script type="text/javascript" src="/site_media/js/jquery.highlight.js"></script>
         <script type="text/javascript" src="/site_media/js/glossary.js"></script>
+    {% else %}
+        <script type="text/javascript"> 
+            var terms = undefined;
+        </script>
     {% endifequal %}
     
     <script type="text/javascript">    

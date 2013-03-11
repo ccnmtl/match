@@ -35,6 +35,9 @@ urlpatterns = patterns(
     (r'^instructor/(?P<path>.*)$', 'match.main.views.instructor_page'),
     (r'^edit/(?P<path>.*)$', 'match.main.views.edit_page', {}, 'edit-page'),
 
-    # no more zero-length pagetree section paths.
-    (r'^(?P<path>.+)$', 'match.main.views.page'),
+    (r'^module_one/(?P<path>.+)$', 'match.main.views.module_one'),
+    (r'^module_two/(?P<path>.+)$', 'match.main.views.module_two'),
+    (r'^module_three/(?P<path>.+)$', 'match.main.views.module_three'),
+    (r'^module_four/(?P<path>.+)$', 'match.main.views.module_four'),
+    (r'^module_five/(?P<path>.+)$', 'match.main.views.module_five'),
 )
