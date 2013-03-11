@@ -1,0 +1,36 @@
+{% load markup %}
+
+<ol type="A">
+    {% for answer in question.answer_set.all %}
+        {% if block.rhetorical %}
+            <li><input name="question{{question.id}}" value="{{answer.label}}" type="radio" />{{answer.label}}</li>
+        {% else %}
+            <li>
+                {% if response %}
+                    {% ifequal response.value answer.value %}
+                        <div class="yours {% if response.is_correct %}correct{% else %}incorrect{% endif %}">
+                            {{answer.label}}
+                            {% if answer.explanation %}
+                              <div class="answer-explanation">
+                                 {{answer.explanation}}
+                              </div>
+                            {% endif %}                            
+                        </div>
+                    {% else %}
+                        <div {% if answer.correct %}class="correct"{% endif %}>
+                            {{answer.label}}
+                            {% if answer.explanation %}
+                              <div class="answer-explanation">
+                                 {{answer.explanation}}
+                              </div>
+                        </div>
+                        {% endif %}                       
+                    {% endifequal %}
+                {% else %}
+                  <input name="pageblock-{{block.pageblock.id}}-question{{question.id}}"
+                       value="{{answer.value}}" type="radio" />{{answer.label}}
+                {% endif %}
+            </li>
+        {% endif %}
+    {% endfor %}
+</ol>

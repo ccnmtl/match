@@ -1,0 +1,71 @@
+{%  load user_session_state %}
+
+<div id="referral" class="clearfix">
+
+    <div id="referral-patient-chart">
+        <div id="patient-chart-text">
+            {%  get_user_session_states request.user %}
+            {%  for s in user_session_states %}
+                <h5>{{ s.session.patient_chart }}</h5>
+                <div class="session-chart-answered">
+                    {%  for topic in s.answered.all %}
+                        <div class="session-chart-topic">{{ topic.summary_text }}</div>
+                        <div class="session-chart-reply">{{ topic.summary_reply }}</div>
+                    {%  endfor %}
+                </div>
+            {%  endfor  %}
+        </div>
+    </div>
+
+    <div id="referral-form">
+            {% get_patient_referral request.user %}
+
+            {%  if referral.is_complete %}
+    <div class="referral_success well alert-success">
+    You've submitted your referral form!<br />
+    </div>
+            {%  else %}
+            <div class="referral-form-prescription">
+            <div class="practice-logo">Pediatric Dental Smiles<br />Referral Form</div>
+            <div class="rx_patient">
+                <p><b>PATIENT</b><br />
+                <b>Name:</b> Nick Williams<br />
+                <b>DOB:</b> 03/12/2007<br />
+                <b>Gender:</b> Male<br />
+                <b>Phone #:</b> (817) 555-4444<br />
+                </p>
+            </div>
+                <div class="clearfix">
+                    <label>Today’s Date:</label> <input type="text" name="pageblock-{{block.pageblock.id}}-referral_date"
+                        value="{{ referral.referral_date|date:"m/d/Y" }}" />
+                </div>
+
+                <div class="clearfix">
+                    <label>Referring to:</label> <input type="text" name="pageblock-{{block.pageblock.id}}-referred_to"
+                        value="{%  if referral.referred_to %}{{ referral.referred_to }}{%  endif %}" />
+                </div>
+
+                <div class="clearfix">
+                    <label>Referring dentist:</label> <input type="text" name="pageblock-{{block.pageblock.id}}-referred_from"
+                        value="{%  if referral.referred_from %}{{ referral.referred_from }}{%  endif %}" />
+                </div>
+
+                <div class="clearfix">
+                    <label>Reason for referral:</label>
+                    {% spaceless %}
+                        <textarea name="pageblock-{{block.pageblock.id}}-reason">{% if referral.reason %}{{ referral.reason }}{%  endif %}</textarea>
+                    {% endspaceless %}
+                </div>
+
+                <div class="clearfix">
+                    <label>Medical history:</label>
+                    {% spaceless %}
+                        <textarea name="pageblock-{{block.pageblock.id}}-medical_history">{% if referral.medical_history %}{{ referral.medical_history }}{%  endif %}</textarea>
+                    {% endspaceless %}
+                </div>
+            </div>
+            {%  endif %}
+
+    </div>
+</div>
+

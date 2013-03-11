@@ -1,9 +1,0 @@
-{% load markup %}
-  {% comment %} short/long text questions {% endcomment %}
-  {% if question.explanation %}
-      <div class="casesanswerdisplay">
-        <div id="q{{question.id}}" class="question-explanation">
-          <p>{{question.explanation|markdown}}</p>
-        </div>
-      </div>
-  {% endif %}
