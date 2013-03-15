@@ -1,4 +1,4 @@
-from main.models import GlossaryTerm, UserProfile, UserVisited
+from match.main.models import GlossaryTerm, UserProfile, UserVisited
 from django.contrib import admin
 
 admin.site.register(UserProfile)

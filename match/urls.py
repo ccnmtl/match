@@ -29,7 +29,7 @@ urlpatterns = patterns(
      {'document_root': settings.MEDIA_ROOT}),
     (r'^_quiz/', include('quizblock.urls')),
     (r'^_careermap/', include('careermapblock.urls')),
-    (r'nutrition/', include('nutrition.urls')),
+    (r'nutrition/', include('match.nutrition.urls')),
     (r'^_stats/', direct_to_template, {'template': 'main/stats.html'}),
     (r'^ce-credit-confirmation/', 'match.main.views.ce_credit_confirmation'),
     (r'^instructor/(?P<path>.*)$', 'match.main.views.instructor_page'),

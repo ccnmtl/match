@@ -1,6 +1,6 @@
 from django.contrib import admin
-from nutrition.models import CounselingSession, CounselingReferralState, \
-    CounselingSessionState, DiscussionTopic
+from match.nutrition.models import CounselingSession, \
+    CounselingReferralState, CounselingSessionState, DiscussionTopic
 
 admin.site.register(DiscussionTopic)
 admin.site.register(CounselingSession)

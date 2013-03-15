@@ -62,7 +62,7 @@
                 return valid;
             });
             
-            if (terms !== undefined) {
+            if (typeof(terms) != "undefined") {
                 var glossary = new Glossary(terms);
             }
         });

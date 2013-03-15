@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import patterns, include
-from nutrition.api import CounselingSessionResource, \
+from match.nutrition.api import CounselingSessionResource, \
     CounselingSessionStateResource, UserResource, DiscussionTopicResource
 from tastypie.api import Api
 import os.path

@@ -1,8 +1,5 @@
 from settings_shared import *
 
-DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = 'lettuce.db'
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -37,4 +34,4 @@ BROWSER = 'Chrome'
 # * match_participant_two
 #
 # To run the tests
-# ./manage.py harvest --settings=settings_test
+# ./manage.py harvest --settings=match.settings_test

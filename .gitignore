@@ -6,3 +6,6 @@ local_settings.py
 lettuce.db
 .idea
 .coverage
+.project
+.pydevproject
+eclipse.manage.py

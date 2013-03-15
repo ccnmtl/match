@@ -1,5 +1,5 @@
 from django import template
-from nutrition.models import CounselingSession, CounselingSessionState, \
+from match.nutrition.models import CounselingSession, CounselingSessionState, \
     CounselingReferralState
 register = template.Library()
 

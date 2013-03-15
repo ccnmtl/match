@@ -21,7 +21,7 @@ def setup_database(variables):
     except:
         pass  # database doesn't exist yet. that's ok.
 
-    os.system("cp lettuce_base.db lettuce.db")
+    os.system("cp match/lettuce_base.db lettuce.db")
 
 
 @before.all

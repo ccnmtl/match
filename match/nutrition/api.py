@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from tastypie import fields
 from tastypie.resources import ModelResource
-from nutrition.models import DiscussionTopic, CounselingSession, \
+from match.nutrition.models import DiscussionTopic, CounselingSession, \
     CounselingSessionState
 from tastypie.authorization import Authorization
 
@@ -41,7 +41,7 @@ class DiscussionTopicResource(ModelResource):
 
 class CounselingSessionResource(ModelResource):
     topics = fields.ManyToManyField(
-        'nutrition.api.DiscussionTopicResource', 'topics', full=True)
+        'match.nutrition.api.DiscussionTopicResource', 'topics', full=True)
 
     class Meta:
         queryset = CounselingSession.objects.all()
@@ -54,7 +54,7 @@ class CounselingSessionStateResource(ModelResource):
     session = fields.ForeignKey(
         CounselingSessionResource, 'session', full=True)
     answered = fields.ManyToManyField(
-        'nutrition.api.DiscussionTopicResource', 'answered', full=True)
+        'match.nutrition.api.DiscussionTopicResource', 'answered', full=True)
 
     class Meta:
         queryset = CounselingSessionState.objects.all()
