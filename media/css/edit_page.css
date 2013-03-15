@@ -20,6 +20,9 @@ table.block-edit-header tr td {
     border: 0;
 }
 
+div.block-edit form table tbody tr td a {
+    text-decoration: underline;
+}
 
 /* MATCH specific css */
 #id_topics, #id_question {
