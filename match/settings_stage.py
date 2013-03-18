@@ -4,13 +4,16 @@ ADMINS = (
     ('CCNMTL-Kang', 'ccnmtl-sysadmin+staging@columbia.edu'),
 )
 
-DATABASE_ENGINE = 'postgresql_psycopg2'
-
 TEMPLATE_DIRS = (
-    "/usr/local/share/sandboxes/common/match/match/templates",
+    "/usr/local/share/sandboxes/common/match/match/match/templates",
 )
 
 MEDIA_ROOT = '/usr/local/share/sandboxes/common/match/uploads/'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
+try:
+    from local_settings import *
+except ImportError:
+    pass

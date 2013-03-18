@@ -113,8 +113,8 @@ INSTALLED_APPS = (
 )
 
 LETTUCE_APPS = (
-    'main',
-    'nutrition'
+    'match.main',
+    'match.nutrition'
 )
 
 
@@ -125,7 +125,7 @@ STATSD_PORT = 8125
 STATSD_PATCHES = ['django_statsd.patches.db', ]
 
 ACCOUNT_ACTIVATION_DAYS = 7
-AUTH_PROFILE_MODULE = 'main.UserProfile'
+AUTH_PROFILE_MODULE = 'match.main.UserProfile'
 
 PAGEBLOCKS = ['pageblocks.HTMLBlockWYSIWYG',
               'pageblocks.TextBlock',
