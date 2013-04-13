@@ -10,7 +10,7 @@ TEMPLATE_DIRS = (
 
 MEDIA_ROOT = '/usr/local/share/sandboxes/common/match/uploads/'
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 try:
