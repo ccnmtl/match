@@ -9,3 +9,4 @@ lettuce.db
 .project
 .pydevproject
 eclipse.manage.py
+.settings
