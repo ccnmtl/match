@@ -7,18 +7,18 @@ import time
 
 
 class DiscussionTopic(models.Model):
-    def __unicode__(self):
-        if self.text and len(self.text) > 25:
-            return self.text[:25] + '...'
-        else:
-            self.text
-
     text = models.TextField()
     estimated_time = models.IntegerField()
     reply = models.TextField()
     actual_time = models.IntegerField()
     summary_text = models.TextField()
     summary_reply = models.TextField()
+
+    def __unicode__(self):
+        if self.text and len(self.text) > 25:
+            return self.text[:25] + '...'
+        else:
+            self.text
 
 
 class CounselingSession(models.Model):

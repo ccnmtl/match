@@ -39,7 +39,7 @@ if 'test' in sys.argv:
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = [
     '--with-coverage',
-    '--cover-package=match.main',
+    '--cover-package=match',
 ]
 
 
