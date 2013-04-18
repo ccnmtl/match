@@ -13,7 +13,8 @@ STATICMEDIA_MOUNTS = (
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
-SENTRY_SITE = 'match'
+SENTRY_SITE = 'match-staging'
+STATSD_PREFIX = 'match-staging'
 
 if 'migrate' not in sys.argv:
     import logging
@@ -24,10 +25,6 @@ if 'migrate' not in sys.argv:
         logger = logging.getLogger('sentry.errors')
         logger.propagate = False
         logger.addHandler(logging.StreamHandler())
-
-SENTRY_REMOTE_URL = 'http://sentry.ccnmtl.columbia.edu/sentry/store/'
-# remember to set the SENTRY_KEY in a local_settings.py
-# as documented in the wiki
 
 try:
     from local_settings import *
