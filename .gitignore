@@ -11,3 +11,4 @@ lettuce.db
 eclipse.manage.py
 .settings
 chromedriver.log
+reports/
