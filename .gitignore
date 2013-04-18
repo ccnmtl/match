@@ -10,3 +10,4 @@ lettuce.db
 .pydevproject
 eclipse.manage.py
 .settings
+chromedriver.log
