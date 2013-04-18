@@ -11,6 +11,17 @@ STATICMEDIA_MOUNTS = (
     ('/sitemedia', '/var/www/match/match/sitemedia'),
 )
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'match',
+        'HOST': '',
+        'PORT': 6432,
+        'USER': '',
+        'PASSWORD': '',
+    }
+}
+
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 SENTRY_SITE = 'match'

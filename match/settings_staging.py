@@ -1,6 +1,17 @@
 # flake8: noqa
 from settings_shared import *
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'match',
+        'HOST': '',
+        'PORT': 6432,
+        'USER': '',
+        'PASSWORD': '',
+    }
+}
+
 TEMPLATE_DIRS = (
     "/var/www/match/match/match/templates",
 )
@@ -15,6 +26,8 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 SENTRY_SITE = 'match-staging'
 STATSD_PREFIX = 'match-staging'
+
+SENTRY_SERVERS = ['http://sentry.ccnmtl.columbia.edu/sentry/store/']
 
 if 'migrate' not in sys.argv:
     import logging
