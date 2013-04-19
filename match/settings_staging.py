@@ -26,6 +26,7 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 SENTRY_SITE = 'match-staging'
 STATSD_PREFIX = 'match-staging'
+STAGING_ENV = True
 
 SENTRY_SERVERS = ['http://sentry.ccnmtl.columbia.edu/sentry/store/']
 
