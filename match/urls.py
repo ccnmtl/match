@@ -20,6 +20,7 @@ urlpatterns = patterns(
     (r'^admin/', include(admin.site.urls)),
     ('^accounts/', include('djangowind.urls')),
     (r'^registration/', include('registration.urls')),
+    (r'^smoketest/', include('smoketest.urls')),
     (r'^munin/', include('munin.urls')),
     (r'^pagetree/', include('pagetree.urls')),
     (r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),

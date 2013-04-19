@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     'django_nose',
     'bootstrapform',
     'django_jenkins',
+    'smoketest',
 )
 
 LETTUCE_APPS = (
