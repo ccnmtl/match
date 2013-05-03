@@ -150,8 +150,8 @@
 
 </div><!-- id="container" -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
 <script src="/site_media/js/browserdetect.js" type="text/javascript" language="javascript"></script>
 <script src="/site_media/js/shield.js" type="text/javascript" language="javascript"></script>
 
@@ -163,5 +163,14 @@
 </script>
 
 {% block js %}{% endblock %}
+
+{% if STAGING_ENV %}
+<div class="alert alert-error"
+ style="position: fixed; bottom: 0px; background-color: #fee; border: #f00 solid 1px;">
+<h4>Warning: Staging Site</h4>
+<p>You are viewing a staging version of this site, not the production site.</p>
+<p>This site was last updated on: <b>{{STAGING_DEPLOY_TIME}}</b></p>
+</div>
+{% endif %}
 </body>
 </html>

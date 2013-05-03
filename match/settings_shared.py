@@ -24,7 +24,7 @@ DATABASES = {
     }
 }
 
-if 'test' in sys.argv:
+if 'test' in sys.argv or 'jenkins' in sys.argv:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -39,8 +39,18 @@ if 'test' in sys.argv:
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = [
     '--with-coverage',
-    '--cover-package=match.main',
+    '--cover-package=match',
 ]
+
+JENKINS_TASKS = (
+    'django_jenkins.tasks.run_pylint',
+    'django_jenkins.tasks.with_coverage',
+    'django_jenkins.tasks.django_tests',
+    'django_jenkins.tasks.run_pep8',
+    'django_jenkins.tasks.run_pyflakes',
+)
+
+PROJECT_APPS = ['match.main', 'match.nutrition', ]
 
 
 TIME_ZONE = 'America/New_York'
@@ -60,6 +70,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
     'django.core.context_processors.request',
+    'stagingcontext.staging_processor',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -109,7 +120,9 @@ INSTALLED_APPS = (
     'tastypie',
     'lettuce.django',
     'django_nose',
-    'bootstrapform'
+    'bootstrapform',
+    'django_jenkins',
+    'smoketest',
 )
 
 LETTUCE_APPS = (
@@ -165,3 +178,5 @@ WIND_STAFF_MAPPER_GROUPS = ['tlc.cunix.local:columbia.edu']
 WIND_SUPERUSER_MAPPER_GROUPS = ['anp8', 'jb2410', 'zm4', 'sbd12', 'egr2107',
                                 'kmh2124', 'sld2131', 'amm8', 'mar227',
                                 'ed2198', 'cks2120']
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
