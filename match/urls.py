@@ -15,8 +15,6 @@ urlpatterns = patterns(
     (r'^help/$', 'match.main.views.background', {'content_to_show': 'help'}),
     ('^admin/allresults/$', 'match.main.views.all_results'),
     ('^admin/allresultskey/$', 'match.main.views.all_results_key'),
-    (r'^admin/pagetree/', include('pagetree.urls')),
-    (r'^admin/quiz/', include('quizblock.urls')),
     (r'^admin/', include(admin.site.urls)),
     ('^accounts/', include('djangowind.urls')),
     (r'^registration/', include('registration.urls')),
