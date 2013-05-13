@@ -508,7 +508,7 @@ def all_results(request):
         'Content-Disposition'] = 'attachment; filename=match_responses.csv'
     writer = csv.writer(response)
 
-    headers = ['userIdentifier']
+    headers = ['userIdentifier', 'userEmail']
     for c in columns:
         headers += c.header_column()
     writer.writerow(headers)
@@ -516,7 +516,7 @@ def all_results(request):
     # Only look at users who have submission
     users = User.objects.filter(submission__isnull=False).distinct()
     for u in users:
-        row = [u.username]
+        row = [u.username, u.email]
         for column in columns:
             v = smart_str(column.user_value(u))
             row.append(v)
