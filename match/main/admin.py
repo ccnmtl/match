@@ -1,8 +1,10 @@
 from match.main.models import GlossaryTerm, UserProfile, UserVisited
 from django.contrib import admin
+from match.main.models import ImageMapItem
 
 admin.site.register(UserProfile)
 admin.site.register(GlossaryTerm)
+admin.site.register(ImageMapItem)
 
 
 class UserVisitedAdmin(admin.ModelAdmin):

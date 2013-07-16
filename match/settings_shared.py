@@ -151,6 +151,7 @@ PAGEBLOCKS = ['pageblocks.HTMLBlockWYSIWYG',
               'responseblock.Response',
               'nutrition.CounselingSession',
               'nutrition.CounselingReferral',
+              'main.ImageMapChart',
               ]
 
 

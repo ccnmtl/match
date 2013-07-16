@@ -12,3 +12,4 @@ eclipse.manage.py
 .settings
 chromedriver.log
 reports/
+.DS_Store
