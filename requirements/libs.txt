@@ -17,7 +17,6 @@ requirements/src/simplejson-2.0.9.tar.gz
 requirements/src/smartypants-1.6.0.2.tar.gz
 requirements/src/uuid-1.30.tar.gz
 requirements/src/psycopg2-2.4-no-mx.tar.gz
-requirements/src/Imaging-1.1.7.tar.gz
 requirements/src/statsd-0.5.1.tar.gz
 requirements/src/six-1.1.0.tar.gz
 requirements/src/python-dateutil-2.1.tar.gz

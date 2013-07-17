@@ -252,7 +252,7 @@ def module_three_glossary(request):
 
     return dict(section=section,
                 module=module,
-                glossary=GlossaryTerm.objects.all(),
+                glossary=GlossaryTerm.objects.all().order_by("term"),
                 modules=root.get_children(),
                 root=section.hierarchy.get_root(),
                 can_edit=can_edit)
