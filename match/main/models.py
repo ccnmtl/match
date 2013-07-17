@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from pagetree.models import Section, PageBlock
 from django.contrib.contenttypes import generic
 
+
 class UserProfile(models.Model):
     user = models.ForeignKey(User, related_name="application_user")
     last_location = models.CharField(max_length=255, default="/")
@@ -48,12 +49,14 @@ class GlossaryTerm(models.Model):
     def __unicode__(self):
         return "%s - %s" % (self.term, self.definition)
 
+
 class ImageMapItem(models.Model):
     label_name = models.CharField(max_length=64, default='')
     label = models.CharField(max_length=64)
     content = models.TextField()
     map_area_shape = models.CharField(max_length=64, default='')
     coordinates = models.TextField()
+
     def __unicode__(self):
         return self.label_name
 
@@ -90,7 +93,7 @@ class ImageMapChart(models.Model):
         return form.save()
 
     def edit(self, vals, files):
-        form =ImageMapChartForm(data=vals, files=files, instance=self)
+        form = ImageMapChartForm(data=vals, files=files, instance=self)
         if form.is_valid():
             form.save()
 
@@ -101,5 +104,3 @@ class ImageMapChart(models.Model):
 class ImageMapChartForm(forms.ModelForm):
     class Meta:
         model = ImageMapChart
-
-
