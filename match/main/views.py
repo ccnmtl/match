@@ -237,6 +237,27 @@ def instructor_page(request, path):
                 root=root)
 
 
+@login_required
+@rendered_with('main/module_three_glossary.html')
+def module_three_glossary(request):
+    hierarchy = Hierarchy.objects.get(name="module_three")
+    section = get_section_from_path("speechpathology/",
+                                    hierarchy=hierarchy.name)
+    root = section.hierarchy.get_root()
+    module = get_module(section)
+
+    can_edit = False
+    if not request.user.is_anonymous():
+        can_edit = request.user.is_staff
+
+    return dict(section=section,
+                module=module,
+                glossary=GlossaryTerm.objects.all(),
+                modules=root.get_children(),
+                root=section.hierarchy.get_root(),
+                can_edit=can_edit)
+
+
 def clean_header(s):
     s = s.replace('<div class=\'question-sub\'>', '')
     s = s.replace('<div class=\'question\'>', '')

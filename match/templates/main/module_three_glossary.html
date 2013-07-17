@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load render %}
+{% comment %}######## THIS IS MATCH TEMPLATE ########{% endcomment %}
+
+
+{% block js %}
+    {% ifnotequal module.slug 'socialwork' %}
+        <script src="/site_media/bootstrap/js/bootstrap.min.js"></script>               
+    {% endifnotequal %}    
+{% endblock %}
+
+{% block css %}
+   {% ifnotequal module.slug 'socialwork' %}
+        <link href="/site_media/bootstrap/css/bootstrap.css" rel="stylesheet">
+        {% comment %}<link href="/site_media/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">{% endcomment %}
+    {% endifnotequal %}
+    {% for block in section.pageblock_set.all %}
+        {% rendercss block %}
+    {% endfor %}
+{% endblock %}
+
+
+{% block title %}{{section.label}}{% endblock %}
+
+{% block sidenav %}
+    <!-- ###### Secondary Navigation ###### -->
+    <div id="secondary_navigation">
+        <div id="fadetop"></div>
+        <div class="block">
+          {% if module.get_children %}
+                <!--<h3>Sections</h3>-->
+                {% include "main/menu.html" %}
+          {% endif %}
+        </div><!-- div id="block" -->
+        <div id="fadebottom"></div>
+    </div><!-- div id="secondary_navigation" -->
+{% endblock %}
+
+{% block projectbanner %}{% endblock %}
+
+{% block content %}
+    <h2>Glossary</h2>
+    
+    {% for item in glossary %}
+        <h4>{{item.term}}</h4>
+        <p>{{item.definition}}</p>
+    {% endfor %}
+{% endblock %}
+
+{% block content-nav %}
+{% endblock %}
