@@ -81,7 +81,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware'
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'waffle.middleware.WaffleMiddleware',
 )
 
 ROOT_URLCONF = 'match.urls'
@@ -123,6 +124,7 @@ INSTALLED_APPS = (
     'bootstrapform',
     'django_jenkins',
     'smoketest',
+    'waffle'
 )
 
 LETTUCE_APPS = (
