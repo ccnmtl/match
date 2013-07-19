@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% comment %}######## THIS IS MATCH TEMPLATE ########{% endcomment %}
+{% load waffle_tags %}
 {% block widthtype %}fixed content_wide{% endblock %}
 {% block title %}Welcome to MATCH{% endblock %}
 {% block js %}
@@ -55,9 +56,9 @@ Children’s oral health is determined by social, behavioral, genetic, nutrition
     <li>Module 1: <a href="/module_one/socialwork/">Social workers</a></li>
     <li>Module 2: <a href="/module_two/nutrition/">Nutrition</a></li>
     <li>
-        Module 3: {% comment %}<a href="/module_three/speechpathology/">{% endcomment %}
+        Module 3: {% flag "speech_pathology" %}<a href="/module_three/speechpathology/">{% endflag %}
             Speech pathology (coming soon)
-        {% comment %}</a>{% endcomment %}
+        {% flag "speech_pathology" %}</a>{% endflag %}
     </li>
     <li>
         Module 4: {% comment %}<a href="/module_four/occupationaltherapy/">{% endcomment %}
