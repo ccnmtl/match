@@ -3,7 +3,7 @@
   {% if question.explanation %}
       <div class="casesanswerdisplay">
         <div id="q{{question.id}}" class="question-explanation">
-          <p>{{question.explanation|markdown}}</p>
+          <p>{{question.explanation|safe}}</p>
         </div>
       </div>
   {% endif %}
