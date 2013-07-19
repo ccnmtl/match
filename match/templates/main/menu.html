@@ -1,5 +1,6 @@
 {% load unlocked %}
 
+<h6 style="font-style: normal">TABLE OF CONTENTS</h6>
 <ul>
 {% for s in module.get_descendants %}
 {% ifequal s.id module.id %}
@@ -39,4 +40,13 @@
 {% endif%}
 {% endifequal %}
 {% endfor %}
+</ul>
+
+<h6 style="font-style: normal">RESOURCES</h6>
+<ul>
+    <li>
+        <div class="regular">
+            <a href="/module_three/speechpathology/glossary/">Glossary</a>
+        </div>
+    </li>
 </ul>

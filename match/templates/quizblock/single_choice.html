@@ -12,7 +12,7 @@
                             {{answer.label}}
                             {% if answer.explanation %}
                               <div class="answer-explanation">
-                                 {{answer.explanation}}
+                                 {{answer.explanation|safe}}
                               </div>
                             {% endif %}                            
                         </div>
@@ -21,7 +21,7 @@
                             {{answer.label}}
                             {% if answer.explanation %}
                               <div class="answer-explanation">
-                                 {{answer.explanation}}
+                                 {{answer.explanation|safe}}
                               </div>
                         </div>
                         {% endif %}                       

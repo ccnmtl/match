@@ -12,9 +12,9 @@
         
         {% if answer.explanation %}
             <div class="answer-explanation">
-                {{answer.explanation}}
+                {{answer.explanation|safe}}
             </div>
-        {% endif %}        
+        {% endif %}
 
       </option>
   {% endfor %}
