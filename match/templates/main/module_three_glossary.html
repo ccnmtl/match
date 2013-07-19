@@ -28,9 +28,19 @@
         <div id="fadetop"></div>
         <div class="block">
           {% if module.get_children %}
-                <!--<h3>Sections</h3>-->
+                <h6 style="font-style: normal">TABLE OF CONTENTS</h6>
+                
                 {% include "main/menu.html" %}
-          {% endif %}
+                
+                <h6 style="font-style: normal">RESOURCES</h6>
+                <ul>
+                    <li>
+                        <div class="regular">
+                            <a href="/module_three/speechpathology/glossary/">Glossary</a>
+                        </div>
+                    </li>
+                </ul>                          
+           {% endif %}
         </div><!-- div id="block" -->
         <div id="fadebottom"></div>
     </div><!-- div id="secondary_navigation" -->
