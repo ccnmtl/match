@@ -1886,6 +1886,12 @@ div#glossary-popup a.close {
     color: #999;
 }
 
+.did_you_know .citation
+{
+    font-size: 12px !important;
+    line-height: 130% !important;
+}
+
 .did_you_know h3
 {
     font-family: 'times new roman', times, serif;
