@@ -92,9 +92,9 @@
         <div id="fadetop"></div>
         <div class="block">
           {% if module.get_children %}
-                {% ifequal module.slug 'speechpathology' %}
+                {% comment %}{% ifequal module.slug 'speechpathology' %}
                     <h6 style="font-style: normal">TABLE OF CONTENTS</h6>
-                {% endifequal %}
+                {% endifequal %}{% endcomment %}
                 
                 {% include "main/menu.html" %}
                 

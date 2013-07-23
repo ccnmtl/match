@@ -1129,7 +1129,7 @@ h4#logo_uncharted {
 .right {
 
     float: right;
-    margin: 0 0 0 15px;
+    margin: 0 0 10px 10px;
 
 }
 
@@ -1843,4 +1843,57 @@ div#glossary-popup a.close {
     filter:alpha(opacity=70);       
 }
 
-    
+.img-rounded {
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+.img-polaroid {
+  padding: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.did_you_know
+{
+	clear: both;
+	display: block;
+	float: right;
+	width: 300px;
+	margin: 20px 15px 10px 30px;
+	padding: 0;
+	border: 0;
+	border-bottom: 1px solid #ccc;
+	background-color: #fff;
+	background: url("/site_media/img/bg_pullquote.png") 0 0 no-repeat;
+}
+
+.did_you_know .pullquote
+{
+	display: block;
+	margin: 0 !important;
+    padding: 0 10px 0 20px !important;
+	background-color: #fff;
+	background: url(none) !important;
+    font-style: italic !important;
+    font-size: 16px !important;
+    line-height: 150% !important;
+    color: #999;
+}
+
+.did_you_know h3
+{
+    font-family: 'times new roman', times, serif;
+    margin: 0 !important;
+    padding: 20px 10px 10px 10px !important;
+    border: 0;
+    font-style: italic;
+    font-weight: normal !important;
+    font-size: 24px !important;
+    color: #9999cc !important;
+}
