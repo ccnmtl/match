@@ -9,8 +9,10 @@ function Glossary(terms) {
     }
     
     jQuery('span.glossary').click(function(evt) {
+        evt.preventDefault();
         var srcElement = evt.srcElement || evt.target || evt.originalTarget;
-        var slug = self.slugify(srcElement.innerHTML);
+        var html = jQuery.trim(srcElement.innerHTML);
+        var slug = self.slugify(html);
         if (terms.hasOwnProperty(slug)) {
             jQuery("#glossary-popup div.term").html(terms[slug].label);
             jQuery("#glossary-popup div.definition").html(terms[slug].definition);
@@ -20,7 +22,6 @@ function Glossary(terms) {
             var top = pos.top + jQuery(srcElement).outerHeight() + 2;
             var popupWidth = jQuery("#glossary-popup").outerWidth();
             var popupHeight = jQuery("#glossary-popup").outerHeight();
-            
             
             if ((jQuery(window).width() - (left + popupWidth)) < 25) {
                 left = (pos.left + jQuery(srcElement).outerWidth() + 15) - popupWidth;
@@ -40,12 +41,23 @@ function Glossary(terms) {
                 'top': top,
                 'left': left});
             
+            jQuery("#glossary-popup").appendTo(srcElement);
+            
             jQuery("#glossary-popup").show();
         }
+        return false;
     });
     
     jQuery('#glossary-popup a').click(function(evt) {
         jQuery("#glossary-popup").hide();
+        jQuery("#glossary-popup").appendTo("body");
+    });
+    
+    jQuery("body").click(function(evt) {
+       if (jQuery("#glossary-popup").is(":visible")) {
+           jQuery("#glossary-popup").hide();
+           jQuery("#glossary-popup").appendTo("body");
+       } 
     });
 }
 
