@@ -1904,3 +1904,26 @@ div#glossary-popup a.close {
     font-size: 24px !important;
     color: #9999cc !important;
 }
+
+
+.org_logo {
+    margin: 20px auto 0 auto !important;
+    padding: 0;
+    border: 0;
+    text-align: center;
+    height: 100px;
+}
+
+.org_logo a {
+    margin: 0;
+    border: 0;
+    outline: 0;
+}
+
+.org_logo img {
+    padding: 5px 20px;
+    margin: 0;
+    border: 0;
+    outline: 0;
+}
+
