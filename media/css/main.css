@@ -1927,3 +1927,17 @@ div#glossary-popup a.close {
     outline: 0;
 }
 
+.print_chart {
+    padding-bottom: 0;
+    margin-bottom: 5px;
+    height: 25px;
+}
+
+.print_chart a {
+    display: block;
+    float: right;
+    padding-right: 30px;
+    background: url('/site_media/img/icon_printer.png') right center no-repeat;
+    height: 25px;
+    line-height: 25px;
+}
