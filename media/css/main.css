@@ -1941,3 +1941,34 @@ div#glossary-popup a.close {
     height: 25px;
     line-height: 25px;
 }
+
+/* QUIZ CASES */
+
+.quiz_cases .cases {
+    border: none;
+}
+
+.quiz_cases .casetitle {
+    display: none;
+}
+
+.quiz_cases .question_text {
+    font: normal 18px/140% "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #399;
+}
+
+.quiz_cases .casecontent ol
+{
+	margin: 20px 0 20px 40px;
+	padding: 0 0 0 20px;
+	list-style-type: upper-alpha;
+}
+
+.quiz_cases label {
+    font: normal 14px/140% "Helvetica Neue", Helvetica, Arial, sans-serif;
+    cursor: pointer;
+}
+
+.quiz_cases .alert {
+    margin: 0;
+}
