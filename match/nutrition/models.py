@@ -15,10 +15,12 @@ class DiscussionTopic(models.Model):
     summary_reply = models.TextField()
 
     def __unicode__(self):
-        if self.text and len(self.text) > 25:
-            return self.text[:25] + '...'
+        if not self.text:
+            return u""
+        if len(self.text) > 25:
+            return unicode(self.text[:25] + '...')
         else:
-            self.text
+            return self.text
 
 
 class CounselingSession(models.Model):
