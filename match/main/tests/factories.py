@@ -37,3 +37,4 @@ class ModuleFactory(object):
              'children': [{'label': "Three", 'slug': "introduction"}]
              })
         root.add_child_section_from_dict({'label': "Two", 'slug': "two"})
+        self.root = root

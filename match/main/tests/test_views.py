@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.test.client import Client
 from .factories import UserProfileFactory, ModuleFactory
+from match.main.views import Column, clean_header
 
 
 class SimpleViewTest(TestCase):
@@ -55,6 +56,9 @@ class LoggedInViewTest(TestCase):
         self.assertEquals(response.status_code, 200)
         response = self.c.post("/module_one/socialwork/introduction/")
         self.assertEqual(response.status_code, 302)
+        response = self.c.post("/module_one/socialwork/introduction/",
+                               dict(action='reset'))
+        self.assertEqual(response.status_code, 302)
 
     def test_edit_page(self):
         ModuleFactory("module_one")
@@ -64,6 +68,9 @@ class LoggedInViewTest(TestCase):
     def test_instructor_page(self):
         ModuleFactory("module_one")
         response = self.c.get(
+            "/instructor/module_one/socialwork/introduction/")
+        self.assertEquals(response.status_code, 200)
+        response = self.c.post(
             "/instructor/module_one/socialwork/introduction/")
         self.assertEquals(response.status_code, 200)
 
@@ -78,6 +85,10 @@ class LoggedInViewTest(TestCase):
         response = self.c.get("/module_three/socialwork/")
         response = self.c.get("/module_three/socialwork/introduction/")
         self.assertEquals(response.status_code, 200)
+
+    def test_module_three_glossary(self):
+        ModuleFactory("module_three")
+        self.c.get("/module_three/speechpathology/glossary/")
 
     def test_module_four_page(self):
         ModuleFactory("module_four")
@@ -112,3 +123,33 @@ class LoggedInViewTest(TestCase):
         self.assertEquals(response.status_code, 200)
         response = self.c.get("/admin/allresults/?format=csv")
         self.assertEquals(response.status_code, 200)
+
+
+class ColumnTest(TestCase):
+    def test_create(self):
+        m = ModuleFactory("module_one")
+        c = Column(m.root.hierarchy)
+        self.assertEqual(c.module_name, "One")
+
+    def test_header_column(self):
+        m = ModuleFactory("module_one")
+        c = Column(m.root.hierarchy)
+        self.assertEqual(c.header_column(), None)
+
+    def test_user_value(self):
+        m = ModuleFactory("module_one")
+        c = Column(m.root.hierarchy)
+        self.assertEqual(c.user_value(None), '')
+
+    def test_key_row(self):
+        m = ModuleFactory("module_one")
+        c = Column(m.root.hierarchy)
+        self.assertEqual(c.key_row(), None)
+
+
+class CleanHeaderTest(TestCase):
+    def test_empty(self):
+        self.assertEqual(clean_header(''), '')
+
+    def test_markup(self):
+        self.assertEqual(clean_header('<<<<foo>>>>'), 'foo')
