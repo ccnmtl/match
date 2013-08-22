@@ -441,7 +441,7 @@ def all_results_key(request):
     """
 
     if not request.user.is_superuser:
-        return HttpResponseForbidden
+        return HttpResponseForbidden()
 
     response = HttpResponse(mimetype='text/csv')
     response[
@@ -501,7 +501,7 @@ def all_results(request):
     """
 
     if not request.user.is_superuser:
-        return HttpResponseForbidden
+        return HttpResponseForbidden()
 
     if not request.GET.get('format', 'html') == 'csv':
         return dict()

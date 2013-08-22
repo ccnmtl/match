@@ -90,3 +90,25 @@ class LoggedInViewTest(TestCase):
         response = self.c.get("/module_five/socialwork/")
         response = self.c.get("/module_five/socialwork/introduction/")
         self.assertEquals(response.status_code, 200)
+
+    def test_allresults_key(self):
+        ModuleFactory("module_one")
+        # not a superuser
+        response = self.c.get("/admin/allresultskey/")
+        self.assertEquals(response.status_code, 403)
+        self.user.is_superuser = True
+        self.user.save()
+        response = self.c.get("/admin/allresultskey/")
+        self.assertEquals(response.status_code, 200)
+
+    def test_allresults(self):
+        ModuleFactory("module_one")
+        # not a superuser
+        response = self.c.get("/admin/allresults/")
+        self.assertEquals(response.status_code, 403)
+        self.user.is_superuser = True
+        self.user.save()
+        response = self.c.get("/admin/allresults/")
+        self.assertEquals(response.status_code, 200)
+        response = self.c.get("/admin/allresults/?format=csv")
+        self.assertEquals(response.status_code, 200)
