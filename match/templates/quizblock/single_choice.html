@@ -8,7 +8,7 @@
             <li>
                 {% if response %}
                     {% ifequal response.value answer.value %}
-                        <div class="yours {% if response.is_correct %}correct{% else %}incorrect{% endif %}">
+                        <div class="yours {% if response.is_correct %}alert alert-success{% else %}alert alert-error{% endif %}">
                             {{answer.label}}
                             {% if answer.explanation %}
                               <div class="answer-explanation">
@@ -27,8 +27,8 @@
                         {% endif %}                       
                     {% endifequal %}
                 {% else %}
-                  <input name="pageblock-{{block.pageblock.id}}-question{{question.id}}"
-                       value="{{answer.value}}" type="radio" />{{answer.label}}
+                  <label><input name="pageblock-{{block.pageblock.id}}-question{{question.id}}"
+                       value="{{answer.value}}" type="radio" />{{answer.label}}</label>
                 {% endif %}
             </li>
         {% endif %}

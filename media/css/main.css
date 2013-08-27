@@ -1904,3 +1904,71 @@ div#glossary-popup a.close {
     font-size: 24px !important;
     color: #9999cc !important;
 }
+
+
+.org_logo {
+    margin: 20px auto 0 auto !important;
+    padding: 0;
+    border: 0;
+    text-align: center;
+    height: 100px;
+}
+
+.org_logo a {
+    margin: 0;
+    border: 0;
+    outline: 0;
+}
+
+.org_logo img {
+    padding: 5px 20px;
+    margin: 0;
+    border: 0;
+    outline: 0;
+}
+
+.print_chart {
+    padding-bottom: 0;
+    margin-bottom: 5px;
+    height: 25px;
+}
+
+.print_chart a {
+    display: block;
+    float: right;
+    padding-right: 30px;
+    background: url('/site_media/img/icon_printer.png') right center no-repeat;
+    height: 25px;
+    line-height: 25px;
+}
+
+/* QUIZ CASES */
+
+.quiz_cases .cases {
+    border: none;
+}
+
+.quiz_cases .casetitle {
+    display: none;
+}
+
+.quiz_cases .question_text {
+    font: normal 18px/140% "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #399;
+}
+
+.quiz_cases .casecontent ol
+{
+	margin: 20px 0 20px 40px;
+	padding: 0 0 0 20px;
+	list-style-type: upper-alpha;
+}
+
+.quiz_cases label {
+    font: normal 14px/140% "Helvetica Neue", Helvetica, Arial, sans-serif;
+    cursor: pointer;
+}
+
+.quiz_cases .alert {
+    margin: 0;
+}
