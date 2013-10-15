@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.conf import settings
 import os.path
 admin.autodiscover()
-from django.views.generic.simple import direct_to_template
+from django.views.generic import TemplateView
 
 site_media_root = os.path.join(os.path.dirname(__file__), "../media")
 
@@ -29,7 +29,7 @@ urlpatterns = patterns(
     (r'^_quiz/', include('quizblock.urls')),
     (r'^_careermap/', include('careermapblock.urls')),
     (r'nutrition/', include('match.nutrition.urls')),
-    (r'^_stats/', direct_to_template, {'template': 'main/stats.html'}),
+    (r'^_stats/$', TemplateView.as_view(template_name="main/stats.html")),
     (r'^ce-credit-confirmation/', 'match.main.views.ce_credit_confirmation'),
     (r'^instructor/(?P<path>.*)$', 'match.main.views.instructor_page'),
     (r'^edit/(?P<path>.*)$', 'match.main.views.edit_page', {}, 'edit-page'),

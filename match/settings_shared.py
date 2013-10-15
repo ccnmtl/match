@@ -183,3 +183,8 @@ WIND_SUPERUSER_MAPPER_GROUPS = ['anp8', 'jb2410', 'zm4', 'sbd12', 'egr2107',
                                 'ed2198', 'cks2120']
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+}
