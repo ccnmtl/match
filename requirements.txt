@@ -52,9 +52,9 @@ South==0.8.1
 django-statsd-mozilla==0.3.8.7
 django-nose==1.2
 django-bootstrap-form==2.0.3
-django-pagetree==0.12.3
-django-pageblocks==0.5.9
-django-quizblock==0.6.12
+django-pagetree==0.12.4
+django-pageblocks==0.5.11
+django-quizblock==0.6.13
 django-pagetree_export==0.3
 django-careermapblock==0.2.16
 django-registration==0.8
