@@ -24,21 +24,9 @@ DATABASES = {
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
-SENTRY_SITE = 'match'
 
 if 'migrate' not in sys.argv:
-    import logging
-    from sentry.client.handlers import SentryHandler
-    logger = logging.getLogger()
-    if SentryHandler not in map(lambda x: x.__class__, logger.handlers):
-        logger.addHandler(SentryHandler())
-        logger = logging.getLogger('sentry.errors')
-        logger.propagate = False
-        logger.addHandler(logging.StreamHandler())
-
-SENTRY_REMOTE_URL = 'http://sentry.ccnmtl.columbia.edu/sentry/store/'
-# remember to set the SENTRY_KEY in a local_settings.py
-# as documented in the wiki
+    INSTALLED_APPS.append('raven.contrib.django.raven_compat')
 
 try:
     from local_settings import *
