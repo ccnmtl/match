@@ -92,7 +92,7 @@ TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), "templates"),
 )
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -125,7 +125,7 @@ INSTALLED_APPS = (
     'django_jenkins',
     'smoketest',
     'waffle'
-)
+]
 
 LETTUCE_APPS = (
     'match.main',
