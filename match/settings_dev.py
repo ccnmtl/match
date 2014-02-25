@@ -1,16 +1,6 @@
 # flake8: noqa
 from match.settings import *
 
-TEMPLATE_DIRS = (
-    "/var/www/match/match/match/templates",
-)
-
-MEDIA_ROOT = '/var/www/match/uploads/'
-# put any static media here to override app served static media
-STATICMEDIA_MOUNTS = (
-    ('/sitemedia', '/var/www/match/match/sitemedia'),
-)
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -22,13 +12,23 @@ DATABASES = {
     }
 }
 
+TEMPLATE_DIRS = (
+    "/var/www/match/match/match/templates",
+)
+
+MEDIA_ROOT = '/var/www/match/uploads/'
+# put any static media here to override app served static media
+STATICMEDIA_MOUNTS = (
+    ('/sitemedia', '/var/www/match/match/sitemedia'),
+)
+
 COMPRESS_ROOT = "/var/www/match/match/media/"
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
+SENTRY_SITE = 'match-dev'
+STATSD_PREFIX = 'match-dev'
 DEV_ENV = True
 
-STATSD_PREFIX = 'match-dev'
-SENTRY_SITE = 'match-dev'
 SENTRY_SERVERS = ['http://sentry.ccnmtl.columbia.edu/sentry/store/']
 
 if 'migrate' not in sys.argv:

@@ -28,17 +28,8 @@ SENTRY_SITE = 'match-staging'
 STATSD_PREFIX = 'match-staging'
 STAGING_ENV = True
 
-SENTRY_SERVERS = ['http://sentry.ccnmtl.columbia.edu/sentry/store/']
-
 if 'migrate' not in sys.argv:
-    import logging
-    from sentry.client.handlers import SentryHandler
-    logger = logging.getLogger()
-    if SentryHandler not in map(lambda x: x.__class__, logger.handlers):
-        logger.addHandler(SentryHandler())
-        logger = logging.getLogger('sentry.errors')
-        logger.propagate = False
-        logger.addHandler(logging.StreamHandler())
+    INSTALLED_APPS.append('raven.contrib.django.raven_compat')
 
 try:
     from local_settings import *
