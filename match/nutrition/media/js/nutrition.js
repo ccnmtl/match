@@ -15,30 +15,20 @@
 
     var CounselingSession = Backbone.Model.extend({
         urlRoot: '/nutrition/api/v1/counseling_session/',
-        initialize: function(attrs) {
-            if (attrs) {
-                this.set('topics', new DiscussionTopicList(attrs.topics));
+        parse: function(response) {
+            if (response) {
+                response.topics = new DiscussionTopicList(response.topics);
             }
+            return response;
         }
     });
 
-
     var CounselingSessionState = Backbone.Model.extend({
         defaults: {
-            answered: new DiscussionTopicList(),
-            session: new CounselingSession(),
             elapsed_time: null,
             current_topic: null
         },
-        urlRoot: '/nutrition/api/v1/counseling_session_state/',
-        parse: function(response) {
-            if (response) {
-                response.session = new CounselingSession(response.session);
-                response.answered = new DiscussionTopicList(response.answered);
-            }
-            return response;
-
-        }
+        urlRoot: '/nutrition/api/v1/counseling_session_state/'
     });
 
     var CounselingSessionStateList = Backbone.Collection.extend({
@@ -46,41 +36,44 @@
         urlRoot: '/nutrition/api/v1/counseling_session_state/',
         initialize: function(attrs) {
             if (attrs) {
-                this.current_session_state_id = attrs.current_session_state_id;
+                this.current_state_id = attrs.current_state_id;
             }
         },
-        getCurrentSession: function() {
-            return this.getCurrentState().get('session');
-        },
         getCurrentState: function() {
-            return this.get(this.urlRoot + this.current_session_state_id + "/");
+            return this.get(this.urlRoot + this.current_state_id + "/");
         }
-
     });
 
     CounselingSessionView = Backbone.View.extend({
         initialize: function(options) {
-            _.bindAll(this, 'initialRender', 'renderState', 'renderTime', 'renderCountdown', 'onDiscussion', 'onCloseDiscussion');
+            _.bindAll(this, 'initialRenderSession', 'initialRenderStates',
+                      'renderState', 'renderTime', 'renderCountdown',
+                      'onDiscussion', 'onCloseDiscussion');
             this.template = _.template(jQuery("#session-template").html());
             this.chartTemplate = _.template(jQuery("#patient-chart-template").html());
-
+            
             this.states = new CounselingSessionStateList(options);
-            this.states.bind('reset', this.initialRender);
-            this.states.fetch();
+            this.states.bind('reset', this.initialRenderStates);
+            
+            this.session = new CounselingSession({id: options.current_session_id});
+            this.session.bind('change', this.initialRenderSession)
+            this.session.fetch();
         },
-        initialRender: function() {
+        initialRenderSession: function() {
             // Only invoked once when the session model is instantiated
-            var session = this.states.getCurrentSession();
-            this.el.innerHTML = this.template(session.toJSON());
+            this.el.innerHTML = this.template(this.session.toJSON());
 
             // bind events now that the template is rendered
             jQuery(".collapse").collapse({ 'toggle': false }).on('show', this.onDiscussion).on('hide', this.onCloseDiscussion);
 
+            this.states.fetch();
+        },
+        initialRenderStates: function() {
             var state = this.states.getCurrentState();
             state.bind('change:elapsed_time', this.renderTime);
             state.bind('change:countdown', this.renderCountdown);
+            
             this.renderTime(); // explicit
-
             this.renderState(); // explicit
         },
         renderState: function () {
@@ -93,13 +86,12 @@
             });
 
 
-            var session = this.states.getCurrentSession();
             var state = this.states.getCurrentState();
 
-            var available_time = session.get('available_time') - state.get('elapsed_time');
+            var available_time = this.session.get('available_time') - state.get('elapsed_time');
             var enabled = 0;
 
-            session.get('topics').forEach(function (topic) {
+            this.session.get('topics').forEach(function (topic) {
                 if (state.get('answered').get(topic.id)) {
                     jQuery('#' + topic.get('id')).find('.btn.discuss').attr('disabled', 'disabled').html("<div class='alert-success topic_discussed'>Discussed </div>");
                 } else if (topic.get('estimated_time') > available_time) {
@@ -179,20 +171,18 @@
             }
         },
         renderTime: function() {
-            var session = this.states.getCurrentSession();
             var state = this.states.getCurrentState();
-            jQuery('.display_time_text').html(session.get('available_time') - state.get('elapsed_time'));
+            jQuery('.display_time_text').html(this.session.get('available_time') - state.get('elapsed_time'));
         },
         onDiscussion: function(evt) {
             var srcElement = evt.srcElement || evt.target || evt.originalTarget;
             jQuery(srcElement).parents('div.accordion-group').addClass('selected');
 
-            var session = this.states.getCurrentSession();
             var data_id = jQuery(srcElement).data("id");
-            var topic = session.get('topics').getByDataId(data_id);
+            var topic = this.session.get('topics').getByDataId(data_id);
 
             var state = this.states.getCurrentState();
-            state.get('answered').add(topic);
+            state.get('answered').push(topic.get('resource_uri'));
             state.save();
             state.set({
                 'countdown': topic.get('actual_time'),

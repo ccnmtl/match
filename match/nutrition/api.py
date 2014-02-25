@@ -7,17 +7,17 @@ from tastypie.authorization import Authorization
 
 
 class UsernameAuthorization(Authorization):
-    def apply_limits(self, request, object_list):
-        if request and hasattr(request, 'user'):
-            return object_list.filter(username=request.user.username)
+    def read_list(self, object_list, bundle):
+        if bundle.request and hasattr(bundle.request, 'user'):
+            return object_list.filter(username=bundle.request.user.username)
 
         return object_list.none()
 
 
 class UserAuthorization(Authorization):
-    def apply_limits(self, request, object_list):
-        if request and hasattr(request, 'user'):
-            return object_list.filter(user=request.user)
+    def read_list(self, object_list, bundle):
+        if bundle.request and hasattr(bundle.request, 'user'):
+            return object_list.filter(user=bundle.request.user)
 
         return object_list.none()
 
@@ -36,12 +36,13 @@ class DiscussionTopicResource(ModelResource):
     class Meta:
         queryset = DiscussionTopic.objects.all()
         resource_name = 'discussion_topic'
-        allowed_methods = ['get']
+        detail_allowed_methods = ['get']
 
 
 class CounselingSessionResource(ModelResource):
     topics = fields.ManyToManyField(
-        'match.nutrition.api.DiscussionTopicResource', 'topics', full=True)
+        'match.nutrition.api.DiscussionTopicResource', 'topics',
+        full=True, readonly=True)
 
     class Meta:
         queryset = CounselingSession.objects.all()
@@ -50,14 +51,11 @@ class CounselingSessionResource(ModelResource):
 
 
 class CounselingSessionStateResource(ModelResource):
-    user = fields.ForeignKey(UserResource, 'user')
-    session = fields.ForeignKey(
-        CounselingSessionResource, 'session', full=True)
     answered = fields.ManyToManyField(
-        'match.nutrition.api.DiscussionTopicResource', 'answered', full=True)
+        'match.nutrition.api.DiscussionTopicResource', 'answered', full=False)
 
     class Meta:
         queryset = CounselingSessionState.objects.all()
         resource_name = 'counseling_session_state'
-        authorization = UserAuthorization()
         allowed_methods = ['get', 'put']
+        authorization = UserAuthorization()
