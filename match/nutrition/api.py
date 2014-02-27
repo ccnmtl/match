@@ -51,6 +51,8 @@ class CounselingSessionResource(ModelResource):
 
 
 class CounselingSessionStateResource(ModelResource):
+    session = fields.ForeignKey(
+        CounselingSessionResource, 'session', full=True, readonly=True)
     answered = fields.ManyToManyField(
         'match.nutrition.api.DiscussionTopicResource', 'answered', full=False)
 

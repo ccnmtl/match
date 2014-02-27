@@ -15,6 +15,11 @@
 
     var CounselingSession = Backbone.Model.extend({
         urlRoot: '/nutrition/api/v1/counseling_session/',
+        initialize: function(attrs) {
+            if (attrs) {
+                this.set('topics', new DiscussionTopicList(attrs.topics));
+            }
+        },
         parse: function(response) {
             if (response) {
                 response.topics = new DiscussionTopicList(response.topics);
@@ -28,7 +33,13 @@
             elapsed_time: null,
             current_topic: null
         },
-        urlRoot: '/nutrition/api/v1/counseling_session_state/'
+        urlRoot: '/nutrition/api/v1/counseling_session_state/',
+        parse: function(response) {
+            if (response) {
+                response.session = new CounselingSession(response.session);
+            }
+            return response;
+        }        
     });
 
     var CounselingSessionStateList = Backbone.Collection.extend({
@@ -79,12 +90,25 @@
         renderState: function () {
             var self = this;
 
-            // patient chart
+            // patient chart + enable/disable
             jQuery("#patient-chart-text").html('');
             this.states.forEach(function(state) {
-                jQuery("#patient-chart-text").append(self.chartTemplate(state.toJSON()));
-            });
+                var json = state.toJSON();
+                json.topics = []
+                
+                for (var i=0; i < json.answered.length; i++)  {
+                    var resource_uri = json.answered[i];
 
+                    // hydrate the "answer" topic with full attributes
+                    var topic = state.get('session').get('topics').get(resource_uri);
+                    json.topics.push(topic.toJSON());
+                    
+                    // Disable the topic's button
+                    jQuery('#' + topic.get('id')).find('.btn.discuss').attr(
+                        'disabled', 'disabled').html("<div class='alert-success topic_discussed'>Discussed </div>");
+                }
+                jQuery("#patient-chart-text").append(self.chartTemplate(json));
+            });
 
             var state = this.states.getCurrentState();
 
@@ -92,10 +116,9 @@
             var enabled = 0;
 
             this.session.get('topics').forEach(function (topic) {
-                if (state.get('answered').get(topic.id)) {
-                    jQuery('#' + topic.get('id')).find('.btn.discuss').attr('disabled', 'disabled').html("<div class='alert-success topic_discussed'>Discussed </div>");
-                } else if (topic.get('estimated_time') > available_time) {
-                    jQuery('#' + topic.get('id')).find('.btn.discuss').attr('disabled', 'disabled').html("<div class='alert-danger topic_no_time'>No time left!</div>");
+                if (topic.get('estimated_time') > available_time) {
+                    jQuery('#' + topic.get('id')).find('.btn.discuss').attr(
+                        'disabled', 'disabled').html("<div class='alert-danger topic_no_time'>No time left!</div>");
                 } else {
                     jQuery('#' + topic.get('id')).find('.btn.discuss').removeAttr('disabled');
                     enabled++;
@@ -197,27 +220,4 @@
             this.renderState();
         }
     });
-
-
-    CounselingReferralView = Backbone.View.extend({
-        initialize: function(options) {
-            _.bindAll(this, 'renderPatientChart');
-            this.chartTemplate = _.template(jQuery("#patient-chart-template").html());
-
-            this.states = new CounselingSessionStateList();
-            this.states.bind('reset', this.renderPatientChart);
-            this.states.fetch();
-        },
-        renderPatientChart: function() {
-            var self = this;
-
-            // patient chart
-            jQuery("#patient-chart-text").html('');
-            this.states.forEach(function(state) {
-                jQuery("#patient-chart-text").append(self.chartTemplate(state.toJSON()));
-            });
-        }
-    });
-
-
 }(jQuery));

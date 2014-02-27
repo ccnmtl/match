@@ -62,13 +62,13 @@
 </script>
 
 <script type="text/template" id="patient-chart-template">
-    <% if (answered.length > 0) { %>
-    <div id="session-chart-<%= session.attributes.id %>" class="well session-segment">
-        <h5><%= session.attributes.patient_chart %></h5>
+    <% if (topics.length > 0) { %>
+    <div class="well session-segment">
+        <h5><%= session.patient_chart %></h5>
         <div class="session-chart-answered">
-            <% _.each(answered.models, function(answer, index) { %>
-                <div class="session-chart-topic"><%= answer.attributes.summary_text %></div>
-                <div class="session-chart-reply"><%= answer.attributes.summary_reply %></div>
+            <% _.each(topics, function(answer, idx) { %>
+                <div class="session-chart-topic"><%= answer.summary_text %></div>
+                <div class="session-chart-reply"><%= answer.summary_reply %></div>
             <% }); %>
         </div>
     </div>
