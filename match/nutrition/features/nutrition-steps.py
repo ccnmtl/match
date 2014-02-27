@@ -86,7 +86,7 @@ def topic_is_disabled(step, topic):
             btn = e.find_element_by_css_selector('.btn.discuss')
             assert btn.get_attribute('disabled') == "true", \
                 "%s is %s. Expected this button to be enabled" % (
-                btn.text, btn.get_attribute('disabled'))
+                    btn.text, btn.get_attribute('disabled'))
             return
 
     assert False, "Could not find %s" % topic
