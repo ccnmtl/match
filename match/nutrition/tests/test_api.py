@@ -15,12 +15,12 @@ class CounselingSessionResourceTest(ResourceTestCase):
 
         self.topic1 = DiscussionTopic.objects.create(
             id=5,
-            text="discussion topic 1",
+            text='discussion topic 1',
             estimated_time=5,
-            reply="discussion topic 1 reply",
+            reply='discussion topic 1 reply',
             actual_time=6,
-            summary_text="discussion topic 1 summary",
-            summary_reply="discussion topic 1 summary reply")
+            summary_text='discussion topic 1 summary',
+            summary_reply='discussion topic 1 summary reply')
 
         self.session = CounselingSession(available_time=8)
         self.session.save()
@@ -29,12 +29,12 @@ class CounselingSessionResourceTest(ResourceTestCase):
 
         self.topic2 = DiscussionTopic.objects.create(
             id=6,
-            text="discussion topic 2",
+            text='discussion topic 2',
             estimated_time=8,
-            reply="discussion topic 2 reply",
+            reply='discussion topic 2 reply',
             actual_time=2,
-            summary_text="discussion topic 2 summary",
-            summary_reply="discussion topic 2 summary reply")
+            summary_text='discussion topic 2 summary',
+            summary_reply='discussion topic 2 summary reply')
 
         self.session2 = CounselingSession(available_time=2)
         self.session2.save()
@@ -53,8 +53,8 @@ class CounselingSessionResourceTest(ResourceTestCase):
 
     def test_session_get(self):
         self.assertTrue(
-            self.api_client.client.login(username="test_student",
-                                         password="test"))
+            self.api_client.client.login(username='test_student',
+                                         password='test'))
 
         url = '/nutrition/api/v1/counseling_session/%s/' % (self.session.id)
         response = self.api_client.get(url, format='json')
@@ -69,8 +69,8 @@ class CounselingSessionResourceTest(ResourceTestCase):
 
     def test_session_put(self):
         self.assertTrue(
-            self.api_client.client.login(username="test_student",
-                                         password="test"))
+            self.api_client.client.login(username='test_student',
+                                         password='test'))
 
         url = '/nutrition/api/v1/counseling_session/%s/' % (self.session.id)
         self.assertHttpMethodNotAllowed(self.api_client.put(url,
@@ -88,8 +88,8 @@ class CounselingSessionResourceTest(ResourceTestCase):
         alt.save()
 
         self.assertTrue(
-            self.api_client.client.login(username="test_student",
-                                         password="test"))
+            self.api_client.client.login(username='test_student',
+                                         password='test'))
 
         url = '/nutrition/api/v1/counseling_session_state/'
         response = self.api_client.get(url, format='json')
@@ -119,9 +119,51 @@ class CounselingSessionResourceTest(ResourceTestCase):
         session1 = json['objects'][0]
         self.assertEquals(len(session1['answered']), 1)
         self.assertEquals(session1['answered'][0],
-                          "/nutrition/api/v1/discussion_topic/5/")
-#
-#     def test_state_put(self):
-#         self.assertTrue(
-#             self.api_client.client.login(username="test_student",
-#                                          password="test"))
+                          '/nutrition/api/v1/discussion_topic/5/')
+
+    def test_state_put(self):
+        self.assertTrue(self.api_client.client.login(username='test_student',
+                                                     password='test'))
+
+        state = CounselingSessionState(user=self.user, session=self.session)
+        state.save()
+        state_uri = '/nutrition/api/v1/counseling_session_state/%s/' % state.id
+
+        topic_uri = '/nutrition/api/v1/discussion_topic/%s/' % self.topic1.id
+
+        data = {
+            'answered': [topic_uri],
+            'elapsed_time': 0,
+            'resource_uri': state_uri}
+
+        response = self.api_client.put(state_uri, format='json', data=data)
+        self.assertEquals(response.status_code, 204)
+        self.assertEquals(state.answered.all().count(), 1)
+        self.assertEquals(state.answered.all()[0].id, self.topic1.id)
+
+    def test_state_put_fulltopicresource(self):
+        self.assertTrue(self.api_client.client.login(username='test_student',
+                                                     password='test'))
+
+        state = CounselingSessionState(user=self.user, session=self.session)
+        state.save()
+        state_uri = '/nutrition/api/v1/counseling_session_state/%s/' % state.id
+
+        topic_uri = '/nutrition/api/v1/discussion_topic/%s/' % self.topic1.id
+
+        data = {
+            'answered': [{
+                'id': 5,
+                'resource_uri': topic_uri,
+                'text': 'discussion topic 1 change',
+                'estimated_time': 6,
+                'reply': 'discussion topic 1 reply',
+                'actual_time': 6,
+                'summary_text': '',
+                'summary_reply': ''}],
+            'elapsed_time': 0,
+            'resource_uri': state_uri}
+
+        response = self.api_client.put(state_uri, format='json', data=data)
+        self.assertEquals(response.status_code, 401)
+        self.assertEquals(state.answered.all().count(), 0)
