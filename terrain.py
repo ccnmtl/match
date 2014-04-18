@@ -26,10 +26,8 @@ def setup_database(variables):
 
 @before.all
 def setup_browser():
-    browser = getattr(settings, 'BROWSER', None)
-    if browser is None:
-        raise Exception('Please configure a browser in settings_test.py')
-    elif browser == 'Firefox':
+    browser = getattr(settings, 'BROWSER', "Chrome")
+    if browser == 'Firefox':
         ff_profile = FirefoxProfile()
         ff_profile.set_preference("webdriver_enable_native_events", False)
         world.browser = webdriver.Firefox(ff_profile)
