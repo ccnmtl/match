@@ -33,6 +33,12 @@ class LoggedInViewTest(TestCase):
         self.user.save()
         self.c.login(username=self.user.username, password="test")
 
+        self.su = UserProfileFactory()
+        self.superuser = self.su.user
+        self.superuser.set_password("test")
+        self.superuser.is_superuser = True
+        self.superuser.save()
+
     def test_index(self):
         response = self.c.get("/")
         self.assertEquals(response.status_code, 200)
@@ -62,8 +68,12 @@ class LoggedInViewTest(TestCase):
 
     def test_edit_page(self):
         ModuleFactory("module_one")
-        response = self.c.get("/edit/module_one/socialwork/introduction/")
-        self.assertEquals(response.status_code, 200)
+        response = self.c.get("/module_one/edit/socialwork/introduction/")
+        self.assertEquals(response.status_code, 403)  # forbidden
+
+        self.c.login(username=self.superuser.username, password="test")
+        response = self.c.get("/module_one/edit/socialwork/introduction/")
+        self.assertEquals(response.status_code, 200)  # allowed
 
     def test_instructor_page(self):
         ModuleFactory("module_one")
@@ -82,7 +92,7 @@ class LoggedInViewTest(TestCase):
 
     def test_module_three_page(self):
         ModuleFactory("module_three")
-        response = self.c.get("/module_three/socialwork/")
+        self.c.get("/module_three/socialwork/")
         response = self.c.get("/module_three/socialwork/introduction/")
         self.assertEquals(response.status_code, 200)
 

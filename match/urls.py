@@ -32,9 +32,12 @@ urlpatterns = patterns(
     (r'^_stats/$', TemplateView.as_view(template_name="main/stats.html")),
     (r'^ce-credit-confirmation/', 'match.main.views.ce_credit_confirmation'),
     (r'^instructor/(?P<path>.*)$', 'match.main.views.instructor_page'),
-    (r'^edit/(?P<path>.*)$', 'match.main.views.edit_page', {}, 'edit-page'),
+
+    (r'^(?P<hierarchy>[\w\-]+)/edit/(?P<path>.*)$',
+     'match.main.views.edit_page'),
 
     (r'^module_one/(?P<path>.+)$', 'match.main.views.module_one'),
+
     (r'^module_two/(?P<path>.+)$', 'match.main.views.module_two'),
 
     (r'^module_three/speechpathology/glossary/',
@@ -42,5 +45,6 @@ urlpatterns = patterns(
     (r'^module_three/(?P<path>.+)$', 'match.main.views.module_three'),
 
     (r'^module_four/(?P<path>.+)$', 'match.main.views.module_four'),
+
     (r'^module_five/(?P<path>.+)$', 'match.main.views.module_five'),
 )

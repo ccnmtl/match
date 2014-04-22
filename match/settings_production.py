@@ -5,11 +5,16 @@ TEMPLATE_DIRS = (
     "/var/www/match/match/match/templates",
 )
 
+COMPRESS_ROOT = "/var/www/match/match/media/"
+
 MEDIA_ROOT = '/var/www/match/uploads/'
 # put any static media here to override app served static media
 STATICMEDIA_MOUNTS = (
     ('/sitemedia', '/var/www/match/match/sitemedia'),
 )
+
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG
 
 DATABASES = {
     'default': {
@@ -21,9 +26,6 @@ DATABASES = {
         'PASSWORD': '',
     }
 }
-
-DEBUG = False
-TEMPLATE_DEBUG = DEBUG
 
 if 'migrate' not in sys.argv:
     INSTALLED_APPS.append('raven.contrib.django.raven_compat')

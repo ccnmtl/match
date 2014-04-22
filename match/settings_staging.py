@@ -12,6 +12,8 @@ DATABASES = {
     }
 }
 
+COMPRESS_ROOT = "/var/www/match/match/media/"
+
 TEMPLATE_DIRS = (
     "/var/www/match/match/match/templates",
 )

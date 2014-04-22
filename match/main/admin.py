@@ -1,6 +1,7 @@
-from match.main.models import GlossaryTerm, UserProfile, UserVisited
 from django.contrib import admin
-from match.main.models import ImageMapItem
+from match.main.models import GlossaryTerm, UserProfile, UserVisited, \
+    ImageMapItem
+from pagetree.models import Hierarchy
 
 admin.site.register(UserProfile)
 admin.site.register(GlossaryTerm)
@@ -15,3 +16,5 @@ class UserVisitedAdmin(admin.ModelAdmin):
     list_display = ("user", "section", "visited_time")
 
 admin.site.register(UserVisited, UserVisitedAdmin)
+
+admin.site.register(Hierarchy)

@@ -124,7 +124,8 @@ INSTALLED_APPS = [
     'bootstrapform',
     'django_jenkins',
     'smoketest',
-    'waffle'
+    'waffle',
+    'compressor',
 ]
 
 LETTUCE_APPS = (
@@ -161,6 +162,10 @@ THUMBNAIL_SUBDIR = "thumbs"
 EMAIL_SUBJECT_PREFIX = "[match] "
 EMAIL_HOST = 'localhost'
 SERVER_EMAIL = "match@ccnmtl.columbia.edu"
+
+COMPRESS_URL = "/site_media/"
+COMPRESS_ROOT = "media/"
+
 
 # put any static media here to override app served static media
 STATICMEDIA_MOUNTS = (
