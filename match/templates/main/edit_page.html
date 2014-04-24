@@ -4,6 +4,12 @@
 {% load render %}
 {% block title %}{{section.label}} (edit){% endblock %}
 
+{% block css %}
+    <style>
+        #content { width: 96%; float: none; };
+    </style>
+{% endblock %}
+
 {% block bodyclass %}edit module-{{module.slug}}{% endblock %}
 
 {% block bodyid %}section-{{section.id}}{% endblock %}
