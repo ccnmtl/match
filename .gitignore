@@ -13,3 +13,4 @@ eclipse.manage.py
 chromedriver.log
 reports/
 .DS_Store
+media/CACHE
