@@ -455,17 +455,9 @@ def all_results_key(request):
     columns = []
     for h in Hierarchy.objects.all():
         for s in h.get_root().get_descendants():
-            columns = columns + _get_quiz_key(h, s)
-
-            for p in s.pageblock_set.filter(content_type=counseling_type):
-                for t in p.block().topics.all():
-                    columns.append(Column(
-                        hierarchy=h, session=p.content_object, topic=t))
-
-            for p in s.pageblock_set.filter(content_type=referral_type):
-                for f in p.block().form_fields:
-                    columns.append(Column(
-                        hierarchy=h, session=p.content_object, field=f))
+            columns = section_columns(
+                h, s, columns, counseling_type,
+                referral_type)
 
     for column in columns:
         try:
@@ -474,6 +466,21 @@ def all_results_key(request):
             pass
 
     return response
+
+
+def section_columns(h, s, columns, counseling_type, referral_type):
+    columns = columns + _get_quiz_key(h, s)
+
+    for p in s.pageblock_set.filter(content_type=counseling_type):
+        for t in p.block().topics.all():
+            columns.append(Column(
+                hierarchy=h, session=p.content_object, topic=t))
+
+    for p in s.pageblock_set.filter(content_type=referral_type):
+        for f in p.block().form_fields:
+            columns.append(Column(
+                hierarchy=h, session=p.content_object, field=f))
+    return columns
 
 
 @login_required
