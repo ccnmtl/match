@@ -190,10 +190,7 @@ def page(request, hierarchy, path):
             if path.startswith(fb):
                 return HttpResponseRedirect(section.get_absolute_url())
 
-        if not proceed:
-            return HttpResponseRedirect(section.get_absolute_url())
-        else:
-            return HttpResponseRedirect(section.get_next().get_absolute_url())
+        return proceed_redirect(section, proceed)
     else:
         instructor_link = has_responses(section)
         return dict(section=section,
@@ -208,6 +205,13 @@ def page(request, hierarchy, path):
                     can_edit=can_edit,
                     next_unlocked=_unlocked(user_profile, section.get_next())
                     )
+
+
+def proceed_redirect(section, proceed):
+    if not proceed:
+        return HttpResponseRedirect(section.get_absolute_url())
+    else:
+        return HttpResponseRedirect(section.get_next().get_absolute_url())
 
 
 @login_required
