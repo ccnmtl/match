@@ -45,7 +45,6 @@ NOSE_ARGS = [
 JENKINS_TASKS = (
     'django_jenkins.tasks.run_pylint',
     'django_jenkins.tasks.with_coverage',
-    'django_jenkins.tasks.django_tests',
     'django_jenkins.tasks.run_pep8',
     'django_jenkins.tasks.run_pyflakes',
 )
@@ -98,16 +97,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.flatpages',
-    'django.contrib.markup',
-    'staticmedia',
     'sorl.thumbnail',
     'django.contrib.admin',
     'tagging',
     'smartif',
     'template_utils',
     'typogrify',
-    'sentry.client',
-    'munin',
     'pagetree',
     'pageblocks',
     'match.main',
@@ -126,6 +121,7 @@ INSTALLED_APPS = [
     'smoketest',
     'waffle',
     'compressor',
+    'django_markwhat',
 ]
 
 LETTUCE_APPS = (
@@ -138,7 +134,6 @@ STATSD_CLIENT = 'statsd.client'
 STATSD_PREFIX = 'match'
 STATSD_HOST = 'localhost'
 STATSD_PORT = 8125
-STATSD_PATCHES = ['django_statsd.patches.db', ]
 
 ACCOUNT_ACTIVATION_DAYS = 7
 AUTH_PROFILE_MODULE = 'main.UserProfile'

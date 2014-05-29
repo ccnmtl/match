@@ -68,9 +68,7 @@ def _unlocked(profile, section):
     """ if the user can proceed past this section """
     if not section:
         return True
-    if section.is_root():
-        return True
-    if profile.has_visited(section):
+    if section.is_root() or profile.has_visited(section):
         return True
 
     previous = section.get_previous()
@@ -192,10 +190,7 @@ def page(request, hierarchy, path):
             if path.startswith(fb):
                 return HttpResponseRedirect(section.get_absolute_url())
 
-        if not proceed:
-            return HttpResponseRedirect(section.get_absolute_url())
-        else:
-            return HttpResponseRedirect(section.get_next().get_absolute_url())
+        return proceed_redirect(section, proceed)
     else:
         instructor_link = has_responses(section)
         return dict(section=section,
@@ -210,6 +205,13 @@ def page(request, hierarchy, path):
                     can_edit=can_edit,
                     next_unlocked=_unlocked(user_profile, section.get_next())
                     )
+
+
+def proceed_redirect(section, proceed):
+    if not proceed:
+        return HttpResponseRedirect(section.get_absolute_url())
+    else:
+        return HttpResponseRedirect(section.get_next().get_absolute_url())
 
 
 @login_required
@@ -458,16 +460,9 @@ def all_results_key(request):
     for h in Hierarchy.objects.all():
         for s in h.get_root().get_descendants():
             columns = columns + _get_quiz_key(h, s)
-
-            for p in s.pageblock_set.filter(content_type=counseling_type):
-                for t in p.block().topics.all():
-                    columns.append(Column(
-                        hierarchy=h, session=p.content_object, topic=t))
-
-            for p in s.pageblock_set.filter(content_type=referral_type):
-                for f in p.block().form_fields:
-                    columns.append(Column(
-                        hierarchy=h, session=p.content_object, field=f))
+            columns = section_columns(
+                h, s, columns, counseling_type,
+                referral_type)
 
     for column in columns:
         try:
@@ -476,6 +471,19 @@ def all_results_key(request):
             pass
 
     return response
+
+
+def section_columns(h, s, columns, counseling_type, referral_type):
+    for p in s.pageblock_set.filter(content_type=counseling_type):
+        for t in p.block().topics.all():
+            columns.append(Column(
+                hierarchy=h, session=p.content_object, topic=t))
+
+    for p in s.pageblock_set.filter(content_type=referral_type):
+        for f in p.block().form_fields:
+            columns.append(Column(
+                hierarchy=h, session=p.content_object, field=f))
+    return columns
 
 
 @login_required
@@ -513,16 +521,8 @@ def all_results(request):
     for h in Hierarchy.objects.all():
         for s in h.get_root().get_descendants():
             columns = columns + _get_quiz_results(h, s)
-
-            for p in s.pageblock_set.filter(content_type=counseling_type):
-                for t in p.block().topics.all():
-                    columns.append(Column(
-                        hierarchy=h, session=p.content_object, topic=t))
-
-            for p in s.pageblock_set.filter(content_type=referral_type):
-                for f in p.block().form_fields:
-                    columns.append(Column(
-                        hierarchy=h, session=p.content_object, field=f))
+            columns = section_columns(h, s, columns, counseling_type,
+                                      referral_type)
 
     response = HttpResponse(mimetype='text/csv')
     response[
