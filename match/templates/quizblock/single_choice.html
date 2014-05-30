@@ -9,6 +9,8 @@
                 {% if response %}
                     {% ifequal response.value answer.value %}
                         <div class="yours {% if response.is_correct %}alert alert-success{% else %}alert alert-error{% endif %}">
+                            <input name="pageblock-{{block.pageblock.id}}-question{{question.id}}"
+                                value="{{answer.value}}" type="radio" disabled="disabled" checked="checked" />
                             {{answer.label}}
                             {% if answer.explanation %}
                               <div class="answer-explanation">
@@ -18,6 +20,8 @@
                         </div>
                     {% else %}
                         <div {% if answer.correct %}class="correct"{% endif %}>
+                            <input name="pageblock-{{block.pageblock.id}}-question{{question.id}}"
+                                value="{{answer.value}}" type="radio" disabled="disabled" />
                             {{answer.label}}
                             {% if answer.explanation %}
                               <div class="answer-explanation">

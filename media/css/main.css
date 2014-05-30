@@ -1018,7 +1018,8 @@ div.answer-explanation {
     display: none;
 }
 
-div.casequestion input[type="checkbox"]:disabled {
+div.casequestion input[type="checkbox"]:disabled,
+div.casequestion input[type="radio"]:disabled {
     display: none;
 }
 
@@ -1069,7 +1070,8 @@ div.corrected_quiz .correct:after {
 
 /* Module4 answer-feedback quiz */
 
-div.answer-feedback-quiz input[type="checkbox"]:disabled {
+div.answer-feedback-quiz input[type="checkbox"]:disabled,
+div.answer-feedback-quiz input[type="radio"]:disabled {
     display: inline;
 }
 
@@ -1083,13 +1085,30 @@ div.answer-feedback-quiz .yours.incorrect {
     color: black;
 }
 
-/* Module4 complete-quiz-feedback */
-div.complete-quiz-feedback div.quiz-feedback {
+/* Module4 complete-feedback-quiz */
+div.complete-feedback-quiz div.quiz-feedback {
     display: block;
 }
 
-div.complete-quiz-feedback div.quiz-feedback span:before {
+div.complete-feedback-quiz div.quiz-feedback span:before {
     content: "Thank you for taking the quiz"
+}
+
+/* Module4 survey-quiz */
+div.survey-quiz input[type="checkbox"]:disabled,
+div.survey-quiz input[type="radio"]:disabled {
+    display: inline;
+}
+
+div.survey-quiz .yours {
+    background-color: white;
+    color: black;
+    border: none;
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 0;
+    margin: 0;    
 }
 
 

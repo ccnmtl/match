@@ -16,7 +16,7 @@ class UnlockedNode(template.Node):
         u = r.user
         if _unlocked(u.get_profile(), s):
             return self.nodelist_true.render(context)
-        elif self.nodelist_false:
+        else:
             return self.nodelist_false.render(context)
 
 
@@ -45,7 +45,7 @@ class SubmittedNode(template.Node):
         u = r.user
         if s.submitted(u):
             return self.nodelist_true.render(context)
-        elif self.nodelist_false:
+        else:
             return self.nodelist_false.render(context)
 
 
