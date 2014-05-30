@@ -153,7 +153,12 @@
                         <input type="hidden" name="action" value="reset" />
                         <input type="submit" value="Clear your answers and try again" class="btn btn-info right" />
                     </form>
-                {% endif %}
+                {% else %}{% if request.user.is_superuser %}
+                    <form action="." method="post">
+                        <input type="hidden" name="action" value="reset" />
+                        <input type="submit" value="Clear your answers (superusers only)" class="btn btn-info right" />
+                    </form>
+                {% endif %}{% endif %}
             {% else %}
                 <input type="submit" value="Submit" class="btn btn-info right" />
                 </form>

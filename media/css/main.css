@@ -1008,11 +1008,20 @@ textarea {width: 100%;}
 .dragging { background-color: #fed;}
 
 
+/* quiz styling */
+
+div.quiz-feedback {
+    display: none;
+}
+
+div.casequestion input[type="checkbox"]:disabled {
+    display: none;
+}
 
 .yours {
-background-color: #dedede; 
-color: #000;
-padding: 2px;
+    background-color: #dedede; 
+    color: #000;
+    padding: 2px;
 }
 
 .yours.correct, .yours.correctanswer {
@@ -1023,6 +1032,11 @@ padding: 2px;
     background-color: #f00;
     color: #fff;
 }
+
+.answer-inner {color: #000;}
+
+.submissionheader th, .submissionheader td {background-color: #fff; }
+
 
 .expert {color: orange;}
 
@@ -1049,10 +1063,27 @@ div.corrected_quiz .correct:after {
     padding-left: 20px;
 }
 
+/* Module4 answer-feedback quiz */
 
-.answer-inner {color: #000;}
+div.answer-feedback-quiz input[type="checkbox"]:disabled {
+    display: inline;
+}
 
-.submissionheader th, .submissionheader td {background-color: #fff; }
+div.answer-feedback-quiz .yours.correct,
+div.answer-feedback-quiz .yours.incorrect {
+    background-color: white;
+    color: black;
+}
+
+/* Module4 complete-quiz-feedback */
+div.complete-quiz-feedback div.quiz-feedback {
+    display: block;
+}
+
+div.complete-quiz-feedback div.quiz-feedback span:before {
+    content: "Thank you for taking the quiz"
+}
+
 
 /* jquery tabs */
 .ui-tabs .ui-tabs-hide {
