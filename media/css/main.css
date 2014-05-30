@@ -1014,6 +1014,10 @@ div.quiz-feedback {
     display: none;
 }
 
+div.answer-explanation {
+    display: none;
+}
+
 div.casequestion input[type="checkbox"]:disabled {
     display: none;
 }
@@ -1067,6 +1071,10 @@ div.corrected_quiz .correct:after {
 
 div.answer-feedback-quiz input[type="checkbox"]:disabled {
     display: inline;
+}
+
+div.answer-feedback-quiz div.answer-explanation {
+    display: block;
 }
 
 div.answer-feedback-quiz .yours.correct,

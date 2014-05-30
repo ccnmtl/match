@@ -1,10 +1,12 @@
 {% load markup %}
-{% load getresponse %}
+{% load getresponse unlocked %}
 
-<div class="quiz-feedback alert alert-success">
-    {% comment %} text added via css {% endcomment %} 
-    <span></span>
-</div>
+{% ifsubmitted section %}
+    <div class="quiz-feedback alert alert-success">
+        {% comment %} text added via css {% endcomment %} 
+        <span></span>
+    </div>
+{% endifsubmitted %}
 
 {{ block.description|markdown }}
 
