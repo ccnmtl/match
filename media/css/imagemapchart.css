@@ -506,3 +506,16 @@
 .navturquoisebubble-hover {background: url('/site_media/img/infographics/ig03_navturquoisebubble.png') no-repeat -107px 0px; cursor: pointer;}
 .navturquoisebubble-active {background: url('/site_media/img/infographics/ig03_navturquoisebubble.png') no-repeat -214px 0px; cursor: pointer;}
 .textturquoisebubble {background: url('/site_media/img/infographics/ig03_textturquoisebubble.png') no-repeat 0 0; display: none; padding-top: 30px;}
+
+
+/* INFOGRAPHIC 4 MODULE 4 */
+
+.infochart-ag {
+    position: relative;
+    width: 670px;
+    height: 500px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: url('/site_media/img/infographics/infochart-ag-bg.png') no-repeat 0 0;
+}
