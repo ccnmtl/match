@@ -558,8 +558,8 @@
 
 .infochart-ag #chartcontent #charttext div ul {
     display: block;
-    padding: 0 10px 0 0;
-    margin: 0 0 0 20px;
+    padding: 0 30px 0 0;
+    margin: 0;
     border: 0;
     list-style: none;
 }
@@ -570,7 +570,8 @@
     margin: 0 0 4px 0;
     border: 0;
     list-style: none;
-    font-size: 14px;
+    font-size: 12px;
+    line-height: 130%;
 }
 
 .infochart-ag #chartcontent #chartnav {
@@ -687,29 +688,29 @@
 .nav04mo12mo {background: url('/site_media/img/infographics/icag_nav04mo12mo.png') no-repeat 0 0;}
 .nav04mo12mo-hover {background: url('/site_media/img/infographics/icag_nav04mo12mo.png') no-repeat -115px 0px; cursor: pointer;}
 .nav04mo12mo-active {background: url('/site_media/img/infographics/icag_nav04mo12mo.png') no-repeat -230px 0px; cursor: pointer;}
-.text04mo12mo {background: url('/site_media/img/infographics/slpchart_text04mo12mo.png') no-repeat 20px 0; display: none;}
+.text04mo12mo {background: url('/site_media/img/infographics/icag_text04mo12mo.png') no-repeat 20px 0; display: none;}
 .text04mo12mo li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat 0 3px;}
 
-.nav15mo18mo {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat 0 0;}
-.nav15mo18mo-hover {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -127px 0px; cursor: pointer;}
-.nav15mo18mo-active {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -254px 0px; cursor: pointer;}
-.text15mo18mo {background: url('/site_media/img/infographics/slpchart_text0mo.png') no-repeat 0 0; display: none;}
+.nav15mo18mo {background: url('/site_media/img/infographics/icag_nav0mo.png') no-repeat 0 0;}
+.nav15mo18mo-hover {background: url('/site_media/img/infographics/icag_nav0mo.png') no-repeat -127px 0px; cursor: pointer;}
+.nav15mo18mo-active {background: url('/site_media/img/infographics/icag_nav0mo.png') no-repeat -254px 0px; cursor: pointer;}
+.text15mo18mo {background: url('/site_media/img/infographics/icag_text0mo.png') no-repeat 0 0; display: none;}
 .text15mo18mo li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat 0 3px;}
 
-.nav02yr04yr {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat 0 0;}
-.nav02yr04yr-hover {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -127px 0px; cursor: pointer;}
-.nav02yr04yr-active {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -254px 0px; cursor: pointer;}
-.text02yr04yr {background: url('/site_media/img/infographics/slpchart_text0mo.png') no-repeat 0 0; display: none;}
+.nav02yr04yr {background: url('/site_media/img/infographics/icag_nav0mo.png') no-repeat 0 0;}
+.nav02yr04yr-hover {background: url('/site_media/img/infographics/icag_nav0mo.png') no-repeat -127px 0px; cursor: pointer;}
+.nav02yr04yr-active {background: url('/site_media/img/infographics/icag_nav0mo.png') no-repeat -254px 0px; cursor: pointer;}
+.text02yr04yr {background: url('/site_media/img/infographics/icag_text0mo.png') no-repeat 0 0; display: none;}
 .text02yr04yr li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat 0 3px;}
 
-.nav05yr10yr {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat 0 0;}
-.nav05yr10yr-hover {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -127px 0px; cursor: pointer;}
-.nav05yr10yr-active {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -254px 0px; cursor: pointer;}
-.text05yr10yr {background: url('/site_media/img/infographics/slpchart_text0mo.png') no-repeat 0 0; display: none;}
+.nav05yr10yr {background: url('/site_media/img/infographics/icag_nav0mo.png') no-repeat 0 0;}
+.nav05yr10yr-hover {background: url('/site_media/img/infographics/icag_nav0mo.png') no-repeat -127px 0px; cursor: pointer;}
+.nav05yr10yr-active {background: url('/site_media/img/infographics/icag_nav0mo.png') no-repeat -254px 0px; cursor: pointer;}
+.text05yr10yr {background: url('/site_media/img/infographics/icag_text0mo.png') no-repeat 0 0; display: none;}
 .text05yr10yr li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat 0 3px;}
 
-.nav11yr21yr {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat 0 0;}
-.nav11yr21yr-hover {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -127px 0px; cursor: pointer;}
-.nav11yr21yr-active {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -254px 0px; cursor: pointer;}
-.text11yr21yr {background: url('/site_media/img/infographics/slpchart_text0mo.png') no-repeat 0 0; display: none;}
+.nav11yr21yr {background: url('/site_media/img/infographics/icag_nav0mo.png') no-repeat 0 0;}
+.nav11yr21yr-hover {background: url('/site_media/img/infographics/icag_nav0mo.png') no-repeat -127px 0px; cursor: pointer;}
+.nav11yr21yr-active {background: url('/site_media/img/infographics/icag_nav0mo.png') no-repeat -254px 0px; cursor: pointer;}
+.text11yr21yr {background: url('/site_media/img/infographics/icag_text0mo.png') no-repeat 0 0; display: none;}
 .text11yr21yr li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat 0 3px;}
