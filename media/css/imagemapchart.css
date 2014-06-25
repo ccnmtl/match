@@ -515,7 +515,199 @@
     width: 670px;
     height: 500px;
     padding: 0;
-    margin: 0;
+    margin: 0 0 20px 0;
     border: 0;
     background: url('/site_media/img/infographics/infochart-ag-bg.png') no-repeat 0 0;
 }
+
+.infochart-ag #chartcontent {
+    position: absolute;
+    top: 84px;
+    left: 0;
+    width: 670px;
+    height: 416px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.infochart-ag #chartcontent #charttext {
+    width: 294px;
+    height: 416px;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: normal 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #000;
+}
+
+.infochart-ag #chartcontent #charttext .textactive {
+    display: block;
+}
+
+.infochart-ag #chartcontent #charttext div {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.infochart-ag #chartcontent #charttext div ul {
+    display: block;
+    padding: 71px 0 0 0;
+    margin: 0 0 0 20px;
+    border: 0;
+    list-style: none;
+}
+
+.infochart-ag #chartcontent #charttext div ul li {
+    display: block;
+    padding: 0 0 4px 14px;
+    margin: 0 0 4px 0;
+    border: 0;
+    list-style: none;
+    font-size: 14px;
+}
+
+.infochart-ag #chartcontent #chartnav {
+    position: relative;
+    width: 376px;
+    height: 416px;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.infochart-ag #imagemap_shim {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    z-index: 700;
+    display: block;
+}
+
+.infochart-ag #imagemap_shim {
+    width: 376px;
+    height: 416px;
+}
+
+.infochart-ag #chartcontent #chart_nav00mo03mo {
+    position: absolute;
+    left: 0px;
+    top: 332px;
+    z-index: 600;
+    width: 108px;
+    height: 70px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.infochart-ag #chartcontent #chart_nav04mo12mo {
+    position: absolute;
+    left: 75px;
+    top: 288px;
+    z-index: 500;
+    width: 115px;
+    height: 114px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.infochart-ag #chartcontent #chart_nav15mo18mo {
+    position: absolute;
+    left: 122px;
+    top: 180px;
+    z-index: 400;
+    width: 110px;
+    height: 222px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.infochart-ag #chartcontent #chart_nav02yr04yr {
+    position: absolute;
+    left: 156px;
+    top: 128px;
+    z-index: 300;
+    width: 95px;
+    height: 274px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.infochart-ag #chartcontent #chart_nav05yr10yr {
+    position: absolute;
+    left: 161px;
+    top: 92px;
+    z-index: 200;
+    width: 135px;
+    height: 310px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.infochart-ag #chartcontent #chart_nav11yr21yr {
+    position: absolute;
+    left: 215px;
+    top: 0px;
+    z-index: 100;
+    width: 149px;
+    height: 402px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.nav00mo03mo {background: url('/site_media/img/infographics/icag_nav00mo03mo.png') no-repeat 0 0;}
+.nav00mo03mo-hover {background: url('/site_media/img/infographics/icag_nav00mo03mo.png') no-repeat -109px 0px; cursor: pointer;}
+.nav00mo03mo-active {background: url('/site_media/img/infographics/icag_nav00mo03mo.png') no-repeat -216px 0px; cursor: pointer;}
+.text00mo03mo {background: url('/site_media/img/infographics/icag_text00mo03mo.png') no-repeat 0 0; display: none;}
+.text00mo03mo li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat 0 3px;}
+
+.nav04mo12mo {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat 0 0;}
+.nav04mo12mo-hover {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -127px 0px; cursor: pointer;}
+.nav04mo12mo-active {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -254px 0px; cursor: pointer;}
+.text04mo12mo {background: url('/site_media/img/infographics/slpchart_text0mo.png') no-repeat 0 0; display: none;}
+.text04mo12mo li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat 0 3px;}
+
+.nav15mo18mo {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat 0 0;}
+.nav15mo18mo-hover {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -127px 0px; cursor: pointer;}
+.nav15mo18mo-active {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -254px 0px; cursor: pointer;}
+.text15mo18mo {background: url('/site_media/img/infographics/slpchart_text0mo.png') no-repeat 0 0; display: none;}
+.text15mo18mo li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat 0 3px;}
+
+.nav02yr04yr {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat 0 0;}
+.nav02yr04yr-hover {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -127px 0px; cursor: pointer;}
+.nav02yr04yr-active {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -254px 0px; cursor: pointer;}
+.text02yr04yr {background: url('/site_media/img/infographics/slpchart_text0mo.png') no-repeat 0 0; display: none;}
+.text02yr04yr li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat 0 3px;}
+
+.nav05yr10yr {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat 0 0;}
+.nav05yr10yr-hover {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -127px 0px; cursor: pointer;}
+.nav05yr10yr-active {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -254px 0px; cursor: pointer;}
+.text05yr10yr {background: url('/site_media/img/infographics/slpchart_text0mo.png') no-repeat 0 0; display: none;}
+.text05yr10yr li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat 0 3px;}
+
+.nav11yr21yr {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat 0 0;}
+.nav11yr21yr-hover {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -127px 0px; cursor: pointer;}
+.nav11yr21yr-active {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -254px 0px; cursor: pointer;}
+.text11yr21yr {background: url('/site_media/img/infographics/slpchart_text0mo.png') no-repeat 0 0; display: none;}
+.text11yr21yr li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat 0 3px;}
