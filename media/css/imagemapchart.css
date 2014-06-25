@@ -546,6 +546,8 @@
 
 .infochart-ag #chartcontent #charttext .textactive {
     display: block;
+    margin-top: 20px;
+    padding: 30px 0 0 20px;
 }
 
 .infochart-ag #chartcontent #charttext div {
@@ -556,7 +558,7 @@
 
 .infochart-ag #chartcontent #charttext div ul {
     display: block;
-    padding: 71px 0 0 0;
+    padding: 0;
     margin: 0 0 0 20px;
     border: 0;
     list-style: none;
@@ -677,7 +679,7 @@
 }
 
 .nav00mo03mo {background: url('/site_media/img/infographics/icag_nav00mo03mo.png') no-repeat 0 0;}
-.nav00mo03mo-hover {background: url('/site_media/img/infographics/icag_nav00mo03mo.png') no-repeat -109px 0px; cursor: pointer;}
+.nav00mo03mo-hover {background: url('/site_media/img/infographics/icag_nav00mo03mo.png') no-repeat -108px 0px; cursor: pointer;}
 .nav00mo03mo-active {background: url('/site_media/img/infographics/icag_nav00mo03mo.png') no-repeat -216px 0px; cursor: pointer;}
 .text00mo03mo {background: url('/site_media/img/infographics/icag_text00mo03mo.png') no-repeat 0 0; display: none;}
 .text00mo03mo li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat 0 3px;}
