@@ -558,7 +558,7 @@
 
 .infochart-ag #chartcontent #charttext div ul {
     display: block;
-    padding: 0;
+    padding: 0 10px 0 0;
     margin: 0 0 0 20px;
     border: 0;
     list-style: none;
@@ -681,13 +681,13 @@
 .nav00mo03mo {background: url('/site_media/img/infographics/icag_nav00mo03mo.png') no-repeat 0 0;}
 .nav00mo03mo-hover {background: url('/site_media/img/infographics/icag_nav00mo03mo.png') no-repeat -108px 0px; cursor: pointer;}
 .nav00mo03mo-active {background: url('/site_media/img/infographics/icag_nav00mo03mo.png') no-repeat -216px 0px; cursor: pointer;}
-.text00mo03mo {background: url('/site_media/img/infographics/icag_text00mo03mo.png') no-repeat 0 0; display: none;}
+.text00mo03mo {background: url('/site_media/img/infographics/icag_text00mo03mo.png') no-repeat 20px 0; display: none;}
 .text00mo03mo li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat 0 3px;}
 
-.nav04mo12mo {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat 0 0;}
-.nav04mo12mo-hover {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -127px 0px; cursor: pointer;}
-.nav04mo12mo-active {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -254px 0px; cursor: pointer;}
-.text04mo12mo {background: url('/site_media/img/infographics/slpchart_text0mo.png') no-repeat 0 0; display: none;}
+.nav04mo12mo {background: url('/site_media/img/infographics/icag_nav04mo12mo.png') no-repeat 0 0;}
+.nav04mo12mo-hover {background: url('/site_media/img/infographics/icag_nav04mo12mo.png') no-repeat -115px 0px; cursor: pointer;}
+.nav04mo12mo-active {background: url('/site_media/img/infographics/icag_nav04mo12mo.png') no-repeat -230px 0px; cursor: pointer;}
+.text04mo12mo {background: url('/site_media/img/infographics/slpchart_text04mo12mo.png') no-repeat 20px 0; display: none;}
 .text04mo12mo li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat 0 3px;}
 
 .nav15mo18mo {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat 0 0;}
