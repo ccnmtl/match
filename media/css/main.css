@@ -2030,3 +2030,11 @@ div#glossary-popup a.close {
 .quiz_cases .alert {
     margin: 0;
 }
+
+.gray_header table th {
+    border: 2px solid #999;
+    border-collapse: collapse;
+    padding: 5px;
+    text-align: left;
+    background-color: #EEE; }
+}
