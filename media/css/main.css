@@ -1090,8 +1090,12 @@ div.complete-feedback-quiz div.quiz-feedback {
     display: block;
 }
 
+div.complete-feedback-quiz div.casetitle {
+    display: none;
+}
+
 div.complete-feedback-quiz div.quiz-feedback span:before {
-    content: "Thank you for taking the quiz"
+    content: "Thank you for your response. Continue to learn what happens next."
 }
 
 /* Module4 survey-quiz */
