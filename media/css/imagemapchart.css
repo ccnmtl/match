@@ -2,7 +2,7 @@
     position: relative;
     width: 670px;
     height: 500px;
-    background: url('/site_media/img/infographics/slpchart01_bg.jpg') no-repeat 0 0;
+    background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart01_bg.jpg') no-repeat 0 0;
 }
 
 .slpchart01 #chartcontent {
@@ -169,7 +169,7 @@
     position: relative;
     width: 670px;
     height: 374px;
-    background: url('/site_media/img/infographics/slpchart02_bg.jpg') no-repeat 0 0;
+    background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart02_bg.jpg') no-repeat 0 0;
 }
 
 .slpchart02 #chartcontent {
@@ -256,53 +256,53 @@
 }
 
 
-.nav0mo {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat 0 0;}
-.nav0mo-hover {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -127px 0px; cursor: pointer;}
-.nav0mo-active {background: url('/site_media/img/infographics/slpchart_nav0mo.png') no-repeat -254px 0px; cursor: pointer;}
-.text0mo {background: url('/site_media/img/infographics/slpchart_text0mo.png') no-repeat 0 0; display: none;}
-.text0mo li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat 0 3px;}
+.nav0mo {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav0mo.png') no-repeat 0 0;}
+.nav0mo-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav0mo.png') no-repeat -127px 0px; cursor: pointer;}
+.nav0mo-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav0mo.png') no-repeat -254px 0px; cursor: pointer;}
+.text0mo {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_text0mo.png') no-repeat 0 0; display: none;}
+.text0mo li {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/bullet_allyrs.png') no-repeat 0 3px;}
 
-.nav9mo {background: url('/site_media/img/infographics/slpchart_nav9mo.png') no-repeat 0 0;}
-.nav9mo-hover {background: url('/site_media/img/infographics/slpchart_nav9mo.png') no-repeat -139px 0px; cursor: pointer;}
-.nav9mo-active {background: url('/site_media/img/infographics/slpchart_nav9mo.png') no-repeat -278px 0px; cursor: pointer;}
-.text9mo {background: url('/site_media/img/infographics/slpchart_text9mo.png') no-repeat 0 0; display: none;}
-.text9mo li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat -340px 3px;}
+.nav9mo {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav9mo.png') no-repeat 0 0;}
+.nav9mo-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav9mo.png') no-repeat -139px 0px; cursor: pointer;}
+.nav9mo-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav9mo.png') no-repeat -278px 0px; cursor: pointer;}
+.text9mo {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_text9mo.png') no-repeat 0 0; display: none;}
+.text9mo li {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/bullet_allyrs.png') no-repeat -340px 3px;}
 
-.nav15mo {background: url('/site_media/img/infographics/slpchart_nav15mo.png') no-repeat 0 0;}
-.nav15mo-hover {background: url('/site_media/img/infographics/slpchart_nav15mo.png') no-repeat -131px 0px; cursor: pointer;}
-.nav15mo-active {background: url('/site_media/img/infographics/slpchart_nav15mo.png') no-repeat -262px 0px; cursor: pointer;}
-.text15mo {background: url('/site_media/img/infographics/slpchart_text15mo.png') no-repeat 0 0; display: none;}
-.text15mo li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat -680px 3px;}
+.nav15mo {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav15mo.png') no-repeat 0 0;}
+.nav15mo-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav15mo.png') no-repeat -131px 0px; cursor: pointer;}
+.nav15mo-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav15mo.png') no-repeat -262px 0px; cursor: pointer;}
+.text15mo {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_text15mo.png') no-repeat 0 0; display: none;}
+.text15mo li {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/bullet_allyrs.png') no-repeat -680px 3px;}
 
-.nav18mo {background: url('/site_media/img/infographics/slpchart_nav18mo.png') no-repeat 0 0;}
-.nav18mo-hover {background: url('/site_media/img/infographics/slpchart_nav18mo.png') no-repeat -173px 0px; cursor: pointer;}
-.nav18mo-active {background: url('/site_media/img/infographics/slpchart_nav18mo.png') no-repeat -346px 0px; cursor: pointer;}
-.text18mo {background: url('/site_media/img/infographics/slpchart_text18mo.png') no-repeat 0 0; display: none;}
-.text18mo li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat -1020px 3px;}
+.nav18mo {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav18mo.png') no-repeat 0 0;}
+.nav18mo-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav18mo.png') no-repeat -173px 0px; cursor: pointer;}
+.nav18mo-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav18mo.png') no-repeat -346px 0px; cursor: pointer;}
+.text18mo {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_text18mo.png') no-repeat 0 0; display: none;}
+.text18mo li {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/bullet_allyrs.png') no-repeat -1020px 3px;}
 
-.nav2yr {background: url('/site_media/img/infographics/slpchart_nav2yr.png') no-repeat 0 0;}
-.nav2yr-hover {background: url('/site_media/img/infographics/slpchart_nav2yr.png') no-repeat -138px 0px; cursor: pointer;}
-.nav2yr-active {background: url('/site_media/img/infographics/slpchart_nav2yr.png') no-repeat -276px 0px; cursor: pointer;}
-.text2yr {background: url('/site_media/img/infographics/slpchart_text2yr.png') no-repeat 0 0; display: none;}
-.text2yr li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat -1360px 3px;}
+.nav2yr {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav2yr.png') no-repeat 0 0;}
+.nav2yr-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav2yr.png') no-repeat -138px 0px; cursor: pointer;}
+.nav2yr-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav2yr.png') no-repeat -276px 0px; cursor: pointer;}
+.text2yr {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_text2yr.png') no-repeat 0 0; display: none;}
+.text2yr li {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/bullet_allyrs.png') no-repeat -1360px 3px;}
 
-.nav3yr {background: url('/site_media/img/infographics/slpchart_nav3yr.png') no-repeat 0 0;}
-.nav3yr-hover {background: url('/site_media/img/infographics/slpchart_nav3yr.png') no-repeat -161px 0px; cursor: pointer;}
-.nav3yr-active {background: url('/site_media/img/infographics/slpchart_nav3yr.png') no-repeat -322px 0px; cursor: pointer;}
-.text3yr {background: url('/site_media/img/infographics/slpchart_text3yr.png') no-repeat 0 0; display: none;}
-.text3yr li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat -1700px 3px;}
+.nav3yr {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav3yr.png') no-repeat 0 0;}
+.nav3yr-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav3yr.png') no-repeat -161px 0px; cursor: pointer;}
+.nav3yr-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav3yr.png') no-repeat -322px 0px; cursor: pointer;}
+.text3yr {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_text3yr.png') no-repeat 0 0; display: none;}
+.text3yr li {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/bullet_allyrs.png') no-repeat -1700px 3px;}
 
-.nav4yr {background: url('/site_media/img/infographics/slpchart_nav4yr.png') no-repeat 0 0;}
-.nav4yr-hover {background: url('/site_media/img/infographics/slpchart_nav4yr.png') no-repeat -119px 0px; cursor: pointer;}
-.nav4yr-active {background: url('/site_media/img/infographics/slpchart_nav4yr.png') no-repeat -238px 0px; cursor: pointer;}
-.text4yr {background: url('/site_media/img/infographics/slpchart_text4yr.png') no-repeat 0 0; display: none;}
-.text4yr li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat -2040px 3px;}
+.nav4yr {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav4yr.png') no-repeat 0 0;}
+.nav4yr-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav4yr.png') no-repeat -119px 0px; cursor: pointer;}
+.nav4yr-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav4yr.png') no-repeat -238px 0px; cursor: pointer;}
+.text4yr {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_text4yr.png') no-repeat 0 0; display: none;}
+.text4yr li {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/bullet_allyrs.png') no-repeat -2040px 3px;}
 
-.nav5yr {background: url('/site_media/img/infographics/slpchart_nav5yr2.png') no-repeat 0 0;}
-.nav5yr-hover {background: url('/site_media/img/infographics/slpchart_nav5yr2.png') no-repeat -160px 0px; cursor: pointer;}
-.nav5yr-active {background: url('/site_media/img/infographics/slpchart_nav5yr2.png') no-repeat -320px 0px; cursor: pointer;}
-.text5yr {background: url('/site_media/img/infographics/slpchart_text5yr.png') no-repeat 0 0; display: none;}
-.text5yr li {background: url('/site_media/img/infographics/bullet_allyrs.png') no-repeat -2380px 3px;}
+.nav5yr {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav5yr2.png') no-repeat 0 0;}
+.nav5yr-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav5yr2.png') no-repeat -160px 0px; cursor: pointer;}
+.nav5yr-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_nav5yr2.png') no-repeat -320px 0px; cursor: pointer;}
+.text5yr {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/slpchart_text5yr.png') no-repeat 0 0; display: none;}
+.text5yr li {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/bullet_allyrs.png') no-repeat -2380px 3px;}
 /* INFOGRAPHIC 3 */
 
 .infochart03 {
@@ -312,7 +312,7 @@
     padding: 0;
     margin: 0;
     border: 0;
-    background: url('/site_media/img/infographics/infochart03_bg.png') no-repeat 0 0;
+    background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/infochart03_bg.png') no-repeat 0 0;
 }
 
 .infochart03 #chartcontent {
@@ -472,40 +472,40 @@
     border: 0;
 }
 
-.navpinkbubble {background: url('/site_media/img/infographics/ig03_navpinkbubble.png') no-repeat 0 0;}
-.navpinkbubble-hover {background: url('/site_media/img/infographics/ig03_navpinkbubble.png') no-repeat -107px 0px; cursor: pointer;}
-.navpinkbubble-active {background: url('/site_media/img/infographics/ig03_navpinkbubble.png') no-repeat -214px 0px; cursor: pointer;}
-.textpinkbubble {background: url('/site_media/img/infographics/ig03_textpinkbubble.png') no-repeat 0 0; display: none; padding-top: 30px;}
+.navpinkbubble {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navpinkbubble.png') no-repeat 0 0;}
+.navpinkbubble-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navpinkbubble.png') no-repeat -107px 0px; cursor: pointer;}
+.navpinkbubble-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navpinkbubble.png') no-repeat -214px 0px; cursor: pointer;}
+.textpinkbubble {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_textpinkbubble.png') no-repeat 0 0; display: none; padding-top: 30px;}
 
-.navbluebubble {background: url('/site_media/img/infographics/ig03_navbluebubble.png') no-repeat 0 0;}
-.navbluebubble-hover {background: url('/site_media/img/infographics/ig03_navbluebubble.png') no-repeat -107px 0px; cursor: pointer;}
-.navbluebubble-active {background: url('/site_media/img/infographics/ig03_navbluebubble.png') no-repeat -214px 0px; cursor: pointer;}
-.textbluebubble {background: url('/site_media/img/infographics/ig03_textbluebubble.png') no-repeat 0 0; display: none; padding-top: 30px;}
+.navbluebubble {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navbluebubble.png') no-repeat 0 0;}
+.navbluebubble-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navbluebubble.png') no-repeat -107px 0px; cursor: pointer;}
+.navbluebubble-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navbluebubble.png') no-repeat -214px 0px; cursor: pointer;}
+.textbluebubble {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_textbluebubble.png') no-repeat 0 0; display: none; padding-top: 30px;}
 
-.navorangebubble {background: url('/site_media/img/infographics/ig03_navorangebubble.png') no-repeat 0 0;}
-.navorangebubble-hover {background: url('/site_media/img/infographics/ig03_navorangebubble.png') no-repeat -107px 0px; cursor: pointer;}
-.navorangebubble-active {background: url('/site_media/img/infographics/ig03_navorangebubble.png') no-repeat -214px 0px; cursor: pointer;}
-.textorangebubble {background: url('/site_media/img/infographics/ig03_textorangebubble.png') no-repeat 0 0; display: none; padding-top: 30px;}
+.navorangebubble {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navorangebubble.png') no-repeat 0 0;}
+.navorangebubble-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navorangebubble.png') no-repeat -107px 0px; cursor: pointer;}
+.navorangebubble-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navorangebubble.png') no-repeat -214px 0px; cursor: pointer;}
+.textorangebubble {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_textorangebubble.png') no-repeat 0 0; display: none; padding-top: 30px;}
 
-.navpurplebubble {background: url('/site_media/img/infographics/ig03_navpurplebubble.png') no-repeat 0 0;}
-.navpurplebubble-hover {background: url('/site_media/img/infographics/ig03_navpurplebubble.png') no-repeat -107px 0px; cursor: pointer;}
-.navpurplebubble-active {background: url('/site_media/img/infographics/ig03_navpurplebubble.png') no-repeat -214px 0px; cursor: pointer;}
-.textpurplebubble {background: url('/site_media/img/infographics/ig03_textpurplebubble.png') no-repeat 0 0; display: none; padding-top: 30px;}
+.navpurplebubble {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navpurplebubble.png') no-repeat 0 0;}
+.navpurplebubble-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navpurplebubble.png') no-repeat -107px 0px; cursor: pointer;}
+.navpurplebubble-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navpurplebubble.png') no-repeat -214px 0px; cursor: pointer;}
+.textpurplebubble {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_textpurplebubble.png') no-repeat 0 0; display: none; padding-top: 30px;}
 
-.navsalmonbubble {background: url('/site_media/img/infographics/ig03_navsalmonbubble.png') no-repeat 0 0;}
-.navsalmonbubble-hover {background: url('/site_media/img/infographics/ig03_navsalmonbubble.png') no-repeat -107px 0px; cursor: pointer;}
-.navsalmonbubble-active {background: url('/site_media/img/infographics/ig03_navsalmonbubble.png') no-repeat -214px 0px; cursor: pointer;}
-.textsalmonbubble {background: url('/site_media/img/infographics/ig03_textsalmonbubble.png') no-repeat 0 0; display: none; padding-top: 30px;}
+.navsalmonbubble {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navsalmonbubble.png') no-repeat 0 0;}
+.navsalmonbubble-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navsalmonbubble.png') no-repeat -107px 0px; cursor: pointer;}
+.navsalmonbubble-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navsalmonbubble.png') no-repeat -214px 0px; cursor: pointer;}
+.textsalmonbubble {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_textsalmonbubble.png') no-repeat 0 0; display: none; padding-top: 30px;}
 
-.navyellowbubble {background: url('/site_media/img/infographics/ig03_navyellowbubble.png') no-repeat 0 0;}
-.navyellowbubble-hover {background: url('/site_media/img/infographics/ig03_navyellowbubble.png') no-repeat -107px 0px; cursor: pointer;}
-.navyellowbubble-active {background: url('/site_media/img/infographics/ig03_navyellowbubble.png') no-repeat -214px 0px; cursor: pointer;}
-.textyellowbubble {background: url('/site_media/img/infographics/ig03_textyellowbubble.png') no-repeat 0 0; display: none; padding-top: 30px;}
+.navyellowbubble {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navyellowbubble.png') no-repeat 0 0;}
+.navyellowbubble-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navyellowbubble.png') no-repeat -107px 0px; cursor: pointer;}
+.navyellowbubble-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navyellowbubble.png') no-repeat -214px 0px; cursor: pointer;}
+.textyellowbubble {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_textyellowbubble.png') no-repeat 0 0; display: none; padding-top: 30px;}
 
-.navturquoisebubble {background: url('/site_media/img/infographics/ig03_navturquoisebubble.png') no-repeat 0 0;}
-.navturquoisebubble-hover {background: url('/site_media/img/infographics/ig03_navturquoisebubble.png') no-repeat -107px 0px; cursor: pointer;}
-.navturquoisebubble-active {background: url('/site_media/img/infographics/ig03_navturquoisebubble.png') no-repeat -214px 0px; cursor: pointer;}
-.textturquoisebubble {background: url('/site_media/img/infographics/ig03_textturquoisebubble.png') no-repeat 0 0; display: none; padding-top: 30px;}
+.navturquoisebubble {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navturquoisebubble.png') no-repeat 0 0;}
+.navturquoisebubble-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navturquoisebubble.png') no-repeat -107px 0px; cursor: pointer;}
+.navturquoisebubble-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_navturquoisebubble.png') no-repeat -214px 0px; cursor: pointer;}
+.textturquoisebubble {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/ig03_textturquoisebubble.png') no-repeat 0 0; display: none; padding-top: 30px;}
 
 
 /* INFOGRAPHIC 4 MODULE 4 */
@@ -517,7 +517,7 @@
     padding: 0;
     margin: 0 0 20px 0;
     border: 0;
-    background: url('/site_media/img/infographics/infochart-ag-bg.png') no-repeat 0 0;
+    background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/infochart-ag-bg.png') no-repeat 0 0;
 }
 
 .infochart-ag #chartcontent {
@@ -686,38 +686,38 @@
     line-height: 130% !important;
 }
 
-.nav00mo03mo {background: url('/site_media/img/infographics/icag_nav00mo03mo.png') no-repeat 0 0;}
-.nav00mo03mo-hover {background: url('/site_media/img/infographics/icag_nav00mo03mo.png') no-repeat -108px 0px; cursor: pointer;}
-.nav00mo03mo-active {background: url('/site_media/img/infographics/icag_nav00mo03mo.png') no-repeat -216px 0px; cursor: pointer;}
-.text00mo03mo {background: url('/site_media/img/infographics/icag_text00mo03mo.png') no-repeat 20px 0; display: none;}
-.text00mo03mo li {background: url('/site_media/img/infographics/bullet_allrangeyrs.png') no-repeat 0px 3px;}
+.nav00mo03mo {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav00mo03mo.png') no-repeat 0 0;}
+.nav00mo03mo-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav00mo03mo.png') no-repeat -108px 0px; cursor: pointer;}
+.nav00mo03mo-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav00mo03mo.png') no-repeat -216px 0px; cursor: pointer;}
+.text00mo03mo {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_text00mo03mo.png') no-repeat 20px 0; display: none;}
+.text00mo03mo li {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/bullet_allrangeyrs.png') no-repeat 0px 3px;}
 
-.nav04mo12mo {background: url('/site_media/img/infographics/icag_nav04mo12mo.png') no-repeat 0 0;}
-.nav04mo12mo-hover {background: url('/site_media/img/infographics/icag_nav04mo12mo.png') no-repeat -115px 0px; cursor: pointer;}
-.nav04mo12mo-active {background: url('/site_media/img/infographics/icag_nav04mo12mo.png') no-repeat -230px 0px; cursor: pointer;}
-.text04mo12mo {background: url('/site_media/img/infographics/icag_text04mo12mo.png') no-repeat 20px 0; display: none;}
-.text04mo12mo li {background: url('/site_media/img/infographics/bullet_allrangeyrs.png') no-repeat -340px 3px;}
+.nav04mo12mo {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav04mo12mo.png') no-repeat 0 0;}
+.nav04mo12mo-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav04mo12mo.png') no-repeat -115px 0px; cursor: pointer;}
+.nav04mo12mo-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav04mo12mo.png') no-repeat -230px 0px; cursor: pointer;}
+.text04mo12mo {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_text04mo12mo.png') no-repeat 20px 0; display: none;}
+.text04mo12mo li {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/bullet_allrangeyrs.png') no-repeat -340px 3px;}
 
-.nav15mo18mo {background: url('/site_media/img/infographics/icag_nav15mo18mo.png') no-repeat 0 0;}
-.nav15mo18mo-hover {background: url('/site_media/img/infographics/icag_nav15mo18mo.png') no-repeat -110px 0px; cursor: pointer;}
-.nav15mo18mo-active {background: url('/site_media/img/infographics/icag_nav15mo18mo.png') no-repeat -220px 0px; cursor: pointer;}
-.text15mo18mo {background: url('/site_media/img/infographics/icag_text15mo18mo.png') no-repeat 20px 0; display: none;}
-.text15mo18mo li {background: url('/site_media/img/infographics/bullet_allrangeyrs.png') no-repeat -680px 3px;}
+.nav15mo18mo {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav15mo18mo.png') no-repeat 0 0;}
+.nav15mo18mo-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav15mo18mo.png') no-repeat -110px 0px; cursor: pointer;}
+.nav15mo18mo-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav15mo18mo.png') no-repeat -220px 0px; cursor: pointer;}
+.text15mo18mo {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_text15mo18mo.png') no-repeat 20px 0; display: none;}
+.text15mo18mo li {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/bullet_allrangeyrs.png') no-repeat -680px 3px;}
 
-.nav02yr04yr {background: url('/site_media/img/infographics/icag_nav02yr04yr.png') no-repeat 0 0;}
-.nav02yr04yr-hover {background: url('/site_media/img/infographics/icag_nav02yr04yr.png') no-repeat -95px 0px; cursor: pointer;}
-.nav02yr04yr-active {background: url('/site_media/img/infographics/icag_nav02yr04yr.png') no-repeat -190px 0px; cursor: pointer;}
-.text02yr04yr {background: url('/site_media/img/infographics/icag_text02yr04yr.png') no-repeat 20px 0; display: none;}
-.text02yr04yr li {background: url('/site_media/img/infographics/bullet_allrangeyrs.png') no-repeat -1020px 3px;}
+.nav02yr04yr {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav02yr04yr.png') no-repeat 0 0;}
+.nav02yr04yr-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav02yr04yr.png') no-repeat -95px 0px; cursor: pointer;}
+.nav02yr04yr-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav02yr04yr.png') no-repeat -190px 0px; cursor: pointer;}
+.text02yr04yr {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_text02yr04yr.png') no-repeat 20px 0; display: none;}
+.text02yr04yr li {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/bullet_allrangeyrs.png') no-repeat -1020px 3px;}
 
-.nav05yr10yr {background: url('/site_media/img/infographics/icag_nav05yr10yr.png') no-repeat 0 0;}
-.nav05yr10yr-hover {background: url('/site_media/img/infographics/icag_nav05yr10yr.png') no-repeat -135px 0px; cursor: pointer;}
-.nav05yr10yr-active {background: url('/site_media/img/infographics/icag_nav05yr10yr.png') no-repeat -270px 0px; cursor: pointer;}
-.text05yr10yr {background: url('/site_media/img/infographics/icag_text05yr10yr.png') no-repeat 20px 0; display: none;}
-.text05yr10yr li {background: url('/site_media/img/infographics/bullet_allrangeyrs.png') no-repeat -1360px 3px;}
+.nav05yr10yr {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav05yr10yr.png') no-repeat 0 0;}
+.nav05yr10yr-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav05yr10yr.png') no-repeat -135px 0px; cursor: pointer;}
+.nav05yr10yr-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav05yr10yr.png') no-repeat -270px 0px; cursor: pointer;}
+.text05yr10yr {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_text05yr10yr.png') no-repeat 20px 0; display: none;}
+.text05yr10yr li {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/bullet_allrangeyrs.png') no-repeat -1360px 3px;}
 
-.nav11yr21yr {background: url('/site_media/img/infographics/icag_nav11yr21yr.png') no-repeat 0 0;}
-.nav11yr21yr-hover {background: url('/site_media/img/infographics/icag_nav11yr21yr.png') no-repeat -149px 0px; cursor: pointer;}
-.nav11yr21yr-active {background: url('/site_media/img/infographics/icag_nav11yr21yr.png') no-repeat -298px 0px; cursor: pointer;}
-.text11yr21yr {background: url('/site_media/img/infographics/icag_text11yr21yr.png') no-repeat 20px 0; display: none;}
-.text11yr21yr li {background: url('/site_media/img/infographics/bullet_allrangeyrs.png') no-repeat -1700px 3px;}
+.nav11yr21yr {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav11yr21yr.png') no-repeat 0 0;}
+.nav11yr21yr-hover {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav11yr21yr.png') no-repeat -149px 0px; cursor: pointer;}
+.nav11yr21yr-active {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_nav11yr21yr.png') no-repeat -298px 0px; cursor: pointer;}
+.text11yr21yr {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/icag_text11yr21yr.png') no-repeat 20px 0; display: none;}
+.text11yr21yr li {background: url('https://www1.columbia.edu/sec/ccnmtl/remote/static/match/img/infographics/bullet_allrangeyrs.png') no-repeat -1700px 3px;}
