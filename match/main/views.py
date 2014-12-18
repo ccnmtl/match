@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponseRedirect, HttpResponse, \
     HttpResponseForbidden
@@ -11,8 +11,8 @@ from match.nutrition.models import CounselingSessionState, \
     CounselingReferralState, DiscussionTopic
 from pagetree.helpers import get_section_from_path, \
     get_module, needs_submit, submitted
-from pagetree.models import Hierarchy
-from quizblock.models import Submission, Response
+from pagetree.models import Hierarchy, PageBlock
+from quizblock.models import Submission, Response, Quiz
 import csv
 import django.core.exceptions
 
@@ -285,6 +285,9 @@ class Column(object):
                 question=self.question)
             self._answer_cache = self.question.answer_set.all()
 
+    def completed_id(self):
+        return "%s_completed" % (self.hierarchy.id)
+
     def question_id(self):
         return "%s_question_%s" % (self.hierarchy.id, self.question.id)
 
@@ -301,6 +304,17 @@ class Column(object):
 
     def referral_id(self):
         return "%s_referral_%s" % (self.hierarchy.id, self.field)
+
+    def completed_value(self, user):
+        ctype = ContentType.objects.get_for_model(Quiz)
+        quizzes = PageBlock.objects.filter(content_type__pk=ctype.pk,
+                                           section__hierarchy=self.hierarchy)
+        ids = quizzes.values_list('object_id', flat=True)
+        submissions = Submission.objects.filter(
+            quiz_id__in=ids, user=user).order_by("-submitted")[:1]
+        if len(submissions) > 0:
+            return submissions[0].submitted.strftime("%m/%d/%y %H:%M:%S")
+        return ""
 
     def question_value(self, user):
         r = self._submission_cache.filter(user=user).order_by("-submitted")
@@ -342,8 +356,8 @@ class Column(object):
                 val = getattr(referral[0], self.field)
                 if val is not None:
                     return val
-
-        return ''
+        else:
+            return self.completed_value(user)
 
     def key_row(self):
         if self.question:
@@ -365,6 +379,11 @@ class Column(object):
                     self.module_name,
                     "short text",
                     clean_header(self.field), '', ""]
+        else:
+            return [self.completed_id(),
+                    self.module_name,
+                    "short text",
+                    "Completed date"]
 
     def header_column(self):
         if self.question and self.answer:
@@ -375,6 +394,8 @@ class Column(object):
             return [self.counseling_topic_id()]
         elif self.session and self.field:
             return [self.referral_id()]
+        else:
+            return [self.completed_id()]
 
 
 def _get_quiz_key(h, s):
@@ -446,11 +467,14 @@ def all_results_key(request):
 
     columns = []
     for h in Hierarchy.objects.all():
-        for s in h.get_root().get_descendants():
-            columns = columns + _get_quiz_key(h, s)
-            columns = section_columns(
-                h, s, columns, counseling_type,
-                referral_type)
+        descendants = h.get_root().get_descendants()
+        if len(descendants) > 0:
+            columns = columns + [Column(hierarchy=h)]
+            for s in descendants:
+                columns = columns + _get_quiz_key(h, s)
+                columns = section_columns(
+                    h, s, columns, counseling_type,
+                    referral_type)
 
     for column in columns:
         try:
@@ -475,6 +499,7 @@ def section_columns(h, s, columns, counseling_type, referral_type):
 
 
 @login_required
+@user_passes_test(lambda u: u.is_superuser)
 @rendered_with("main/all_results.html")
 def all_results(request):
     """
@@ -496,9 +521,6 @@ def all_results(request):
                 * Unanswered fields represented as an empty cell
     """
 
-    if not request.user.is_superuser:
-        return HttpResponseForbidden()
-
     if not request.GET.get('format', 'html') == 'csv':
         return dict()
 
@@ -507,10 +529,13 @@ def all_results(request):
 
     columns = []
     for h in Hierarchy.objects.all():
-        for s in h.get_root().get_descendants():
-            columns = columns + _get_quiz_results(h, s)
-            columns = section_columns(h, s, columns, counseling_type,
-                                      referral_type)
+        descendants = h.get_root().get_descendants()
+        if len(descendants) > 0:
+            columns = columns + [Column(hierarchy=h)]
+            for s in h.get_root().get_descendants():
+                columns = columns + _get_quiz_results(h, s)
+                columns = section_columns(h, s, columns, counseling_type,
+                                          referral_type)
 
     response = HttpResponse(mimetype='text/csv')
     response[
