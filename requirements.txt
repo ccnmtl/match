@@ -51,7 +51,7 @@ django-templatetag-sugar==0.1
 django-paging==0.2.2
 django-annoying==0.7.6
 django-treebeard==2.0b2
-South==0.8.4
+South==1.0.2
 django-statsd-mozilla==0.3.11
 django-nose==1.2
 django-bootstrap-form==2.0.3
