@@ -64,7 +64,7 @@ django-responseblock==0.1.0
 django-jenkins==0.15.0
 django-stagingcontext==0.1.0
 django-smoketest==0.3.0
-django-waffle==0.9.0 
+django-waffle==0.10.1 
 raven==5.1.1
 django-appconf==0.4.1
 django_compressor==1.3
