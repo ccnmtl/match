@@ -55,7 +55,7 @@ django-bootstrap-form==2.0.3
 django-markwhat==2014.9.20
 django-pagetree==1.0.1
 django-pageblocks==1.0.0
-django-quizblock==0.9.0
+django-quizblock==1.0.8
 django-careermapblock==0.2.17
 django-registration==1.1
 django-responseblock==0.1.0
