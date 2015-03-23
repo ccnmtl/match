@@ -454,7 +454,7 @@ def all_results_key(request):
     if not request.user.is_superuser:
         return HttpResponseForbidden()
 
-    response = HttpResponse(mimetype='text/csv')
+    response = HttpResponse(content_type='text/csv')
     response[
         'Content-Disposition'] = 'attachment; filename=match_response_key.csv'
     writer = csv.writer(response)
@@ -537,7 +537,7 @@ def all_results(request):
                 columns = section_columns(h, s, columns, counseling_type,
                                           referral_type)
 
-    response = HttpResponse(mimetype='text/csv')
+    response = HttpResponse(content_type='text/csv')
     response[
         'Content-Disposition'] = 'attachment; filename=match_responses.csv'
     writer = csv.writer(response)
