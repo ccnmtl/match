@@ -50,11 +50,7 @@ django-paging==0.2.2
 django-annoying==0.7.6
 django-treebeard==2.0b2
 South==1.0.2
-<<<<<<< Updated upstream
-django-statsd-mozilla==0.3.11
-=======
 django-statsd-mozilla==0.3.14
->>>>>>> Stashed changes
 django-nose==1.2
 django-bootstrap-form==2.0.3
 django-markwhat==1.0
