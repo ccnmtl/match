@@ -123,6 +123,7 @@ INSTALLED_APPS = [
     'waffle',
     'compressor',
     'django_markwhat',
+    'south'
 ]
 
 LETTUCE_APPS = (
