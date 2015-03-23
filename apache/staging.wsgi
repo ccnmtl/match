@@ -5,6 +5,4 @@ sys.path.append('/var/www/match/match/')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'match.settings_staging'
 
 import django.core.handlers.wsgi
-import django
-django.setup()
 application = django.core.handlers.wsgi.WSGIHandler()
