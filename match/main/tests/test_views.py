@@ -144,7 +144,8 @@ class ColumnTest(TestCase):
     def test_header_column(self):
         m = ModuleFactory("module_one")
         c = Column(m.root.hierarchy)
-        self.assertEqual(c.header_column(), ['1_completed'])
+        label = '%s_completed' % m.root.hierarchy.id
+        self.assertEqual(c.header_column(), [label])
 
     def test_user_value(self):
         m = ModuleFactory("module_one")
@@ -154,8 +155,9 @@ class ColumnTest(TestCase):
     def test_key_row(self):
         m = ModuleFactory("module_one")
         c = Column(m.root.hierarchy)
+        label = '%s_completed' % m.root.hierarchy.id
         self.assertEqual(c.key_row(),
-                         ['1_completed', u'One', 'short text',
+                         [label, u'One', 'short text',
                           'Completed date'])
 
 
