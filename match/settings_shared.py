@@ -119,8 +119,7 @@ INSTALLED_APPS = [
     'smoketest',
     'waffle',
     'compressor',
-    'django_markwhat',
-    'south'
+    'django_markwhat'
 ]
 
 LETTUCE_APPS = (
@@ -135,7 +134,6 @@ STATSD_HOST = 'localhost'
 STATSD_PORT = 8125
 
 ACCOUNT_ACTIVATION_DAYS = 7
-AUTH_PROFILE_MODULE = 'main.UserProfile'
 
 PAGEBLOCKS = ['pageblocks.HTMLBlockWYSIWYG',
               'pageblocks.TextBlock',
