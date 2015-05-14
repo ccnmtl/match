@@ -36,11 +36,7 @@ if 'test' in sys.argv or 'jenkins' in sys.argv:
         }
     }
 
-TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
-NOSE_ARGS = [
-    '--with-coverage',
-    '--cover-package=match',
-]
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 JENKINS_TASKS = (
     'django_jenkins.tasks.run_pep8',
@@ -113,7 +109,6 @@ INSTALLED_APPS = [
     'match.nutrition',
     'tastypie',
     'lettuce.django',
-    'django_nose',
     'bootstrapform',
     'django_jenkins',
     'smoketest',
