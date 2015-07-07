@@ -41,7 +41,6 @@ django-smartif==0.1
 python-ldap==2.4.19
 djangowind==0.13.3
 sorl==3.1
-tagging==0.3-pre
 template_utils==0.4p2
 typogrify==2.0.7
 django-indexer==0.3.0
