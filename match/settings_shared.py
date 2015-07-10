@@ -97,7 +97,6 @@ INSTALLED_APPS = [
     'tagging',
     'smartif',
     'template_utils',
-    'typogrify',
     'pagetree',
     'pageblocks',
     'match.main',
