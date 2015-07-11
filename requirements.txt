@@ -39,7 +39,6 @@ django-smartif==0.1
 python-ldap==2.4.19
 djangowind==0.13.3
 sorl==3.1
-tagging==0.3-pre
 django-indexer==0.3.0
 django-paging==0.2.5
 django-annoying==0.8.1
