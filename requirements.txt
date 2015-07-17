@@ -34,6 +34,9 @@ pyflakes==0.8.1
 flake8==2.2.5
 Pillow==2.8.1
 factory_boy==2.4.1
+pyasn1==0.1.8
+pyOpenSSL==0.15.1
+ndg-httpsclient==0.4.0
 
 django-smartif==0.1
 python-ldap==2.4.19
