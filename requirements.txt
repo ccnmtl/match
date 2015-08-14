@@ -45,7 +45,7 @@ djangowind==0.13.3
 sorl==3.1
 django-indexer==0.3.0
 django-paging==0.2.5
-django-annoying==0.8.1
+django-annoying==0.8.3
 django-treebeard==3.0
 django-statsd-mozilla==0.3.14
 django-bootstrap-form==3.2
