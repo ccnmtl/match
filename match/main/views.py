@@ -400,7 +400,7 @@ class Column(object):
 
 def _get_quiz_key(h, s):
     columns = []
-    quiz_type = ContentType.objects.filter(name='quiz')
+    quiz_type = ContentType.objects.filter(model='quiz')
 
     # quizzes
     for p in s.pageblock_set.filter(content_type=quiz_type):
@@ -418,7 +418,7 @@ def _get_quiz_key(h, s):
 
 def _get_quiz_results(h, s):
     columns = []
-    quiz_type = ContentType.objects.filter(name='quiz')
+    quiz_type = ContentType.objects.filter(model='quiz')
     # quizzes
     for p in s.pageblock_set.filter(content_type=quiz_type):
         for q in p.block().question_set.all():
@@ -462,8 +462,8 @@ def all_results_key(request):
                'answerIdentifier', 'answerText']
     writer.writerow(headers)
 
-    counseling_type = ContentType.objects.filter(name='counseling session')
-    referral_type = ContentType.objects.filter(name='counseling referral')
+    counseling_type = ContentType.objects.filter(model='counseling session')
+    referral_type = ContentType.objects.filter(model='counseling referral')
 
     columns = []
     for h in Hierarchy.objects.all():
@@ -524,8 +524,8 @@ def all_results(request):
     if not request.GET.get('format', 'html') == 'csv':
         return dict()
 
-    counseling_type = ContentType.objects.filter(name='counseling session')
-    referral_type = ContentType.objects.filter(name='counseling referral')
+    counseling_type = ContentType.objects.filter(model='counseling session')
+    referral_type = ContentType.objects.filter(model='counseling referral')
 
     columns = []
     for h in Hierarchy.objects.all():
