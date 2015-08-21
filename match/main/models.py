@@ -104,3 +104,4 @@ class ImageMapChart(models.Model):
 class ImageMapChartForm(forms.ModelForm):
     class Meta:
         model = ImageMapChart
+        exclude = []
