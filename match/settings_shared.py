@@ -93,6 +93,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.flatpages',
+    'django.contrib.staticfiles',
     'sorl.thumbnail',
     'django.contrib.admin',
     'smartif',
