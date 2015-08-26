@@ -91,6 +91,7 @@ class CounselingSession(models.Model):
 class CounselingSessionForm(forms.ModelForm):
     class Meta:
         model = CounselingSession
+        exclude = []
 
 
 class CounselingReferral(models.Model):
@@ -162,6 +163,7 @@ class CounselingReferral(models.Model):
 class CounselingReferralForm(forms.ModelForm):
     class Meta:
         model = CounselingReferral
+        exclude = []
 
 
 class CounselingSessionState(models.Model):
