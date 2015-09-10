@@ -31,7 +31,7 @@ logilab-astng==0.24.1
 pylint==1.4.1
 mccabe==0.3.1
 pep8==1.5.7
-pyflakes==0.8.1
+pyflakes==0.9.2
 flake8==2.2.5
 Pillow==2.8.1
 factory_boy==2.4.1
