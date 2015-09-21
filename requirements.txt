@@ -30,7 +30,7 @@ logilab-common==1.0.2
 logilab-astng==0.24.3
 pylint==1.4.4
 mccabe==0.3.1
-pep8==1.5.7
+pep8==1.6.2
 pyflakes==0.9.2
 flake8==2.2.5
 Pillow==2.8.1
