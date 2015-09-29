@@ -2,8 +2,9 @@ from django.conf.urls import patterns, include
 from django.contrib import admin
 from django.conf import settings
 import os.path
-admin.autodiscover()
 from django.views.generic import TemplateView
+admin.autodiscover()
+
 
 site_media_root = os.path.join(os.path.dirname(__file__), "../media")
 
