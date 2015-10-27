@@ -5,24 +5,28 @@ import factory
 
 
 class UserFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = User
+    class Meta:
+        model = User
     username = factory.Sequence(lambda n: "user%03d" % n)
     is_staff = True
 
 
 class UserProfileFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = UserProfile
+    class Meta:
+        model = UserProfile
     user = factory.SubFactory(UserFactory)
 
 
 class HierarchyFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = Hierarchy
+    class Meta:
+        model = Hierarchy
     name = "main"
     base_url = ""
 
 
 class RootSectionFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = Section
+    class Meta:
+        model = Section
     hierarchy = factory.SubFactory(HierarchyFactory)
     label = "Root"
     slug = ""
