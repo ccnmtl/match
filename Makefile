@@ -2,7 +2,7 @@ MANAGE=./manage.py
 APP=match
 FLAKE8=./ve/bin/flake8
 
-jenkins: ./ve/bin/python check test flake8 jshint
+jenkins: ./ve/bin/python check test flake8 jshint jscs
 
 ./ve/bin/python: requirements.txt bootstrap.py virtualenv.py
 	./bootstrap.py
@@ -29,7 +29,7 @@ jshint: node_modules/jshint/bin/jshint
 	./node_modules/jshint/bin/jshint --config=.jshintrc media/js/glossary.js media/js/slipchart01.js media/js/wheel_match.js
 
 jscs: node_modules/jscs/bin/jscs
-	./node_modules/jscs/bin/jscs media/js/app/
+	./node_modules/jscs/bin/jscs media/js/glossary.js media/js/slpchart01.js media/js/wheel_match.js
 
 node_modules/jshint/bin/jshint:
 	npm install jshint --prefix .
