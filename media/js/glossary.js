@@ -68,4 +68,4 @@ Glossary.prototype.slugify = function (str) {
     .replace(/-+/g, '-'); // collapse dashes
  
     return str;
-}
+};

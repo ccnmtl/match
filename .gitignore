@@ -14,3 +14,4 @@ chromedriver.log
 reports/
 .DS_Store
 media/CACHE
+node_modules
