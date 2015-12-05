@@ -1,103 +1,15 @@
 # Django settings for match project.
 import os.path
-import sys
+from ccnmtlsettings.shared import common
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+project = 'match'
+base = os.path.dirname(__file__)
+locals().update(common(project=project, base=base))
 
-ADMINS = ()
+PROJECT_APPS = ['match.main', 'match.nutrition']
 
-MANAGERS = ADMINS
-
-ALLOWED_HOSTS = ['.ccnmtl.columbia.edu', 'localhost']
-
-DEFAULT_FROM_EMAIL = 'match@match.ccnmtl.columbia.edu'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'match',
-        'HOST': '',
-        'PORT': '',
-        'USER': '',
-        'PASSWORD': '',
-        'ATOMIC_REQUESTS': True,
-    }
-}
-
-if 'test' in sys.argv or 'jenkins' in sys.argv:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': ':memory:',
-            'HOST': '',
-            'PORT': '',
-            'USER': '',
-            'PASSWORD': '',
-            'ATOMIC_REQUESTS': True,
-        }
-    }
-
-TEST_RUNNER = 'django.test.runner.DiscoverRunner'
-
-JENKINS_TASKS = (
-    'django_jenkins.tasks.run_pep8',
-    'django_jenkins.tasks.run_pyflakes',
-)
-
-PROJECT_APPS = ['match.main', 'match.nutrition', ]
-
-
-TIME_ZONE = 'America/New_York'
-LANGUAGE_CODE = 'en-us'
-SITE_ID = 1
-USE_I18N = False
-MEDIA_ROOT = "/var/www/match/uploads/"
-MEDIA_URL = '/uploads/'
-STATIC_URL = '/media/'
-SECRET_KEY = ')ng#)ef_u@_^zvvu@dxm7ql-yb^_!a6%v3v^j3b(mp+)l+5%@h'
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader'
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.template.context_processors.debug',
-    'django.template.context_processors.request',
-    'django.template.context_processors.static',
-    'django.template.context_processors.media',
-    'djangowind.context.context_processor',
-    'stagingcontext.staging_processor',
-)
-
-MIDDLEWARE_CLASSES = (
-    'django_statsd.middleware.GraphiteRequestTimingMiddleware',
-    'django_statsd.middleware.GraphiteMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'waffle.middleware.WaffleMiddleware',
-)
-
-ROOT_URLCONF = 'match.urls'
-
-TEMPLATE_DIRS = (
-    "/var/www/match/match/templates/",
-    os.path.join(os.path.dirname(__file__), "templates"),
-)
-
-INSTALLED_APPS = [
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.flatpages',
-    'django.contrib.staticfiles',
+INSTALLED_APPS += [  # noqa
     'sorl.thumbnail',
-    'django.contrib.admin',
     'smartif',
     'pagetree',
     'pageblocks',
@@ -106,16 +18,10 @@ INSTALLED_APPS = [
     'careermapblock',
     'registration',
     'responseblock',
-    'django_statsd',
     'match.nutrition',
     'tastypie',
     'lettuce.django',
     'bootstrapform',
-    'django_jenkins',
-    'smoketest',
-    'waffle',
-    'compressor',
-    'django_markwhat'
 ]
 
 LETTUCE_APPS = (
@@ -123,65 +29,21 @@ LETTUCE_APPS = (
     'match.nutrition'
 )
 
-
-STATSD_CLIENT = 'statsd.client'
-STATSD_PREFIX = 'match'
-STATSD_HOST = 'localhost'
-STATSD_PORT = 8125
-
 ACCOUNT_ACTIVATION_DAYS = 7
 
-PAGEBLOCKS = ['pageblocks.HTMLBlockWYSIWYG',
-              'pageblocks.TextBlock',
-              'pageblocks.HTMLBlock',
-              'pageblocks.PullQuoteBlock',
-              'pageblocks.ImageBlock',
-              'pageblocks.ImagePullQuoteBlock',
-              'quizblock.Quiz',
-              'careermapblock.CareerMap',
-              'responseblock.Response',
-              'nutrition.CounselingSession',
-              'nutrition.CounselingReferral',
-              'main.ImageMapChart',
-              ]
-
+PAGEBLOCKS = [
+    'pageblocks.HTMLBlockWYSIWYG',
+    'pageblocks.TextBlock',
+    'pageblocks.HTMLBlock',
+    'pageblocks.PullQuoteBlock',
+    'pageblocks.ImageBlock',
+    'pageblocks.ImagePullQuoteBlock',
+    'quizblock.Quiz',
+    'careermapblock.CareerMap',
+    'responseblock.Response',
+    'nutrition.CounselingSession',
+    'nutrition.CounselingReferral',
+    'main.ImageMapChart',
+]
 
 THUMBNAIL_SUBDIR = "thumbs"
-EMAIL_SUBJECT_PREFIX = "[match] "
-EMAIL_HOST = 'localhost'
-SERVER_EMAIL = "match@ccnmtl.columbia.edu"
-
-COMPRESS_URL = "/site_media/"
-COMPRESS_ROOT = "media/"
-
-
-# put any static media here to override app served static media
-STATICMEDIA_MOUNTS = (
-    ('/sitemedia', 'sitemedia'),
-)
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
-)
-
-# WIND settings
-
-AUTHENTICATION_BACKENDS = ('djangowind.auth.SAMLAuthBackend',
-                           'django.contrib.auth.backends.ModelBackend', )
-CAS_BASE = "https://cas.columbia.edu/"
-WIND_PROFILE_HANDLERS = ['djangowind.auth.CDAPProfileHandler']
-WIND_AFFIL_HANDLERS = ['djangowind.auth.AffilGroupMapper',
-                       'djangowind.auth.StaffMapper',
-                       'djangowind.auth.SuperuserMapper']
-WIND_STAFF_MAPPER_GROUPS = ['tlc.cunix.local:columbia.edu']
-WIND_SUPERUSER_MAPPER_GROUPS = ['anp8', 'jb2410', 'zm4', 'sbd12', 'egr2107',
-                                'kmh2124', 'sld2131', 'amm8', 'mar227',
-                                'ed2198', 'cks2120']
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-}
