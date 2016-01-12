@@ -52,7 +52,7 @@ sqlparse==0.1.18
 
 django-smartif==0.1
 python-ldap==2.4.22
-djangowind==0.14.1
+djangowind==0.14.3
 sorl==3.1
 django-indexer==0.3.0
 django-paging==0.2.5
