@@ -350,7 +350,11 @@ class Column(object):
                     return self.topic.id
                 except DiscussionTopic.DoesNotExist:
                     pass
-        elif self.field:
+        else:
+            return self.user_value_from_field(user)
+
+    def user_value_from_field(self, user):
+        if self.field:
             referral = CounselingReferralState.objects.filter(user=user)
             if len(referral) > 0:
                 val = getattr(referral[0], self.field)
