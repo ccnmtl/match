@@ -341,7 +341,7 @@ class Column(object):
         if self.question:
             return self.question_value(user)
 
-        elif self.session and self.topic:
+        if self.session and self.topic:
             state = CounselingSessionState.objects.filter(
                 session=self.session, user=user)
             if len(state) > 0:
