@@ -341,7 +341,7 @@ class Column(object):
         if self.question:
             return self.question_value(user)
 
-        elif self.session and self.topic:
+        if self.session and self.topic:
             state = CounselingSessionState.objects.filter(
                 session=self.session, user=user)
             if len(state) > 0:
@@ -350,7 +350,11 @@ class Column(object):
                     return self.topic.id
                 except DiscussionTopic.DoesNotExist:
                     pass
-        elif self.field:
+        else:
+            return self.user_value_from_field(user)
+
+    def user_value_from_field(self, user):
+        if self.field:
             referral = CounselingReferralState.objects.filter(user=user)
             if len(referral) > 0:
                 val = getattr(referral[0], self.field)
