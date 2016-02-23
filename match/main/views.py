@@ -485,13 +485,16 @@ def all_results_key(request):
                     h, s, columns, counseling_type,
                     referral_type)
 
+    write_columns(writer, columns)
+    return response
+
+
+def write_columns(writer, columns):
     for column in columns:
         try:
             writer.writerow(column.key_row())
         except:
             pass
-
-    return response
 
 
 def section_columns(h, s, columns, counseling_type, referral_type):
