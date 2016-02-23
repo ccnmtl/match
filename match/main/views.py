@@ -316,6 +316,12 @@ class Column(object):
             return submissions[0].submitted.strftime("%m/%d/%y %H:%M:%S")
         return ""
 
+    def _get_answer_id(self, r):
+        values = [res.value for res in r]
+        if self.answer.value in values:
+            return self.answer.id
+        return ''
+
     def question_value(self, user):
         r = self._submission_cache.filter(user=user).order_by("-submitted")
         if r.count() == 0:
@@ -328,8 +334,7 @@ class Column(object):
                     self.question.is_long_text()):
                 return r[0].value
             elif self.question.is_multiple_choice():
-                if self.answer.value in [res.value for res in r]:
-                    return self.answer.id
+                return self._get_answer_id(r)
             else:  # single choice
                 for a in self._answer_cache:
                     if a.value == r[0].value:
