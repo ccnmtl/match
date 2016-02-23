@@ -81,9 +81,9 @@ def _unlocked(profile, section):
     # if the previous page had blocks to submit
     # we only let them by if they submitted
     for p in previous.pageblock_set.all():
-        if hasattr(p.block(), 'unlocked'):
-            if not p.block().unlocked(profile.user):
-                return False
+        if (hasattr(p.block(), 'unlocked') and
+                not p.block().unlocked(profile.user)):
+            return False
 
     return profile.has_visited(previous)
 
