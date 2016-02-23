@@ -562,6 +562,11 @@ def all_results(request):
     # Only look at users who have submission
     users = User.objects.filter(submission__isnull=False,
                                 is_staff=False).distinct()
+    write_users(writer, users, columns)
+    return response
+
+
+def write_users(writer, users, columns):
     for u in users:
         row = [u.username]
         for column in columns:
@@ -569,8 +574,6 @@ def all_results(request):
             row.append(v)
 
         writer.writerow(row)
-
-    return response
 
 
 @login_required
