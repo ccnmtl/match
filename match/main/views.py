@@ -81,9 +81,9 @@ def _unlocked(profile, section):
     # if the previous page had blocks to submit
     # we only let them by if they submitted
     for p in previous.pageblock_set.all():
-        if hasattr(p.block(), 'unlocked'):
-            if not p.block().unlocked(profile.user):
-                return False
+        if (hasattr(p.block(), 'unlocked') and
+                not p.block().unlocked(profile.user)):
+            return False
 
     return profile.has_visited(previous)
 
@@ -316,6 +316,12 @@ class Column(object):
             return submissions[0].submitted.strftime("%m/%d/%y %H:%M:%S")
         return ""
 
+    def _get_answer_id(self, r):
+        values = [res.value for res in r]
+        if self.answer.value in values:
+            return self.answer.id
+        return ''
+
     def question_value(self, user):
         r = self._submission_cache.filter(user=user).order_by("-submitted")
         if r.count() == 0:
@@ -328,8 +334,7 @@ class Column(object):
                     self.question.is_long_text()):
                 return r[0].value
             elif self.question.is_multiple_choice():
-                if self.answer.value in [res.value for res in r]:
-                    return self.answer.id
+                return self._get_answer_id(r)
             else:  # single choice
                 for a in self._answer_cache:
                     if a.value == r[0].value:
@@ -480,13 +485,16 @@ def all_results_key(request):
                     h, s, columns, counseling_type,
                     referral_type)
 
+    write_columns(writer, columns)
+    return response
+
+
+def write_columns(writer, columns):
     for column in columns:
         try:
             writer.writerow(column.key_row())
         except:
             pass
-
-    return response
 
 
 def section_columns(h, s, columns, counseling_type, referral_type):
@@ -554,6 +562,11 @@ def all_results(request):
     # Only look at users who have submission
     users = User.objects.filter(submission__isnull=False,
                                 is_staff=False).distinct()
+    write_users(writer, users, columns)
+    return response
+
+
+def write_users(writer, users, columns):
     for u in users:
         row = [u.username]
         for column in columns:
@@ -561,8 +574,6 @@ def all_results(request):
             row.append(v)
 
         writer.writerow(row)
-
-    return response
 
 
 @login_required
