@@ -10,7 +10,6 @@ PROJECT_APPS = ['match.main', 'match.nutrition']
 
 INSTALLED_APPS += [  # noqa
     'sorl.thumbnail',
-    'smartif',
     'pagetree',
     'pageblocks',
     'match.main',
