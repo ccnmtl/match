@@ -80,4 +80,4 @@ django-ga-context==0.1.0
 django-debug-toolbar==1.4
 gunicorn==19.3.0
 
-ccnmtlsettings==0.1.6
+ccnmtlsettings==0.2.0
