@@ -37,7 +37,7 @@ lettuce==0.2.19ccnmtl
 selenium==2.48.0
 logilab-common==1.1.0
 logilab-astng==0.24.3
-pylint==1.5.4
+pylint==1.5.5
 mccabe==0.4.0
 pep8==1.7.0
 pyflakes==1.1.0
