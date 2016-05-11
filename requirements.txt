@@ -61,7 +61,7 @@ django-indexer==0.3.0
 django-paging==0.2.5
 django-treebeard==4.0.1
 django-statsd-mozilla==0.3.16
-django-bootstrap-form==3.2
+django-bootstrap-form==3.2.1
 django-markwhat==1.5
 django-pagetree==1.1.14
 django-pageblocks==1.0.4
