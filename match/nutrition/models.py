@@ -172,7 +172,7 @@ class CounselingSessionState(models.Model):
 
     user = models.ForeignKey(User, related_name="nutrition_discussion_user")
     session = models.ForeignKey(CounselingSession)
-    answered = models.ManyToManyField(DiscussionTopic, null=True, blank=True)
+    answered = models.ManyToManyField(DiscussionTopic, blank=True)
     elapsed_time = models.IntegerField(default=0)
 
 
