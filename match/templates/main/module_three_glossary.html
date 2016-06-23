@@ -5,14 +5,14 @@
 
 {% block js %}
     {% ifnotequal module.slug 'socialwork' %}
-        <script src="/site_media/bootstrap/js/bootstrap.min.js"></script>               
+        <script src="{{STATIC_URL}}bootstrap/js/bootstrap.min.js"></script>               
     {% endifnotequal %}    
 {% endblock %}
 
 {% block css %}
    {% ifnotequal module.slug 'socialwork' %}
-        <link href="/site_media/bootstrap/css/bootstrap.css" rel="stylesheet">
-        {% comment %}<link href="/site_media/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">{% endcomment %}
+        <link href="{{STATIC_URL}}bootstrap/css/bootstrap.css" rel="stylesheet">
+        {% comment %}<link href="{{STATIC_URL}}bootstrap/css/bootstrap-responsive.css" rel="stylesheet">{% endcomment %}
     {% endifnotequal %}
     {% for block in section.pageblock_set.all %}
         {% rendercss block %}

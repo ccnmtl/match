@@ -10,7 +10,7 @@
     {% endfor %}
 
     {% ifnotequal module.slug 'socialwork' %}
-        <script src="/site_media/bootstrap/js/bootstrap.min.js"></script>               
+        <script src="{{STATIC_URL}}bootstrap/js/bootstrap.min.js"></script>               
     {% endifnotequal %}
     
     {% ifequal module.slug 'speechpathology' %}
@@ -25,8 +25,8 @@
             };
         </script>
             
-        <script type="text/javascript" src="/site_media/js/jquery.highlight.js"></script>
-        <script type="text/javascript" src="/site_media/js/glossary.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/jquery.highlight.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/glossary.js"></script>
     {% else %}
         <script type="text/javascript"> 
             var terms = undefined;
@@ -75,8 +75,8 @@
 
 {% block css %}
    {% ifnotequal module.slug 'socialwork' %}
-        <link href="/site_media/bootstrap/css/bootstrap.css" rel="stylesheet">
-        {% comment %}<link href="/site_media/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">{% endcomment %}
+        <link href="{{STATIC_URL}}bootstrap/css/bootstrap.css" rel="stylesheet">
+        {% comment %}<link href="{{STATIC_URL}}bootstrap/css/bootstrap-responsive.css" rel="stylesheet">{% endcomment %}
     {% endifnotequal %}
     {% for block in section.pageblock_set.all %}
         {% rendercss block %}

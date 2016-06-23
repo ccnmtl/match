@@ -1,12 +1,9 @@
 from django.conf.urls import patterns, include
 from django.contrib import admin
 from django.conf import settings
-import os.path
 from django.views.generic import TemplateView
 admin.autodiscover()
 
-
-site_media_root = os.path.join(os.path.dirname(__file__), "../media")
 
 redirect_after_logout = getattr(settings, 'LOGOUT_REDIRECT_URL', None)
 
@@ -43,8 +40,6 @@ urlpatterns = patterns(
     (r'^registration/', include('registration.urls')),
     (r'^smoketest/', include('smoketest.urls')),
     (r'^pagetree/', include('pagetree.urls')),
-    (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
-     {'document_root': site_media_root}),
     (r'^uploads/(?P<path>.*)$', 'django.views.static.serve',
      {'document_root': settings.MEDIA_ROOT}),
     (r'^_quiz/', include('quizblock.urls')),
