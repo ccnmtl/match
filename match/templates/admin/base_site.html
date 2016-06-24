@@ -5,7 +5,7 @@
 
 {% block extrahead %}
     {{ block.super }}
-    <link rel="stylesheet" href="/site_media/css/admin.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{STATIC_URL}}css/admin.css" type="text/css" media="all" />
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.3/themes/base/jquery-ui.css" type="text/css" media="all" />
   
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
@@ -14,11 +14,11 @@
     <script type="text/javascript">
         var tinyMCEPreInit = {
         suffix: '',
-        base: '/site_media/js/tiny_mce',
+        base: '{{STATIC_URL}}js/tiny_mce',
         query: ''
         };
     </script>
-    <script type="text/javascript" src="/site_media/js/tiny_mce/tiny_mce3_min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/tiny_mce/tiny_mce3_min.js"></script>
 
     <script type="text/javascript">
 
@@ -29,7 +29,7 @@
                 // General options
                 width: "100%",
                 theme : "advanced",
-                content_css : '/site_media/css/tiny_mce.css',
+                content_css : '{{STATIC_URL}}css/tiny_mce.css',
                 plugins : "safari,searchreplace,paste",
                 relative_urls : false,
                 // Theme options
