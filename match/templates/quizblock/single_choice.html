@@ -3,7 +3,12 @@
 <ol type="A">
     {% for answer in question.answer_set.all %}
         {% if block.rhetorical %}
-            <li><input name="question{{question.id}}" value="{{answer.label}}" type="radio" />{{answer.label}}</li>
+            <li>
+                <div>
+                    <input type="radio" name="question{{question.id}}"
+                        value="{{answer.label}}" {% if answer.correct %}data-value="1"{% endif %}/>{{answer.label}}
+                </div>
+            </li>
         {% else %}
             <li>
                 {% if response %}
@@ -16,7 +21,7 @@
                               <div class="answer-explanation">
                                  {{answer.explanation|safe}}
                               </div>
-                            {% endif %}                            
+                            {% endif %}
                         </div>
                     {% else %}
                         <div {% if answer.correct %}class="correct"{% endif %}>
@@ -28,7 +33,7 @@
                                  {{answer.explanation|safe}}
                               </div>
                         </div>
-                        {% endif %}                       
+                        {% endif %}
                     {% endifequal %}
                 {% else %}
                   <label><input name="pageblock-{{block.pageblock.id}}-question{{question.id}}"
