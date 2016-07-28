@@ -16,7 +16,7 @@
                               <div class="answer-explanation">
                                  {{answer.explanation|safe}}
                               </div>
-                            {% endif %}                            
+                            {% endif %}
                         </div>
                     {% else %}
                         <div {% if answer.correct %}class="correct"{% endif %}>
@@ -28,7 +28,7 @@
                                  {{answer.explanation|safe}}
                               </div>
                         </div>
-                        {% endif %}                       
+                        {% endif %}
                     {% endifequal %}
                 {% else %}
                   <label><input name="pageblock-{{block.pageblock.id}}-question{{question.id}}"

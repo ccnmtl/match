@@ -40,6 +40,9 @@ class SubmittedNode(template.Node):
         self.section = section
 
     def render(self, context):
+        if self.section not in context:
+            return self.nodelist_false.render(context)
+
         s = context[self.section]
         r = context['request']
         u = r.user
