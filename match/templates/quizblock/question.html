@@ -33,9 +33,11 @@
         </div>
 
         {% if block.rhetorical %}
-            <div class="casesanswerdisplay hidden">
-                {{question.explanation|markdown}}
-            </div>
+            {% if question.explanation|length > 0 %}
+                <div class="casesanswerdisplay hidden">
+                    {{question.explanation|markdown}}
+                </div>
+            {% endif %}
         {% else %}
             {% if response %}
                 {% include 'quizblock/show_answer.html' %}

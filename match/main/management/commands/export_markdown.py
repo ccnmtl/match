@@ -34,7 +34,15 @@ class Command(BaseCommand):
     # generate the export without a need for postprocessing.
     DEPRECATED_SECTIONS = [
         # module_one
-        'Feedback', 'CE Credit', 'CE Credit Confirmation'
+        'Feedback', 'CE Credit', 'CE Credit Confirmation',
+
+        # module_two
+        'Severe Early Childhood Caries Case: Part 2',
+        'Severe Early Childhood Caries Case: Part 3',
+        'Severe Early Childhood Caries Case: Part 4',
+
+        # module_three
+        'CE credit', 'CE credit confirmation',
     ]
 
     def add_arguments(self, parser):
@@ -102,7 +110,8 @@ class Command(BaseCommand):
         src = img.attrs['src']
         if not src.startswith('http'):
             src = self.media_url + src
-
+        name = img.attrs['name'] if 'name' in img.attrs else ''
+        usemap = img.attrs['usemap'] if 'usemap' in img.attrs else ''
         alt = img.attrs['alt'] if 'alt' in img.attrs else ''
         imgclass = ' '.join(img.attrs['class'] if 'class' in img.attrs else '')
         basename = os.path.basename(urlparse(src).path)
@@ -120,8 +129,9 @@ class Command(BaseCommand):
                     raise
 
         shortcode = '{{{{< figure src="/img/assets/{}"' + \
-            ' alt="{}" class="{}" >}}}}'
-        img.parent.append(shortcode.format(basename, alt, imgclass))
+            ' alt="{}" class="{}" name="{}" usemap="{}">}}}}'
+        img.parent.append(
+            shortcode.format(basename, alt, imgclass, name, usemap))
 
         img.extract()
 
@@ -160,13 +170,14 @@ class Command(BaseCommand):
         f.write(code)
 
     def export_block(self, f, type_name, pb):
-        if pb.label:
-            f.write('<h3>{}</h3>'.format(pb.label.encode('utf-8')))
         f.write('<div class="pageblock')
         if pb.css_extra:
             f.write(' ')
             f.write(pb.css_extra)
         f.write('">')
+
+        if pb.label:
+            f.write('<h3>{}</h3>'.format(pb.label.encode('utf-8')))
 
         rendered = pb.render(**self.render_context).encode('utf-8')
         if (len(rendered.strip()) > 0 and
