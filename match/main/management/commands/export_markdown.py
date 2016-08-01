@@ -16,6 +16,21 @@ class Command(BaseCommand):
         'counselingsession':
             '{{< interactives url="dentalvisit" width="900px"' +
             ' height="800px" >}}',
+        'imagemapchart':
+            '{{< interactives url="imagemapchart" width="900px"' +
+            ' height="800px" >}}',
+        'speechassessment':
+            '{{< interactives url="speechassessment" width="900px"' +
+            ' height="800px" >}}',
+        'speechdiagnoses':
+            '{{< interactives url="speechdiagnoses" width="900px"' +
+            ' height="800px" >}}',
+        'swallowassessment':
+            '{{< interactives url="swallowassessment" width="900px"' +
+            ' height="800px" >}}',
+        'anticipatoryguidance':
+            '{{< interactives url="anticipatoryguidance" width="900px"' +
+            ' height="800px" >}}',
     }
 
     EXPORTABLE_BLOCKS = [
@@ -154,18 +169,17 @@ class Command(BaseCommand):
 
     def write_shortcode(self, f, section, type_name):
         code = self.SHORTCODES[type_name]
-        if type_name == 'careermap' or type_name == 'proxyblock':
-            if section.label == 'Advise Sam':
-                code = code.format(0)
-            elif section.label == 'Advise Sally':
-                code = code.format(1)
-            else:
-                code = code.format(2)
-        elif type_name == 'infographicblock':
-            if section.label == 'Scenario 1':
-                code = code.format('elderdresser')
-            else:
-                code = code.format('elderfridge')
+
+        if type_name == 'imagemapchart':
+            label = section.label.strip()
+            if label == 'Diagnoses':
+                code = self.SHORTCODES['speechdiagnoses']
+            elif label == 'Speech and pediatric referrals':
+                code = self.SHORTCODES['speechassessment']
+            elif label == 'Swallow assessments':
+                code = self.SHORTCODES['swallowassessment']
+            elif label == 'Anticipatory Guidance':
+                code = self.SHORTCODES['anticipatoryguidance']
 
         f.write(code)
 
@@ -224,7 +238,6 @@ class Command(BaseCommand):
 
                     if type_name in self.SHORTCODES:
                         self.write_shortcode(f, section, type_name)
-                        break
                     elif type_name not in self.EXPORTABLE_BLOCKS:
                         continue
                     elif type_name == 'quiz':
