@@ -1,5 +1,5 @@
 import os
-from urlparse import urlparse
+from urlparse import urlparse, parse_qs
 
 from bs4 import BeautifulSoup
 from django.contrib.contenttypes.models import ContentType
@@ -59,6 +59,40 @@ class Command(BaseCommand):
         # module_three
         'CE credit', 'CE credit confirmation',
     ]
+
+    VIDEOS = {
+        '': 'missing',
+
+        # module one - introduction & exemplar
+        ('projects/pediatric_oral_health/'
+         'pediatric_oral_health_match_ciano_lu.mp4'): 'NWNxuJ0MK3k',
+        ('projects/pediatric_oral_health/'
+         'pediatric_oral_health_match_lal_kleinman.mp4'): 'NWNxuJ0MK3k',
+
+        # module two - objectives & exemplar
+        ('projects/pediatric_oral_health/'
+         'pediatric_oral_health_match_levine.mp4'): 'NWNxuJ0MK3k',
+        ('projects/pediatric_oral_health/'
+         'pediatric_oral_health_match_nyu.mp4'): 'NWNxuJ0MK3k',
+
+        # module three
+        ('match_summer2013_tress.mp4'): 'NWNxuJ0MK3k',  # objectives
+        ('match_summer2013_giacona.mp4'): 'NWNxuJ0MK3k',  # conclusion
+
+        # module four
+        ('/5377384b-7b59-4571-ad47-b5af23f319da-MATCH_Marie_Marino-mp4-'
+         'aac-480w-850kbps-ffmpeg.mp4'): 'NWNxuJ0MK3k',  # pnp-roles
+        ('/4802560f-3124-433f-b0e5-a52a3c1c23db-MATCH_Jill_Sheena_20140908'
+         '-mp4-aac-480w-850kbps-ffmpeg.mp4'): 'NWNxuJ0MK3k',  # conclusion
+
+        # module five
+        ('/065c1d2a-b793-4da6-9652-7e60047d0b79_480-2015_match_cdhc_video1_et'
+         '.mp4'): 'NWNxuJ0MK3k',  # introduction
+        ('/1ed00da3-39ab-492c-ab46-48fc2beff667_480-2015_match_cdhc_video2_et'
+         '.mp4'): 'NWNxuJ0MK3k',  # case studies
+        ('https://www.youtube.com/embed/xLMOPtNauQk'):
+            'NWNxuJ0MK3k'  # conclusion
+    }
 
     def add_arguments(self, parser):
         parser.add_argument('dest',  help='Destination directory')
@@ -151,7 +185,21 @@ class Command(BaseCommand):
         img.extract()
 
     def postprocess_video(self, iframe):
-        shortcode = '{{< youtube id="NWNxuJ0MK3k" >}}'
+        if 'youtube' in iframe.attrs['src']:
+            src = iframe.attrs['src']
+        else:
+            parts = urlparse(iframe.attrs['src'])
+            params = parse_qs(parts[4])
+            src = params['file'][0]
+
+        try:
+            link = self.VIDEOS[src]
+        except KeyError:
+            print 'Missing: {}'.format(src)
+            link = ''
+
+        # parse out the file
+        shortcode = '{{{{< youtube id="{}" >}}}}'.format(link)
         iframe.parent.append(shortcode)
         iframe.extract()
 
