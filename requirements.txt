@@ -44,7 +44,7 @@ pyflakes==1.2.3
 pycodestyle==2.0.0
 enum34==1.1.6
 configparser==3.5.0
-flake8==3.0.3
+flake8==3.0.4
 Pillow==3.3.0
 ipaddress==1.0.16
 fake-factory==0.5.10
