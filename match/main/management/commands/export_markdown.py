@@ -14,23 +14,23 @@ class Command(BaseCommand):
 
     SHORTCODES = {
         'counselingsession':
-            '{{< interactives url="dentalvisit" width="900px"' +
-            ' height="800px" >}}',
+            '\n\n{{< interactives url="dentalvisit" minsize="sm"' +
+            ' name="dentalvisit" >}}',
         'imagemapchart':
             '{{< interactives url="imagemapchart" width="900px"' +
             ' height="800px" >}}',
         'speechassessment':
-            '{{< interactives url="speechassessment" width="900px"' +
-            ' height="800px" >}}',
+            '\n\n{{< interactives url="speechassessment" minsize="sm"' +
+            ' name="speechassessment" >}}',
         'speechdiagnoses':
-            '{{< interactives url="speechdiagnoses" width="900px"' +
-            ' height="800px" >}}',
+            '\n\n{{< interactives url="speechdiagnoses" minsize="sm"' +
+            ' name="speechdiagnoses" >}}',
         'swallowassessment':
-            '{{< interactives url="swallowassessment" width="900px"' +
-            ' height="800px" >}}',
+            '\n\n{{< interactives url="swallowassessment" minsize="sm"' +
+            ' name="swallowassessment" >}}',
         'anticipatoryguidance':
-            '{{< interactives url="anticipatoryguidance" width="900px"' +
-            ' height="800px" >}}',
+            '\n\n{{< interactives url="anticipatoryguidance" minsize="sm"' +
+            ' name="anticipatoryguidance" >}}',
     }
 
     EXPORTABLE_BLOCKS = [
