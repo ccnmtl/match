@@ -64,7 +64,7 @@ django-paging==0.2.5
 django-treebeard==4.0.1
 django-statsd-mozilla==0.3.16
 django-bootstrap-form==3.2.1
-django-bootstrap3==7.0.1
+django-bootstrap3==7.1.0
 django-markwhat==1.5
 django-pagetree==1.2.2
 django-pageblocks==1.0.4
