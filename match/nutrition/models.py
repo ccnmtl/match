@@ -159,6 +159,9 @@ class CounselingReferral(models.Model):
 
         return a[0].is_complete()
 
+    def clear_user_submissions(self, user):
+        CounselingReferralState.objects.filter(user=user).delete()
+
 
 class CounselingReferralForm(forms.ModelForm):
     class Meta:
