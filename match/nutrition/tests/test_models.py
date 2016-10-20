@@ -99,3 +99,16 @@ class CounselingReferralTest(TestCase):
         self.assertEqual(
             CounselingReferralState.objects.filter(user=u).count(),
             1)
+
+    def test_clear_user_submissions(self):
+        cr = CounselingReferral.objects.create()
+        u = User.objects.create(username="testuser")
+        cr.submit(u, dict(referral_date='01/01/2001',
+                          medical_history="patient is deceased"))
+        self.assertEqual(
+            CounselingReferralState.objects.filter(user=u).count(),
+            1)
+        cr.clear_user_submissions(u)
+        self.assertEqual(
+            CounselingReferralState.objects.filter(user=u).count(),
+            0)
