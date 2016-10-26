@@ -85,5 +85,5 @@ django-debug-toolbar==1.6
 gunicorn==19.6.0
 django-smtp-ssl==1.0
 
-ccnmtlsettings==1.1.2
+ccnmtlsettings==1.2.0
 requests==2.11.1
