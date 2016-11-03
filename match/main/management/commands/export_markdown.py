@@ -65,33 +65,33 @@ class Command(BaseCommand):
 
         # module one - introduction & exemplar
         ('projects/pediatric_oral_health/'
-         'pediatric_oral_health_match_ciano_lu.mp4'): 'NWNxuJ0MK3k',
+         'pediatric_oral_health_match_ciano_lu.mp4'): 'Rx_0iyHllHs',
         ('projects/pediatric_oral_health/'
-         'pediatric_oral_health_match_lal_kleinman.mp4'): 'NWNxuJ0MK3k',
+         'pediatric_oral_health_match_lal_kleinman.mp4'): '89c25g7cJH4',
 
         # module two - objectives & exemplar
         ('projects/pediatric_oral_health/'
-         'pediatric_oral_health_match_levine.mp4'): 'NWNxuJ0MK3k',
+         'pediatric_oral_health_match_levine.mp4'): 'VZXEQ62PPkg',
         ('projects/pediatric_oral_health/'
-         'pediatric_oral_health_match_nyu.mp4'): 'NWNxuJ0MK3k',
+         'pediatric_oral_health_match_nyu.mp4'): 'YOtMOEzZWlE',
 
         # module three
-        ('match_summer2013_tress.mp4'): 'NWNxuJ0MK3k',  # objectives
-        ('match_summer2013_giacona.mp4'): 'NWNxuJ0MK3k',  # conclusion
+        ('match_summer2013_tress.mp4'): 'rPYRW66FSK8',  # objectives
+        ('match_summer2013_giacona.mp4'): 'TMrFm7Z22Eg',  # conclusion
 
         # module four
         ('/5377384b-7b59-4571-ad47-b5af23f319da-MATCH_Marie_Marino-mp4-'
-         'aac-480w-850kbps-ffmpeg.mp4'): 'NWNxuJ0MK3k',  # pnp-roles
+         'aac-480w-850kbps-ffmpeg.mp4'): 'jJzEPaBDK-U',  # pnp-roles
         ('/4802560f-3124-433f-b0e5-a52a3c1c23db-MATCH_Jill_Sheena_20140908'
-         '-mp4-aac-480w-850kbps-ffmpeg.mp4'): 'NWNxuJ0MK3k',  # conclusion
+         '-mp4-aac-480w-850kbps-ffmpeg.mp4'): 'f1ENrDsoAUU',  # conclusion
 
         # module five
         ('/065c1d2a-b793-4da6-9652-7e60047d0b79_480-2015_match_cdhc_video1_et'
-         '.mp4'): 'NWNxuJ0MK3k',  # introduction
+         '.mp4'): 'sW6TISgS63I',  # introduction
         ('/1ed00da3-39ab-492c-ab46-48fc2beff667_480-2015_match_cdhc_video2_et'
-         '.mp4'): 'NWNxuJ0MK3k',  # case studies
+         '.mp4'): 'dIDyVCyK548',  # case studies
         ('https://www.youtube.com/embed/xLMOPtNauQk'):
-            'NWNxuJ0MK3k'  # conclusion
+            'xLMOPtNauQk'  # conclusion
     }
 
     def add_arguments(self, parser):
