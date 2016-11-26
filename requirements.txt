@@ -47,7 +47,7 @@ configparser==3.5.0
 flake8==3.2.1
 Pillow==3.4.2
 ipaddress==1.0.17
-fake-factory==0.7.2
+Faker==0.7.3
 factory_boy==2.7.0
 pyasn1==0.1.9
 pyOpenSSL==16.2.0
