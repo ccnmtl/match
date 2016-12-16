@@ -1,7 +1,3 @@
-/*div.counseling_session {
-    height: 500px;
-}*/
-
 div.counseling_session {
     background-color: #e6f2ff;
     border: 1px solid #b5daff;
@@ -22,7 +18,7 @@ div.available_time {
     width: 210px;
     margin-bottom: 5px;
     padding: 0;
-    background: #fff url('/media/img/icon_stopwatch.jpg') 76px 22px no-repeat;
+    background: #fff url('../../img/icon_stopwatch.jpg') 76px 22px no-repeat;
 }
 
 div.time_remaining {
@@ -52,7 +48,7 @@ span.display_time_text {
 div#patient-chart {
     padding: 80px 0 0 0;
     border: 0;
-    background: transparent url('/media/img/clipboard.png') 0 0 no-repeat;
+    background: transparent url('../../img/clipboard.png') 0 0 no-repeat;
     width: 210px;
     height: 321px;
 }
@@ -90,7 +86,7 @@ div#patient-chart {
 	padding: 0;
 	padding-left: 35px;
 	text-align: left;
-	background-image: url('/media/img/icon_check_small.png');
+	background-image: url('../../img/icon_check_small.png');
 	background-repeat: no-repeat;
 	background-position: 10px 3px;
 }
@@ -101,7 +97,7 @@ div#patient-chart {
 	padding: 0;
 	padding-left: 35px;
 	text-align: left;
-	background-image: url('/media/img/icon_warning_small.png');
+	background-image: url('../../img/icon_warning_small.png');
 	background-repeat: no-repeat;
 	background-position: 10px 3px;
 }
@@ -205,7 +201,7 @@ div#complete-overlay
     -moz-opacity: .8; /*older Mozilla*/
     -khtml-opacity: 0.8;   /*older Safari*/
     opacity: 0.8;   /*supported by current Mozilla, Safari, and Opera*/
-    background: #cc0000 url('/media/img/icon_warning2.png') 100px center no-repeat;
+    background: #cc0000 url('../../img/icon_warning2.png') 100px center no-repeat;
     color:#fff;
     text-align: center;
     padding: 0;
@@ -241,7 +237,7 @@ div#complete-overlay
 }
 
 .referral-form-prescription {
-    background: url('/media/img/bg_prescription.png');
+    background: url('../../img/bg_prescription.png');
     margin: 0 0 20px 0;
     width: 400px;
     padding: 15px;
@@ -251,7 +247,7 @@ box-shadow:         2px 2px 12px rgba(50, 50, 50, 0.75);
 }
 
 .referral-form-prescription .practice-logo {
-    background: url('/media/img/pediatric_dentistry.png') center 0 no-repeat;
+    background: url('../../img/pediatric_dentistry.png') center 0 no-repeat;
     height: 30px;
     font-weight: bold;
     padding-top: 90px;
@@ -268,7 +264,7 @@ div#referral-patient-chart {
     width: 200px;
     padding: 80px 0 0 0;
     border: 0;
-    background: transparent url('/media/img/clipboard.png') 0 0 no-repeat;
+    background: transparent url('../../img/clipboard.png') 0 0 no-repeat;
     width: 210px;
     height: 321px;
 }
@@ -297,7 +293,7 @@ div#referral-patient-chart {
     margin-top: 80px;
     vertical-align: middle;
     padding-left: 60px;
-	background-image: url('/media/img/icon_check.png');
+	background-image: url('../../img/icon_check.png');
 	background-repeat: no-repeat;
 	background-position: 10px center;
 }
