@@ -1,20 +1,29 @@
-from django.contrib.auth.models import User
+import csv
+
+from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
+import django.core.exceptions
 from django.http import HttpResponseRedirect, HttpResponse, \
     HttpResponseForbidden
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext, loader
 from django.utils.encoding import smart_str
-from match.main.models import GlossaryTerm, UserProfile
-from match.nutrition.models import CounselingSessionState, \
-    CounselingReferralState, DiscussionTopic
 from pagetree.helpers import get_section_from_path, \
     get_module, needs_submit, submitted
 from pagetree.models import Hierarchy, PageBlock
 from quizblock.models import Submission, Response, Quiz
-import csv
-import django.core.exceptions
+
+from match.main.models import GlossaryTerm, UserProfile
+from match.nutrition.models import CounselingSessionState, \
+    CounselingReferralState, DiscussionTopic
+
+
+def context_processor(request):
+    ctx = {}
+    ctx['MEDIA_URL'] = settings.MEDIA_URL
+    return ctx
 
 
 def get_or_create_profile(user, section):

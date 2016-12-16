@@ -8,6 +8,10 @@ locals().update(common(project=project, base=base))
 
 PROJECT_APPS = ['match.main', 'match.nutrition']
 
+TEMPLATES[0]['OPTIONS']['context_processors'].append(  # noqa
+    'match.main.views.context_processor'
+)
+
 INSTALLED_APPS += [  # noqa
     'sorl.thumbnail',
     'pagetree',
