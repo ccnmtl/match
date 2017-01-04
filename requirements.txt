@@ -45,7 +45,8 @@ pycodestyle==2.0
 enum34==1.1.6
 configparser==3.5.0
 flake8==3.2.1
-Pillow==3.4.2
+olefile==0.43
+Pillow==4.0.0
 ipaddress==1.0.17
 Faker==0.7.7
 factory_boy==2.8.1
