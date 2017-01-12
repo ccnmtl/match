@@ -47,7 +47,7 @@ configparser==3.5.0
 flake8==3.2.1
 olefile==0.44
 Pillow==4.0.0
-ipaddress==1.0.17
+ipaddress==1.0.18
 Faker==0.7.7
 factory_boy==2.8.1
 pyasn1==0.1.9
