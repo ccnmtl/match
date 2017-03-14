@@ -5,7 +5,7 @@ feedparser==5.2.1
 Markdown==2.6.8
 pyenchant==1.6.7
 uuid==1.30
-psycopg2==2.7
+psycopg2==2.7.1
 statsd==3.2.1
 six==1.10.0
 python-dateutil==2.6.0
