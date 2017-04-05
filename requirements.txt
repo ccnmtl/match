@@ -46,7 +46,7 @@ enum34==1.1.6
 configparser==3.5.0
 flake8==3.3.0
 olefile==0.44
-Pillow==4.0.0
+Pillow==4.1.0
 ipaddress==1.0.18
 Faker==0.7.10
 factory_boy==2.8.1
