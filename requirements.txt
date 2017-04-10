@@ -58,7 +58,7 @@ contextlib2==0.5.4
 rcssmin==1.0.6
 rjsmin==1.0.12
 ldap3==2.2.2
-djangowind==0.16.1
+djangowind==1.0.0
 sorl==3.1
 django-indexer==0.3.0
 django-paging==0.2.5
