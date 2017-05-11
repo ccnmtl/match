@@ -49,7 +49,7 @@ flake8==3.3.0
 olefile==0.44
 Pillow==4.1.1
 ipaddress==1.0.18
-Faker==0.7.11
+Faker==0.7.12
 factory_boy==2.8.1
 pyasn1==0.2.3
 pyOpenSSL==17.0.0
