@@ -99,6 +99,6 @@ requests==2.18.1
 
 boto==2.47.0
 
-django-storages==1.5.2
+django-storages==1.6.1
 django-cacheds3storage==0.1.2
 
