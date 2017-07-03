@@ -1,10 +1,11 @@
+from django.test import TestCase
 from django.contrib.auth.models import User
 from match.nutrition.models import DiscussionTopic, CounselingSession, \
     CounselingSessionState
-from tastypie.test import ResourceTestCase
+from tastypie.test import ResourceTestCaseMixin
 
 
-class CounselingSessionResourceTest(ResourceTestCase):
+class CounselingSessionResourceTest(ResourceTestCaseMixin, TestCase):
     # Use ``fixtures`` & ``urls`` as normal. See Django's ``TestCase``
     # documentation for the gory details.
 
