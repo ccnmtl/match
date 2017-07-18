@@ -2,7 +2,7 @@ Django==1.8.18 # pyup: ignore
 lxml==3.8.0
 feedparser==5.2.1
 Markdown==2.6.8
-pyenchant==1.6.8
+pyenchant==1.6.9
 uuid==1.30
 psycopg2==2.7.1
 statsd==3.2.1
