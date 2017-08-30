@@ -5,7 +5,7 @@ MATCH is five-year project to build a web-based resource for practicing and futu
 
 This Django project was deprecated July 2017, and is not actively maintained.
 
-A sustainable, static site was developed in Hugo to house the content and activities. Visit the new Match at <a href="http://match.ctl.columbia.edu">pass.ctl.columbia.edu</a>.
+A sustainable, static site was developed in Hugo to house the content and activities. Visit the new Match at <a href="http://match.ctl.columbia.edu">match.ctl.columbia.edu</a>.
 
 REQUIREMENTS
 ------------
